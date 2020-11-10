@@ -18,18 +18,19 @@ argo/
 │   │   └── specific/
 ├── bootstrap/
 │   ├── osb.sh
-│   └── osbs.yaml # os bootstrap service config
+│   └── osbs.yaml # os bootstrap service config example
 └── osb.yaml # os bootstrap configuration
 
 
 ## OS bootstrap
 
-The node can use a (RPB OS with a post install hook)[https://github.com/nmcclain/raspberian-firstboot] to configure the GitOps service for the OS configuration. The GitOps service basically monitors the configuration repository for changes on ansible configuration.
+The node can use a (RPB OS with a post install hook)[https://github.com/nmcclain/raspberian-firstboot] to pre-configure the OS.
 
-`bootstrap.yaml` will tell the service what hostname should be configured for the node and where is the git repo with the ansible configuration. Ex:
+`bootstrap.env` will tell the service what hostname should be configured for the node and the public keys for ssh.
 
-```bash
+Add the raspberian with firstboot to the sd card and copy the files in `os_bootstrap` to the sd's boot directory.
 
+* rpi-imager
 ```
-
-The bootstrap service will monitor the `osb.yaml` file for changes. When updated, `obs` will download the release with the ansible files and apply them to the OS.
+brew install raspberry-pi-imager
+```
