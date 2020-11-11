@@ -1,0 +1,12 @@
+---
+# Python2 shouldn't be used anymore
+ansible_python_interpreter: "/usr/bin/python3"
+
+hostname_enabled: no
+raspi_config_timezone: America/Sao_Paulo
+
+
+ufw_rules:
+- rule: limit
+  port: '{{ ssh_port | default(22) }}'
+  proto: tcp

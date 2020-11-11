@@ -1,0 +1,5 @@
+- name: mikolak-net.raspi_config
+  version: 1.2.1
+
+- name: oefenweb.ufw
+  varsion: 2.6.0

@@ -3,23 +3,23 @@ This is the my raspberry pi cluster GitOps configuration
 
 ## Dir structure
 
-argo/
-├── example_cluster/
-│   ├── infrastructure/
-│   └── apps/
-├── nodes/
-│   ├── host_name_a.yaml
-│   ├── host_name_b.yaml
+├── argo/
+├── ├──example_cluster/
+│   │  ├── infrastructure/
+│   │  └── apps/
+├── ansible/
+│   ├── nodes.yaml
+│   ├── control_plain.yaml
 │   ├── group_vars
 │   │   ├── node.yaml
 │   │   └── control_plain.yaml
 │   └── roles/
 │   │   ├── common/
 │   │   └── specific/
-├── bootstrap/
-│   ├── osb.sh
-│   └── osbs.yaml # os bootstrap service config example
-└── osb.yaml # os bootstrap configuration
+└── bootstrap/
+    ├── firstboot.sh
+    └── bootstrap.env # os bootstrap service config example
+
 
 
 ## OS bootstrap
