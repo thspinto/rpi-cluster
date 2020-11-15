@@ -1,0 +1,10 @@
+---
+  - hosts: localhost
+
+    tasks:
+    - name: export k3s config to kubeconfig
+      lineinfile:
+        path: ~/.zshrc
+        regexp: '^export KUBECONFIG'
+        line: 'export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/.kube/k3s'
+        state: present

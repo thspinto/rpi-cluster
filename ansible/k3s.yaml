@@ -6,3 +6,35 @@
 
     roles:
     - xanmanning.k3s
+
+    post_tasks:
+    - name: Copy k3s files
+      copy:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: /etc/rancher/k3s/k3s
+        remote_src: true
+      when: k3s_control_node
+
+    - name: Rename default
+      replace:
+        path:  /etc/rancher/k3s/k3s
+        regexp: 'default'
+        replace: 'k3s'
+      when: k3s_control_node
+
+    - name: Update hostname
+      replace:
+        path:  /etc/rancher/k3s/k3s
+        regexp: '127\.0\.0\.1'
+        replace: "{{ groups['nodes'][0] }}"
+      when: k3s_control_node
+
+    - name: Get kubefile from master
+      fetch:
+        src: /etc/rancher/k3s/k3s
+        dest: ~/.kube/
+        flat: true
+      when: k3s_control_node
+
+
+# TODO: deploy argocd once
