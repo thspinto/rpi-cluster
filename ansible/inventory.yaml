@@ -6,7 +6,3 @@ all:
           ansible_user: pi
         node02.local:
           ansible_user: pi
-    hass:
-      hosts:
-        hass.local:
-          ansible_user: pi
