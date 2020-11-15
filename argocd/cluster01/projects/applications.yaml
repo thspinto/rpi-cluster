@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+  name: applications
+  namespace: argocd
+spec:
+  description: Applications
+  destinations:
+  - namespace: default
+    server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+  - group: networking.k8s.io/v1
+    kind: NetworkPolicy
+  sourceRepos:
+  - git@github.com:thspinto/rpi-cluster.git

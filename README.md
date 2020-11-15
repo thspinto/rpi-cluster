@@ -25,7 +25,7 @@ This is the my raspberry pi cluster GitOps configuration
 
 ## OS bootstrap
 
-The node can use a [RPB OS with a post install hook](https://github.com/nmcclain/raspberian-firstboot)to pre-configure the OS.
+The node can use a [RPB OS with a post install hook](https://github.com/nmcclain/raspberian-firstboot) to pre-configure the OS.
 
 `bootstrap.env` will tell the service what hostname should be configured for the node and the public keys for ssh.
 

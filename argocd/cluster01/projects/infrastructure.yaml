@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+  name: infrastructure
+  namespace: argocd
+spec:
+  description: Infrastructure
+  destinations:
+    - namespace: kube-system
+      server: https://kubernetes.default.svc
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - git@github.com:thspinto/rpi-cluster.git
