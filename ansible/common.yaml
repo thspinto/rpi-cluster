@@ -1,0 +1,57 @@
+# This playbook applies the basic RBP configuration
+---
+  - hosts: all
+    become: yes
+    become_method: sudo
+
+    pre_tasks:
+    - name: Check for Additional Storage
+      stat:
+        path: /dev/sda
+      register: additional_storage
+
+    roles:
+    - mikolak-net.raspi_config
+    - oefenweb.ufw
+
+    tasks:
+    - name: Disabling HDMI Port
+      lineinfile:
+        path: /etc/rc.local
+        regexp: '^/usr/bin/tvservice'
+        line: '/usr/bin/tvservice -o'
+        insertafter: '^exit'
+        state: present
+
+    - name: Stop swap service
+      systemd:
+        name: dphys-swapfile
+        state: stopped
+        enabled: no
+
+    - name: Remove swap file
+      command: dphys-swapfile uninstall
+      args:
+        removes: /var/swap
+
+    # Mount additional storage
+    - name: Mount extra storage
+      mount:
+        path: /mnt/storage
+        src: /dev/sda
+        fstype: ext4
+        state: mounted
+      when: additional_storage.stat.isblk is defined and additional_storage.stat.isblk
+
+
+    - name: Enable cgroup via boot commandline if not already enabled
+      lineinfile:
+        path: /boot/cmdline.txt
+        backrefs: yes
+        regexp: '^((?!.*\bcgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory\b).*)$'
+        line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+      notify: reboot
+
+    handlers:
+    - name: reboot
+      reboot:

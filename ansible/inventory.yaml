@@ -1,0 +1,8 @@
+all:
+  children:
+    nodes:
+      hosts:
+        node01.local:
+          ansible_user: pi
+        node02.local:
+          ansible_user: pi
