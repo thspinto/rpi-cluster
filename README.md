@@ -5,17 +5,17 @@ This is the my raspberry pi cluster GitOps configuration
 
 ├── argo/
 ├── ├──example_cluster/
+│   │  ├── bootstrap/
 │   │  ├── infrastructure/
 │   │  └── apps/
 ├── ansible/
-│   ├── nodes.yaml
-│   ├── control_plain.yaml
+│   ├── common.yaml
+│   ├── k3s.yaml
 │   ├── group_vars
-│   │   ├── node.yaml
-│   │   └── control_plain.yaml
-│   └── roles/
-│   │   ├── common/
-│   │   └── specific/
+│   │   ├── nodes.yaml
+│   │   └── maters.yaml
+│   ├── host_vars
+│       └── node01.yaml
 └── bootstrap/
     ├── firstboot.sh
     └── bootstrap.env # os bootstrap service config example
