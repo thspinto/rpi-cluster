@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/cluster01/apps
+    path: argocd/cluster01/applications
     repoURL: https://github.com/thspinto/rpi-cluster.git
     targetRevision: HEAD
   syncPolicy:
