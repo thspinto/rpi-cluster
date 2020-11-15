@@ -3,6 +3,7 @@ This is the my raspberry pi cluster GitOps configuration
 
 ## Dir structure
 
+```
 ├── argo/
 ├── ├──example_cluster/
 │   │  ├── bootstrap/
@@ -19,7 +20,7 @@ This is the my raspberry pi cluster GitOps configuration
 └── bootstrap/
     ├── firstboot.sh
     └── bootstrap.env # os bootstrap service config example
-
+```
 
 
 ## OS bootstrap
