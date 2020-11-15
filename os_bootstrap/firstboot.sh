@@ -15,3 +15,4 @@ sudo systemctl start ssh
 echo $bootstrap_hostname > /etc/hostname
 sed -i "s/raspberrypi/$bootstrap_hostname/g" /etc/hosts
 hostname $bootstrap_hostname
+sudo systemctl restart avahi-daemon.service # to lood the new hostname in mDNS

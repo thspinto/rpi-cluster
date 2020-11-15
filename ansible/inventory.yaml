@@ -6,7 +6,7 @@ all:
           ansible_user: pi
         node02.local:
           ansible_user: pi
-    control:
+    hass:
       hosts:
-        control01.local:
+        hass.local:
           ansible_user: pi

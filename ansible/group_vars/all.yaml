@@ -5,8 +5,29 @@ ansible_python_interpreter: "/usr/bin/python3"
 hostname_enabled: no
 raspi_config_timezone: America/Sao_Paulo
 
-
 ufw_rules:
-- rule: limit
-  port: '{{ ssh_port | default(22) }}'
+- rule: allow
+  port: 22
   proto: tcp
+  comment: 'allow incoming connection on standard ssh port'
+- rule: allow
+  port: 6443
+  proto: tcp
+  comment: 'allow incoming connection k3s https control api'
+- rule: allow
+  port: 10250
+  proto: tcp
+  comment: 'allow incoming connection k3s metrics server'
+- rule: allow
+  port: 8472
+  proto: udp
+  comment: 'allow incoming connection for k3s flannel'
+- rule: allow
+  port: 5353
+  proto: udp
+  comment: 'allow incoming connection for mdsn'
+
+
+# k3s configuration
+k3s_control_node_address: "{{ hostvars[groups['nodes'][0]]['ansible_eth0']['ipv4']['address'] }}"
+k3s_become_for_all: true

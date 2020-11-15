@@ -1,0 +1,7 @@
+# This playbook applies home assistant configuration
+---
+  - hosts: hass
+    become: yes
+    become_method: sudo
+  roles:
+     - monolithprojects.hassio

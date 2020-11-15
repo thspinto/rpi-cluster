@@ -1,0 +1,14 @@
+# This playbook applies k3s configuration
+---
+  - hosts: nodes
+    become: yes
+    become_method: sudo
+
+    pre_tasks:
+    - name: support armv6l
+      set_fact:
+        ansible_architecture: arm
+      when: ansible_architecture == 'armv6l'
+
+    roles:
+    - xanmanning.k3s
