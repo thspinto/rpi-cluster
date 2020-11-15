@@ -15,4 +15,4 @@ spec:
     - group: "*"
       kind: "*"
   sourceRepos:
-    - git@github.com:thspinto/rpi-cluster.git
+    - https://github.com/thspinto/rpi-cluster.git
