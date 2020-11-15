@@ -2,20 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: bootstrap-infrastructure
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: infrastructure
+  project: default
   source:
-    path: argocd/cluster01/infrastructure/argocd
+    path: argocd/infrastructure
     repoURL: https://github.com/thspinto/rpi-cluster.git
     targetRevision: HEAD
   syncPolicy:
     automated:
       selfHeal: true
-      prune: true

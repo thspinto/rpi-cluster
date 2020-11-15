@@ -35,6 +35,3 @@
         dest: ~/.kube/
         flat: true
       when: k3s_control_node
-
-
-# TODO: deploy argocd once

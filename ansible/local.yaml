@@ -6,5 +6,39 @@
       lineinfile:
         path: ~/.zshrc
         regexp: '^export KUBECONFIG'
-        line: 'export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/.kube/k3s'
+        line: "export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:{{ kubeconfig }}"
         state: present
+
+    - name: Create argocd namespace
+      community.kubernetes.k8s:
+        state: present
+        src: ../argocd/infrastructure/namespace/argocd.yaml
+        kubeconfig: '{{ kubeconfig }}'
+
+    - name: Create argocd
+      community.kubernetes.k8s:
+        state: present
+        namespace: argocd
+        src: ../argocd/infrastructure/argocd/argocd.yaml
+        kubeconfig: '{{ kubeconfig }}'
+
+    - name: Bootstrap infrastructure
+      community.kubernetes.k8s:
+        state: present
+        namespace: argocd
+        src: ../argocd/bootstrap/bootstrap-infrastructure.yaml
+        kubeconfig: '{{ kubeconfig }}'
+
+    - name: Bootstrap applications
+      community.kubernetes.k8s:
+        state: present
+        namespace: argocd
+        src: ../argocd/bootstrap/bootstrap-applications.yaml
+        kubeconfig: '{{ kubeconfig }}'
+
+    - name: Bootstrap projects
+      community.kubernetes.k8s:
+        state: present
+        namespace: argocd
+        src: ../argocd/bootstrap/bootstrap-projects.yaml
+        kubeconfig: '{{ kubeconfig }}'

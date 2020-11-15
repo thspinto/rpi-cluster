@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-projects
+  name: bootstrap-applications
   namespace: argocd
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/cluster01/projects
+    path: argocd/applications
     repoURL: https://github.com/thspinto/rpi-cluster.git
     targetRevision: HEAD
   syncPolicy:
