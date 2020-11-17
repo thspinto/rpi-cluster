@@ -187,6 +187,7 @@ spec:
           httpGet:
             path: /healthz
             port: http
+          initialDelaySeconds: 30
         name: sealed-secrets-controller
         ports:
         - containerPort: 8080
