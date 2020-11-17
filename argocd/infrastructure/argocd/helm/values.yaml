@@ -8,3 +8,5 @@ dex:
   enabled: false
   serviceAccount:
     create: false
+
+installCRDs: true
