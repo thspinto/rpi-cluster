@@ -19,7 +19,7 @@
       community.kubernetes.k8s:
         state: present
         namespace: argocd
-        src: ../argocd/infrastructure/argocd/argocd.yaml
+        src: ../argocd/infrastructure/argocd/resources.yaml
         kubeconfig: '{{ kubeconfig }}'
 
     - name: Bootstrap infrastructure

@@ -1,0 +1,10 @@
+---
+global:
+  image:
+    repository: alinbalutoiu/argocd
+    tag: linux-arm-v1.7.6
+
+dex:
+  enabled: false
+  serviceAccount:
+    create: false
