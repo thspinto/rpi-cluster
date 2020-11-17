@@ -18359,7 +18359,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: prometheus-operator
-  namespace: default
+  namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -18449,7 +18449,6 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.43.2
   name: prometheus-operator
-  namespace: default
 spec:
   replicas: 1
   selector:
@@ -18497,7 +18496,6 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.43.2
   name: prometheus-operator
-  namespace: default
 ---
 apiVersion: v1
 kind: Service
@@ -18507,7 +18505,6 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.43.2
   name: prometheus-operator
-  namespace: default
 spec:
   clusterIP: None
   ports:
