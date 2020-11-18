@@ -1,0 +1,3 @@
+---
+alertmanager:
+  enabled: false
