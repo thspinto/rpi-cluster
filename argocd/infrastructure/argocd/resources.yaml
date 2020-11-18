@@ -181,7 +181,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
 ---
 # Source: argo-cd/templates/argocd-server/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -202,7 +202,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argo-cd/templates/argocd-application-controller/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -313,7 +313,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
 ---
 # Source: argo-cd/templates/argocd-server/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -334,7 +334,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argo-cd/templates/argocd-application-controller/service.yaml
 apiVersion: v1
