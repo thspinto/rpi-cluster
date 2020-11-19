@@ -10,14 +10,6 @@ kube-state-metrics:
 prometheus:
   prometheusSpec:
     ruleSelectorNilUsesHelmValues: false
-    ruleNamespaceSelector:
-      any: true
     serviceMonitorSelectorNilUsesHelmValues: false
-    serviceMonitorNamespaceSelector:
-      any: true
     podMonitorSelectorNilUsesHelmValues: false
-    podMonitorNamespaceSelector:
-      any: true
     probeSelectorNilUsesHelmValues: false
-    probeNamespaceSelector:
-      any: true

@@ -37090,25 +37090,17 @@ spec:
   routePrefix: "/"
   serviceAccountName: prometheus-kube-prometheus-prometheus
   serviceMonitorSelector: {}
-  serviceMonitorNamespaceSelector:
-    any: true
-
+  serviceMonitorNamespaceSelector: {}
   podMonitorSelector: {}
-  podMonitorNamespaceSelector:
-    any: true
-
+  podMonitorNamespaceSelector: {}
   probeSelector: {}
-  probeNamespaceSelector:
-    any: true
-
+  probeNamespaceSelector: {}
   securityContext:
     fsGroup: 2000
     runAsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
-  ruleNamespaceSelector:
-    any: true
-
+  ruleNamespaceSelector: {}
   ruleSelector: {}
   portName: web
 ---
