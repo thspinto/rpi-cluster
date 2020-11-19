@@ -49,3 +49,8 @@ k3s_server:
     - servicelb
 kubeconfig: ~/.kube/k3s
 k3s_etcd_datastore: true
+
+# Cilium Configuration
+k3s_no_flannel: true
+k3s_flannel_backend: none
+k3s_disable_network_policy: true
