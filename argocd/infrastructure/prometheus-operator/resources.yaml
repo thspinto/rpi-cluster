@@ -37089,32 +37089,27 @@ spec:
   retention: "10d"
   routePrefix: "/"
   serviceAccountName: prometheus-kube-prometheus-prometheus
-  serviceMonitorSelector:
-    matchLabels:
-      release: "prometheus"
+  serviceMonitorSelector: {}
+  serviceMonitorNamespaceSelector:
+    any: true
 
-  serviceMonitorNamespaceSelector: {}
-  podMonitorSelector:
-    matchLabels:
-      release: "prometheus"
+  podMonitorSelector: {}
+  podMonitorNamespaceSelector:
+    any: true
 
-  podMonitorNamespaceSelector: {}
-  probeSelector:
-    matchLabels:
-      release: "prometheus"
+  probeSelector: {}
+  probeNamespaceSelector:
+    any: true
 
-  probeNamespaceSelector: {}
   securityContext:
     fsGroup: 2000
     runAsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
-  ruleNamespaceSelector: {}
-  ruleSelector:
-    matchLabels:
-      app: kube-prometheus-stack
-      release: "prometheus"
+  ruleNamespaceSelector:
+    any: true
 
+  ruleSelector: {}
   portName: web
 ---
 # Source: kube-prometheus-stack/templates/prometheus/rules-1.14/alertmanager.rules.yaml

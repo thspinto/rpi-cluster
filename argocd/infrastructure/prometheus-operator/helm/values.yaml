@@ -6,3 +6,18 @@ kube-state-metrics:
   image:
     repository: carlosedp/kube-state-metrics
     tag: v1.9.6
+
+prometheus:
+  prometheusSpec:
+    ruleSelectorNilUsesHelmValues: false
+    ruleNamespaceSelector:
+      any: true
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector:
+      any: true
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorNamespaceSelector:
+      any: true
+    probeSelectorNilUsesHelmValues: false
+    probeNamespaceSelector:
+      any: true
