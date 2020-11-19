@@ -36947,7 +36947,7 @@ spec:
 
 
         imagePullPolicy: IfNotPresent
-        image: "k8s.gcr.io/kube-state-metrics:v1.9.7"
+        image: "k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0-alpha.2"
         ports:
         - containerPort: 8080
         livenessProbe:
