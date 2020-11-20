@@ -1,0 +1,8 @@
+# This playbook orchestrates all cluster configuration phases.
+---
+- name: Run common configuration
+  import_playbook: common.yaml
+- name: Configure k3s
+  import_playbook: k3s.yaml
+- name: Configure local kubectl and gitops
+  import_playbook: local.yaml

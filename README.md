@@ -36,6 +36,14 @@ Add the raspberian with firstboot to the sd card and copy the files in `os_boots
 brew install raspberry-pi-imager
 ```
 
+## Initial setup
+
+Ansible is responsible for the initial setup of the k3s cluster:
+
+```
+ansible-playbook main.yaml -i inventory.yaml
+```
+
 ## ArgoCD
 
 Argo is responsible for the k3s configurations. See more [here](https://argoproj.github.io/argo-cd/).
