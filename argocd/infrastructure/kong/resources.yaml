@@ -1,0 +1,472 @@
+---
+# Source: kong/templates/controller-service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kong-kong
+  namespace: kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+---
+# Source: kong/templates/config-custom-server-blocks.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kong-kong-default-custom-server-blocks
+  namespace: kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+data:
+  servers.conf: |
+    # Prometheus metrics and health-checking server
+    server {
+        server_name kong_prometheus_exporter;
+        listen 0.0.0.0:9542; # can be any other port as well
+        access_log off;
+        location /status {
+            default_type text/plain;
+            return 200;
+        }
+        location /metrics {
+            default_type text/plain;
+            content_by_lua_block {
+                 local prometheus = require "kong.plugins.prometheus.exporter"
+                 prometheus:collect()
+            }
+        }
+        location /nginx_status {
+            internal;
+            access_log off;
+            stub_status;
+        }
+    }
+---
+# Source: kong/templates/wait-for-postgres-script.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kong-kong-bash-wait-for-postgres
+  namespace: kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+data:
+  wait.sh: |
+    until timeout 2 bash -c "9<>/dev/tcp/${KONG_PG_HOST}/${KONG_PG_PORT}"
+      do echo "waiting for db - trying ${KONG_PG_HOST}:${KONG_PG_PORT}"
+      sleep 2
+    done
+---
+# Source: kong/templates/controller-rbac-resources.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+  name:  kong-kong
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+      - nodes
+      - pods
+      - secrets
+    verbs:
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+    verbs:
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - services
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - "extensions"
+      - "networking.k8s.io"
+      - "networking.internal.knative.dev"
+    resources:
+      - ingresses
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+        - events
+    verbs:
+        - create
+        - patch
+  - apiGroups:
+      - "extensions"
+      - "networking.k8s.io"
+      - "networking.internal.knative.dev"
+    resources:
+      - ingresses/status
+    verbs:
+      - update
+  - apiGroups:
+      - "configuration.konghq.com"
+    resources:
+      - tcpingresses/status
+    verbs:
+      - update
+  - apiGroups:
+      - "configuration.konghq.com"
+    resources:
+      - kongplugins
+      - kongclusterplugins
+      - kongcredentials
+      - kongconsumers
+      - kongingresses
+      - tcpingresses
+    verbs:
+      - get
+      - list
+      - watch
+---
+# Source: kong/templates/controller-rbac-resources.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name:  kong-kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name:  kong-kong
+subjects:
+  - kind: ServiceAccount
+    name: kong-kong
+    namespace: kong
+---
+# Source: kong/templates/controller-rbac-resources.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name:  kong-kong
+  namespace: kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+      - pods
+      - secrets
+      - namespaces
+    verbs:
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    resourceNames:
+      # Defaults to "<election-id>-<ingress-class>"
+      # Here: "<kong-ingress-controller-leader-nginx>-<nginx>"
+      # This has to be adapted if you change either parameter
+      # when launching the nginx-ingress-controller.
+      - "kong-ingress-controller-leader-kong-kong"
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - create
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+    verbs:
+      - get
+---
+# Source: kong/templates/controller-rbac-resources.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name:  kong-kong
+  namespace: kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kong-kong
+subjects:
+  - kind: ServiceAccount
+    name: kong-kong
+    namespace: kong
+---
+# Source: kong/templates/service-kong-proxy.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kong-kong-proxy
+  namespace: kong
+  labels:
+    enable-metrics: "true"
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+spec:
+  type: LoadBalancer
+  externalIPs:
+  ports:
+  - name: kong-proxy
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  - name: kong-proxy-tls
+    port: 443
+    targetPort: 8443
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: kong
+    app.kubernetes.io/component: app
+    app.kubernetes.io/instance: "kong"
+---
+# Source: kong/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kong-kong
+  namespace:  kong
+  labels:
+    app.kubernetes.io/name: kong
+    helm.sh/chart: kong-1.12.0
+    app.kubernetes.io/instance: "kong"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/component: app
+  annotations:
+    kuma.io/gateway: "enabled"
+    traffic.sidecar.istio.io/includeInboundPorts: ""
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kong
+      app.kubernetes.io/component: app
+      app.kubernetes.io/instance: "kong"
+
+  template:
+    metadata:
+      annotations:
+      labels:
+        app.kubernetes.io/name: kong
+        helm.sh/chart: kong-1.12.0
+        app.kubernetes.io/instance: "kong"
+        app.kubernetes.io/managed-by: "Helm"
+        app.kubernetes.io/version: "2.2"
+        app.kubernetes.io/component: app
+    spec:
+      serviceAccountName: kong-kong
+      
+      containers:
+      - name: ingress-controller
+        args:
+        - /kong-ingress-controller
+        
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace  
+        
+        
+        - name: CONTROLLER_ELECTION_ID
+          value: "kong-ingress-controller-leader-kong"
+        - name: CONTROLLER_INGRESS_CLASS
+          value: "kong"
+        - name: CONTROLLER_KONG_ADMIN_TLS_SKIP_VERIFY
+          value: "true"
+        - name: CONTROLLER_KONG_ADMIN_URL
+          value: "https://localhost:8444"
+        - name: CONTROLLER_PUBLISH_SERVICE
+          value: "kong/kong-kong-proxy"
+        image: "kong-docker-kubernetes-ingress-controller.bintray.io/kong-ingress-controller:1.0"
+        imagePullPolicy: IfNotPresent
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          {}
+      
+      - name: "proxy"
+        image: "kong:2.2"
+        imagePullPolicy: IfNotPresent
+        env:
+         
+        - name: KONG_ADMIN_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_ADMIN_ERROR_LOG
+          value: "/dev/stderr"
+        - name: KONG_ADMIN_GUI_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_ADMIN_GUI_ERROR_LOG
+          value: "/dev/stderr"
+        - name: KONG_ADMIN_LISTEN
+          value: "127.0.0.1:8444 http2 ssl"
+        - name: KONG_CLUSTER_LISTEN
+          value: "off"
+        - name: KONG_DATABASE
+          value: "off"
+        - name: KONG_KIC
+          value: "on"
+        - name: KONG_LUA_PACKAGE_PATH
+          value: "/opt/?.lua;/opt/?/init.lua;;"
+        - name: KONG_NGINX_HTTP_INCLUDE
+          value: "/kong/servers.conf"
+        - name: KONG_NGINX_WORKER_PROCESSES
+          value: "2"
+        - name: KONG_PLUGINS
+          value: "bundled"
+        - name: KONG_PORTAL_API_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_PORTAL_API_ERROR_LOG
+          value: "/dev/stderr"
+        - name: KONG_PORT_MAPS
+          value: "80:8000, 443:8443"
+        - name: KONG_PREFIX
+          value: "/kong_prefix/"
+        - name: KONG_PROXY_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_PROXY_ERROR_LOG
+          value: "/dev/stderr"
+        - name: KONG_PROXY_LISTEN
+          value: "0.0.0.0:8000, 0.0.0.0:8443 http2 ssl"
+        - name: KONG_STATUS_LISTEN
+          value: "0.0.0.0:8100"
+        - name: KONG_STREAM_LISTEN
+          value: "off"
+        - name: KONG_NGINX_DAEMON
+          value: "off"
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - /bin/sleep 15 && kong quit
+        ports:
+        
+        - name: proxy
+          containerPort: 8000
+          protocol: TCP
+        - name: proxy-tls
+          containerPort: 8443
+          protocol: TCP
+        - name: metrics
+          containerPort: 9542
+          protocol: TCP
+        volumeMounts:
+          - name: kong-kong-prefix-dir
+            mountPath: /kong_prefix/
+          - name: kong-kong-tmp
+            mountPath: /tmp
+          - name: custom-nginx-template-volume
+            mountPath: /kong
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: metrics
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: metrics
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          {}
+      securityContext:
+        {}
+      tolerations:
+        []
+      volumes:
+        - name: kong-kong-prefix-dir
+          emptyDir: {}
+        - name: kong-kong-tmp
+          emptyDir: {}
+        - name: kong-kong-bash-wait-for-postgres
+          configMap:
+            name: kong-kong-bash-wait-for-postgres
+            defaultMode: 0755
+        - name: custom-nginx-template-volume
+          configMap:
+            name: kong-kong-default-custom-server-blocks

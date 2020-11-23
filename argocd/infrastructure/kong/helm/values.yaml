@@ -1,0 +1,6 @@
+---
+ingressController:
+  installCRDs: false
+
+clustertelemetry:
+  enabled: true
