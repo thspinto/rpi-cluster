@@ -4,3 +4,6 @@ ingressController:
 
 clustertelemetry:
   enabled: true
+
+image:
+  repository: arm64v8/kong
