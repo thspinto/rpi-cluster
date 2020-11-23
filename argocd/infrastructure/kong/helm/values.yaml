@@ -4,3 +4,6 @@ ingressController:
 
 clustertelemetry:
   enabled: true
+
+image:
+  tag: "2.2-ubuntu"

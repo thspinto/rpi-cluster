@@ -359,7 +359,7 @@ spec:
           {}
       
       - name: "proxy"
-        image: "kong:2.2"
+        image: "kong:2.2-ubuntu"
         imagePullPolicy: IfNotPresent
         env:
          
