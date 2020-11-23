@@ -52,6 +52,14 @@
       line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
     notify: reboot
 
+  - name: Enable arm 64bit
+    lineinfile:
+      path: /boot/config.txt
+      regexp: '^arm_64bit'
+      line: 'arm_64bit=1'
+      state: present
+    notify: reboot
+
   handlers:
   - name: reboot
     reboot:
