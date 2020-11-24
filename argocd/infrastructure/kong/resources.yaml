@@ -791,7 +791,7 @@ spec:
           {}
       
       - name: "proxy"
-        image: "kong:2.2"
+        image: "arm64v8/kong:2.2"
         imagePullPolicy: IfNotPresent
         env:
          

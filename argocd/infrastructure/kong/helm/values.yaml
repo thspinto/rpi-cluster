@@ -9,3 +9,6 @@ ingressController:
   image:
     repository: ghcr.io/thspinto/kubernetes-ingress-controller # TODO: go back to official release after https://github.com/Kong/kubernetes-ingress-controller/pull/926
     tag: latest
+
+image:
+  repository: arm64v8/kong
