@@ -359,7 +359,7 @@ spec:
           {}
       
       - name: "proxy"
-        image: "arm64v8/kong:2.2"
+        image: "ghcr.io/thspinto/kubernetes-ingress-controller:latest"
         imagePullPolicy: IfNotPresent
         env:
          
