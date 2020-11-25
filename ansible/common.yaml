@@ -29,13 +29,14 @@
       name: vm.dirty_background_ratio
       value: '5'
       state: present
+    notify: reboot
 
   - name: Configure dirty ratio
     ansible.posix.sysctl:
       name: vm.dirty_ratio
       value: '80'
       state: present
-
+    notify: reboot
 
   # Mount additional storage
   - name: Mount extra storage
