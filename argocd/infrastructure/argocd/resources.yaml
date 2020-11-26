@@ -53,7 +53,7 @@ metadata:
     app.kubernetes.io/component: server
 data:
     application.instanceLabelKey: argocd.argoproj.io/instance
-    url: https://argocd.example.com
+    url: https://argocd.thsp.dev
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-rbac-cm.yaml
 apiVersion: v1
@@ -779,6 +779,36 @@ spec:
         - containerPort: 6379
         resources:
           {}
+---
+# Source: argo-cd/templates/argocd-server/ingress-grpc.yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: "cert-manager"
+    kubernetes.io/ingress.class: "kong"
+    kubernetes.io/tls-acme: "true"
+  name: argocd-server-grpc
+  labels:
+    app.kubernetes.io/name: argocd-server
+    helm.sh/chart: argo-cd-2.9.5
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: server
+spec:
+  rules:
+    - host: argocd.thsp.dev
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: argocd-server
+              servicePort: 80
+  tls:
+    - hosts:
+      - argocd.thsp.dev
+      secretName: cert-manager
 ---
 # Source: argo-cd/templates/argocd-server/ingress.yaml
 apiVersion: networking.k8s.io/v1beta1
