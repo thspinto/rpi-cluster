@@ -23,6 +23,13 @@
       src: ../argocd/infrastructure/argocd/crds.yaml
       kubeconfig: '{{ kubeconfig }}'
 
+  - name: Create prometheus operator crds (dependency)
+    community.kubernetes.k8s:
+      state: present
+      namespace: argocd
+      src: ../argocd/infrastructure/prometheus-operator/crds.yaml
+      kubeconfig: '{{ kubeconfig }}'
+
   - name: Create argocd
     community.kubernetes.k8s:
       state: present
