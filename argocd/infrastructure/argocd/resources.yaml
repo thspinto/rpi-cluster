@@ -804,7 +804,7 @@ spec:
           - path: /
             backend:
               serviceName: argocd-server
-              servicePort: 443
+              servicePort: 80
   tls:
     - hosts:
       - argocd.thsp.dev

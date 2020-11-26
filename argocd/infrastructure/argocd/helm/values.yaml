@@ -40,4 +40,3 @@ server:
     - secretName: cert-manager
       hosts:
       - argocd.thsp.dev
-    https: true
