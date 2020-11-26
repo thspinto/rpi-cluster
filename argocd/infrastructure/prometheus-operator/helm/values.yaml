@@ -13,3 +13,30 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: kong
+      kubernetes.io/tls-acme: 'true'
+      cert-manager.io/cluster-issuer: cert-manager
+    hosts:
+    - prometheus.thsp.dev
+    tls:
+    - secretName: cert-manager
+      hosts:
+      - prometheus.thsp.dev
+
+grafana:
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: kong
+      kubernetes.io/tls-acme: 'true'
+      cert-manager.io/cluster-issuer: cert-manager
+    hosts:
+    - grafana.thsp.dev
+    tls:
+    - secretName: cert-manager
+      hosts:
+      - grafana.thsp.dev
