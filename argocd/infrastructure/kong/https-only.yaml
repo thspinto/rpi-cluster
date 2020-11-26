@@ -1,7 +1,0 @@
-kind: KongIngress
-metadata:
-    name: https-only
-route:
-  protocols:
-  - https
-  https_redirect_status_code: 302
