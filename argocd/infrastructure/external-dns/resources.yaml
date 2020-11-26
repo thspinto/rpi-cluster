@@ -53,7 +53,6 @@ spec:
         args:
         - --source=ingress
         - --provider=cloudflare
-        - --cloudflare-proxied
         env:
         - name: CF_API_EMAIL
           value: thspinto@protonmail.com
