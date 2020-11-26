@@ -54,6 +54,9 @@ spec:
         - --source=ingress
         - --provider=cloudflare
         - --cloudflare-proxied
+        env:
+        - name: CF_API_EMAIL
+          value: thspinto@protonmail.com
         envFrom:
         - secretRef:
             name: external-dns
