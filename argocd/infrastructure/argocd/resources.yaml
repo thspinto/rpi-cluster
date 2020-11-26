@@ -693,6 +693,7 @@ spec:
         - info
         - --redis
         - argocd-redis:6379
+        - --insecure
         volumeMounts:
         - mountPath: /app/config/ssh
           name: ssh-known-hosts
