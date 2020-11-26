@@ -22,7 +22,7 @@ prometheus:
     hosts:
     - prometheus.thsp.dev
     tls:
-    - secretName: cert-manager
+    - secretName: cert-manager-prometheus
       hosts:
       - prometheus.thsp.dev
 
@@ -37,6 +37,6 @@ grafana:
     hosts:
     - grafana.thsp.dev
     tls:
-    - secretName: cert-manager
+    - secretName: cert-manager-grafana
       hosts:
       - grafana.thsp.dev

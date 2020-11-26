@@ -37050,7 +37050,7 @@ spec:
   tls:
     - hosts:
       - grafana.thsp.dev
-      secretName: cert-manager
+      secretName: cert-manager-grafana
   rules:
     - host: grafana.thsp.dev
       http:
@@ -37089,7 +37089,7 @@ spec:
   tls:
     - hosts:
       - prometheus.thsp.dev
-      secretName: cert-manager
+      secretName: cert-manager-prometheus
 ---
 # Source: kube-prometheus-stack/templates/prometheus-operator/admission-webhooks/mutatingWebhookConfiguration.yaml
 apiVersion: admissionregistration.k8s.io/v1
