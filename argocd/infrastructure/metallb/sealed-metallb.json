@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "memberlist",
+    "namespace": "metallb-system",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "memberlist",
+        "namespace": "metallb-system",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "secretkey": "AgCX/fWmKtvTVQ0OV3mQ0wL7Clerq183VBsE5nHGaEwkWJqYkQpfurhCiKqakLdczhM/JviOklluNABg6klzlhJ/KE2Zqv4cafpH2Y2Iaxe97j2VWqinjVqR4EGf3Q6wyjzz3QHGTo6IySi1+jr6twei/LEMNG0Yi1EmD8nsMctFRbU9joCAbbgBOOF2rqPo1NVHAZ6uKUfRWcBbZ24iud+gDKS0RnLxsIdewszcGtBWZ84j3xTAXE79ZYfkB29H3GeAi8tljnB2f5O63gJaw98pDWZ/7FC7iQV/Jp8pXcgPFZjhRgicseIEXa+1n9E0YrJU0NnEzCbFQnlc67Rz3JCm9ywR57lOR78pjrarYVHbA0wqeCvGDsR5DRzgHdYMpv1rtCxD7jnNLQKQJbqP24CYyhNC1KgTQI3W8NFqfKKKUahSPR0XdKjj6D72LcdkR6U+yyI1iG5BSfYen1qDaBrTH75Mn3C3nwq3HLU65Wvp64Z6ei/QsdclOdHK9mzbhO5Pkb8FVfbSKmH7O4QDtLbcwbiSQdPRabr8odMbXW2Pe6x7PTeULxTqwHOTvViIxHdHzHN3k+pxXFx8LyM/WxWqxhtfCcyhmzqMLHSpjPZvJUQIzEPTeQXQjWLV2x3hTgaooXYM/reiQScmiRa5dHm2FTBOEpQ3zjmeIAGzEww5rOtVSyj7rcVdrxxUVmKIr5aZ+e5ncaw6CuGj+Pq8rrZ+qV14BZGeBZGA7x2zd9wHi2lpQpzzONeGFiV7nrXLwVKmp1goZRfIcEUKxJWvT/xriLvZGBpfI6ST6rRK+d1zvlvSZoHz5QWBg6BhLzPx0u54omUKHQBsuujNB6bfJGJ2rujmSd/nCFW0OYi4UEGIpg=="
+    }
+  }
+}
