@@ -15,6 +15,6 @@ spec:
       dns01:
         cloudflare:
           email: thspinto@protonmail.com
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-cert-manager
             key: CF_API_KEY
