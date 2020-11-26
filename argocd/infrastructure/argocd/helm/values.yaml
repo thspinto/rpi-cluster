@@ -24,7 +24,7 @@ repoServer:
       enabled: true
 
 server:
-  extra-args:
+  extraArgs:
   - --insecure
   metrics:
     enabled: true
