@@ -28,3 +28,16 @@ server:
     enabled: true
     serviceMonitor:
       enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: kong
+      kubernetes.io/tls-acme: true
+      cert-manager.io/cluster-issuer: cert-manager
+    hosts:
+    - argocd.thsp.dev
+    tls:
+    - secretName: cert-manager
+      hosts:
+      - argocd.thsp.dev
+    https: true

@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "cloudflare-cert-manager",
+    "namespace": "cert-manager",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "cloudflare-cert-manager",
+        "namespace": "cert-manager",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "CF_API_KEY": "AgB6cQnLTzD3+cRAoPyTtLre8uKNzdOrjosqEiTKuiU0SAXuY1kmLzGDRm3W1QL3ZCF0/ZxNdMCRx0dOGr7bizaNiaEUxZr4A/Vuaj0k+fBSTOBvZKeSY2Qlb1p0lB2GYL8jmGQtYFGJSeOFMdiPL9Vh4kiTSNlJHnzuF6Gw+f9Cz1+/r7E88gyNElm5uY3ujgzk9SVZZj/hWxKqHCrX+QdfXsmOx9pLNYRuhEL0wtpZug3QbuwVzCtAaDiQFpr0x716ijob53ulGiNdaZmG58Y2ipMEfA491Tbuc5KXF/+cFZ3oSYDIW0WKSu0/hrXGlshDJBXkPf0gtCmwXqweVIQHTRFG/B26RMG2Jjh0zUF73lI6/V/JhHxX1GBDOOkjm42ZZefnmLVkMGV99SUjjEqmSWxIYJSth+zRik2RYc12NILym7osH6SHpiDvo/+HPiT8HYVmuXXGlHpVv/5XogQWjTlUu7s3PaVbKhFJgJ1biJGB7WteVkBRTC8OILcAuxzVVQihakoBsUxwxrfm13igcqT/+mmVvxPk71G6buvD5cxsRt06xV640vZdB3PY9a2v1xVCu/g3IuuO2DiFoYzD/SkxCI/rL/MUryXLgnQ5tRDLIvn737qGH0K+KgbWfmJZFC1ccBzSUf8OpIPViUIyUdeccORSFOs3JtqvFzmBzcH2Y5GXtVyzpSdSeqKlZBDoyYcvUxEV4Eq72LgqoaADeKn4EIrg2hVxKBooCYgED4I3YVj7LzRneA=="
+    }
+  }
+}

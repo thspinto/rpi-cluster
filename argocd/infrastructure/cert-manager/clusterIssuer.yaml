@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: cert-manager
+spec:
+  acme:
+    email: 18a6520343a740febdc6b26533c9b33f.protect@whoisguard.com
+    privateKeySecretRef:
+      name: cert-manager
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - selector:
+        dnsZones:
+        - 'thsp.dev'
+      dns01:
+        cloudflare:
+          email: thspinto@protonmail.com
+          apiKeySecretRef:
+            name: cloudflare-cert-manager
+            key: CF_API_KEY
