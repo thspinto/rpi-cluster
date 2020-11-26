@@ -52,8 +52,6 @@ spec:
         image: gcr.io/k8s-staging-external-dns/external-dns:v20201023-v0.7.4-44-gc148505b # TODO: use prod version 0.7.5 when released
         args:
         - --source=ingress
-        - --zone-id-filter=$(ZONE_ID_A)
-        - --zone-id-filter=$(ZONE_ID_B)
         - --provider=cloudflare
         - --cloudflare-proxied
         envFrom:
