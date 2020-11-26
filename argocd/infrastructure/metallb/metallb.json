@@ -1,0 +1,11 @@
+{
+    "kind": "Secret",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "metallb",
+        "namespace": "metallb-system"
+    },
+    "data": {
+        "secretkey": "uxJ1seW6RkdybaaLc2jX3mxQfWfStoYzY2/LFwNuTtzvfBxG5UajaQsUERQe+YojzIFd/PRpN7mC2PknumVSJHIj6cD2CS31Yg6zwBNNYYsZi2LwORLQeJ3TJavn5bOe9ALVbkROOrN2VOi407kIZaYc7v1fASUGGV4kXIWyZc8="
+    }
+}
