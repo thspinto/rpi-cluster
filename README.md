@@ -47,3 +47,11 @@ ansible-playbook main.yaml -i inventory.yaml
 ## ArgoCD
 
 Argo is responsible for the k3s configurations. See more [here](https://argoproj.github.io/argo-cd/).
+
+
+## Using sealed secret
+
+Create the secret locally than encrypt it using the kubeseal cli. Example:
+```
+kubeseal --namespace metallb-system < metallb.json > sealed-metallb.json
+```
