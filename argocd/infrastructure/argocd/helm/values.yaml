@@ -24,6 +24,8 @@ repoServer:
       enabled: true
 
 server:
+  extra-args:
+  - --insecure
   metrics:
     enabled: true
     serviceMonitor:
