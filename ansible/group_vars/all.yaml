@@ -34,5 +34,7 @@ k3s_control_node_address: "{{ hostvars[groups['nodes'][0]]['ansible_eth0']['ipv4
 k3s_become_for_all: true
 k3s_no_traefik: true
 k3s_no_servicelb: true
+k3s_etcd_datastore: true
+k3s_use_experimental: true
 
 kubeconfig: ~/.kube/k3s
