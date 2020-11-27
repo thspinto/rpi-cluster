@@ -23,6 +23,17 @@
       insertafter: '^exit'
       state: present
 
+  - name: Stop swap service
+    systemd:
+      name: dphys-swapfile
+      state: stopped
+      enabled: no
+
+  - name: Remove swap file
+    command: dphys-swapfile uninstall
+    args:
+      removes: /var/swap
+
   # Issue: https://github.com/raspberrypi/linux/issues/2810
   - name: Configure dirty background ratio
     ansible.posix.sysctl:
