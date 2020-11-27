@@ -6,3 +6,5 @@ all:
           ansible_user: pi
         node02.local:
           ansible_user: pi
+        node03.local:
+          ansible_user: pi
