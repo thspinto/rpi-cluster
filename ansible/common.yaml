@@ -23,32 +23,6 @@
       insertafter: '^exit'
       state: present
 
-  - name: Stop swap service
-    systemd:
-      name: dphys-swapfile
-      state: stopped
-      enabled: no
-
-  - name: Remove swap file
-    command: dphys-swapfile uninstall
-    args:
-      removes: /var/swap
-
-  # Issue: https://github.com/raspberrypi/linux/issues/2810
-  - name: Configure dirty background ratio
-    ansible.posix.sysctl:
-      name: vm.dirty_background_ratio
-      value: '5'
-      state: present
-    notify: reboot
-
-  - name: Configure dirty ratio
-    ansible.posix.sysctl:
-      name: vm.dirty_ratio
-      value: '80'
-      state: present
-    notify: reboot
-
   # Mount additional storage
   - name: Mount extra storage
     mount:
@@ -57,7 +31,6 @@
       fstype: ext4
       state: mounted
     when: additional_storage.stat.isblk is defined and additional_storage.stat.isblk
-
 
   - name: Enable cgroup via boot commandline if not already enabled
     lineinfile:
@@ -75,6 +48,33 @@
       state: present
     notify: reboot
 
-  handlers:
-  - name: reboot
-    reboot:
+  - name: Disable wif and bluetooth
+    blockinfile:
+      path: /boot/config.txt
+      block: |
+        dtoverlay=disable-bt
+        dtoverlay=disable-wifi
+    notify: reboot
+
+  # Disable wifi and bt modules
+  - name: Block kernel modules from loading
+    blockinfile:
+      path: /etc/modprobe.d/raspi-blacklist.conf
+      create: true
+      block: |
+        blacklist brcmfmac
+        blacklist brcmutil
+        blacklist hci_uart
+        blacklist btbcm
+        blacklist btintel
+        blacklist rfcom
+        blacklist btqca
+        blacklist btsdio
+        blacklist bluetooth
+    notify: reboot
+
+  - name: Disable hciuart
+    systemd:
+      name: hciuart
+      state: stopped
+      enabled: no
