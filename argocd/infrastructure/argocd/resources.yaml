@@ -503,7 +503,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: application-controller
-    app.kubernetes.io/version: "linux-arm-v1.7.6"
+    app.kubernetes.io/version: "linux-arm-v1.8.1"
 spec:
   selector:
     matchLabels:
@@ -520,7 +520,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
         app.kubernetes.io/component: application-controller
-        app.kubernetes.io/version: "linux-arm-v1.7.6"
+        app.kubernetes.io/version: "linux-arm-v1.8.1"
     spec:
       containers:
       - command:
@@ -539,7 +539,7 @@ spec:
         - info
         - --redis
         - argocd-redis:6379
-        image: alinbalutoiu/argocd:linux-arm-v1.7.6
+        image: alinbalutoiu/argocd:linux-arm-v1.8.1
         imagePullPolicy: IfNotPresent
         name: application-controller
         ports:
@@ -579,7 +579,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: repo-server
-    app.kubernetes.io/version: "linux-arm-v1.7.6"
+    app.kubernetes.io/version: "linux-arm-v1.8.1"
 spec:
   selector:
     matchLabels:
@@ -596,11 +596,11 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
         app.kubernetes.io/component: repo-server
-        app.kubernetes.io/version: "linux-arm-v1.7.6"
+        app.kubernetes.io/version: "linux-arm-v1.8.1"
     spec:
       containers:
       - name: repo-server
-        image: alinbalutoiu/argocd:linux-arm-v1.7.6
+        image: alinbalutoiu/argocd:linux-arm-v1.8.1
         imagePullPolicy: IfNotPresent
         command:
         - uid_entrypoint.sh
@@ -658,7 +658,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: server
-    app.kubernetes.io/version: "linux-arm-v1.7.6"
+    app.kubernetes.io/version: "linux-arm-v1.8.1"
 spec:
   selector:
     matchLabels:
@@ -675,11 +675,11 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
         app.kubernetes.io/component: server
-        app.kubernetes.io/version: "linux-arm-v1.7.6"
+        app.kubernetes.io/version: "linux-arm-v1.8.1"
     spec:
       containers:
       - name: server
-        image: alinbalutoiu/argocd:linux-arm-v1.7.6
+        image: alinbalutoiu/argocd:linux-arm-v1.8.1
         imagePullPolicy: IfNotPresent
         command:
         - argocd-server
