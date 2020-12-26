@@ -57,3 +57,10 @@
       namespace: argocd
       src: ../argocd/bootstrap/bootstrap-projects.yaml
       kubeconfig: '{{ kubeconfig }}'
+
+  - name: Apply secrets
+     community.kubernetes.k8s:
+      state: present
+      namespace: argocd
+      src: ../secrets.yaml
+      kubeconfig: '{{ kubeconfig }}'
