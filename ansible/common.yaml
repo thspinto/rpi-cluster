@@ -13,6 +13,7 @@
   roles:
   - mikolak-net.raspi_config
   - oefenweb.ufw
+  - geerlingguy.swap
 
   tasks:
   - name: Disabling HDMI Port
