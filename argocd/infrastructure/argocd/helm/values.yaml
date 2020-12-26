@@ -2,7 +2,7 @@
 global:
   image:
     repository: alinbalutoiu/argocd
-    tag: linux-arm-v1.7.6
+    tag: linux-arm-v1.8.1
 
 dex:
   enabled: false
