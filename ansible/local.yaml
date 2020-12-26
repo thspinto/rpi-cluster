@@ -59,7 +59,7 @@
       kubeconfig: '{{ kubeconfig }}'
 
   - name: Apply secrets
-     community.kubernetes.k8s:
+    community.kubernetes.k8s:
       state: present
       namespace: argocd
       src: ../secrets.yaml
