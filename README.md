@@ -41,7 +41,7 @@ brew install raspberry-pi-imager
 Ansible is responsible for the initial setup of the k3s cluster:
 
 ```
-ansible-playbook main.yaml -i inventory.yaml
+make ansible
 ```
 
 ## ArgoCD
