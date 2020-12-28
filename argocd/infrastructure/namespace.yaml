@@ -15,4 +15,4 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
