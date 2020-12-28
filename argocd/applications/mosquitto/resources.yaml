@@ -134,12 +134,12 @@ spec:
             - name: data
               mountPath: /mosquitto/data
             - mountPath: /etc/mosquitto
-              name: mosquitto_passwords
+              name: mosquitto-passwords
       volumes:
         - name: configmap
           configMap:
             name: mosquitto
-        - name: mosquitto_passwords
+        - name: mosquitto-passwords
           secret:
             secretName: mosquitto
   volumeClaimTemplates:
