@@ -28,7 +28,10 @@ ufw_rules:
   port: 5353
   proto: udp
   comment: 'allow incoming connection for mdsn'
-
+- rule: allow
+  port: 9443
+  proto: tcp
+  comment: 'allow incoming tcp connection (raw tls streams)'
 
 # k3s configuration
 k3s_control_node_address: "{{ hostvars[groups['nodes'][0]]['ansible_eth0']['ipv4']['address'] }}"

@@ -49,7 +49,7 @@
       state: present
     notify: reboot
 
-  - name: Disable wif and bluetooth
+  - name: Disable wifi and bluetooth
     blockinfile:
       path: /boot/config.txt
       block: |
