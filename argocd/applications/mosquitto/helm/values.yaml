@@ -54,3 +54,19 @@ monitoring:
       requests:
         cpu: 100m
         memory: 64Mi
+
+customConfig:
+    autosave_interval 1800
+    persistence true
+    persistence_location /mosquitto/data/
+    allow_anonymous false
+    password_file /etc/mosquitto/passwords
+
+extraVolumes:
+  - name: mosquitto_passwords
+    secret:
+      secretName: mosquitto
+
+extraVolumeMounts:
+  - name: mosquitto_passwords
+    mountPath: /etc/mosquitto
