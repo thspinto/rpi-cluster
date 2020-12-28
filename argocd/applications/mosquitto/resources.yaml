@@ -125,7 +125,7 @@ spec:
         - name: mosquitto
           securityContext:
             {}
-          image: "eclipse-mosquitto:1.6.12"
+          image: "eclipse-mosquitto:2.0"
           imagePullPolicy: IfNotPresent
           ports:
             - name: default
