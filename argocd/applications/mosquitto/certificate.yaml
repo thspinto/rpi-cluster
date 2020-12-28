@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: mosquitto
+  namespace: default
+spec:
+  secretName: mqtt-cert
+  dnsNames:
+    - mosquitto.thsp.dev
+  issuerRef:
+    name: cert-manager
+    kind: ClusterIssuer
