@@ -63,10 +63,10 @@ customConfig:
     password_file /etc/mosquitto/passwords
 
 extraVolumes:
-  - name: mosquitto_passwords
+  - name: mosquitto-passwords
     secret:
       secretName: mosquitto
 
 extraVolumeMounts:
-  - name: mosquitto_passwords
+  - name: mosquitto-passwords
     mountPath: /etc/mosquitto
