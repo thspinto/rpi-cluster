@@ -55,7 +55,7 @@ spec:
     - port: 9234
       targetPort: prometheus
       protocol: TCP
-      name: prometheus      
+      name: prometheus
   selector:
     app.kubernetes.io/name: mosquitto
     app.kubernetes.io/instance: mosquitto
@@ -93,7 +93,7 @@ spec:
           imagePullPolicy: IfNotPresent
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          args: 
+          args:
             - --use-splitted-config
           env:
             - name: MQTT_CLIENT_ID
@@ -108,7 +108,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: secretkey
-                  name: memberlist
+                  name: monitor
           resources:
             limits:
               cpu: 300m
@@ -119,7 +119,7 @@ spec:
           ports:
             - containerPort: 9234
               name: prometheus
-              protocol: TCP      
+              protocol: TCP
         - name: mosquitto
           securityContext:
             {}
