@@ -48,8 +48,8 @@ monitoring:
       - name: MQTT_PASS
         valueFrom:
           secretKeyRef:
-            name: memberlist
-            key: secretkey
+            name: mosquitto
+            key: monitor
     image:
       repository: nolte/mosquitto-exporter
       tag: v0.6.3
