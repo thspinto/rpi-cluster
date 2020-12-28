@@ -60,6 +60,7 @@ spec:
         - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
         - --crd-source-kind=DNSEndpoint
         - --source=ingress
+        - --source=crd
         - --provider=cloudflare
         env:
         - name: CF_API_EMAIL
