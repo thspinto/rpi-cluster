@@ -55,7 +55,7 @@ monitoring:
         cpu: 100m
         memory: 64Mi
 
-customConfig:
+customConfig: |
     autosave_interval 1800
     persistence true
     persistence_location /mosquitto/data/

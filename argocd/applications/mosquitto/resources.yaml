@@ -24,7 +24,11 @@ metadata:
     app.kubernetes.io/managed-by: Helm
 data:
   mosquitto.conf: |
-    autosave_interval 1800 persistence true persistence_location /mosquitto/data/ allow_anonymous false password_file /etc/mosquitto/passwords
+    autosave_interval 1800
+    persistence true
+    persistence_location /mosquitto/data/
+    allow_anonymous false
+    password_file /etc/mosquitto/passwords
 ---
 # Source: mosquitto/templates/service.yaml
 apiVersion: v1
