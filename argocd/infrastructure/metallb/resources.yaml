@@ -311,8 +311,8 @@ spec:
         - name: METALLB_ML_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: memberlist
-              key: secretkey
+              name: mosquitto
+              key: monitor
         image: metallb/speaker:main
         imagePullPolicy: Always
         name: speaker

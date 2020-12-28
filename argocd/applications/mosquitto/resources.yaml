@@ -102,6 +102,13 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: MQTT_USER
+              value: monitor
+            - name: MQTT_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: secretkey
+                  name: memberlist
           resources:
             limits:
               cpu: 300m
@@ -145,6 +152,9 @@ spec:
             name: mosquitto
         - name: mosquitto-passwords
           secret:
+            items:
+            - key: passwords
+              path: passwords
             secretName: mosquitto
   volumeClaimTemplates:
   - metadata:

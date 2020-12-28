@@ -43,6 +43,13 @@ monitoring:
         valueFrom:
           fieldRef:
             fieldPath: status.podIP
+      - name: MQTT_USER
+        value: monitor
+      - name: MQTT_PASS
+        valueFrom:
+          secretKeyRef:
+            name: memberlist
+            key: secretkey
     image:
       repository: nolte/mosquitto-exporter
       tag: v0.6.3
@@ -66,6 +73,9 @@ extraVolumes:
   - name: mosquitto-passwords
     secret:
       secretName: mosquitto
+      items:
+      - key: passwords
+        path: passwords
 
 extraVolumeMounts:
   - name: mosquitto-passwords
