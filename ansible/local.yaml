@@ -7,7 +7,7 @@
     lineinfile:
       path: ~/.zshrc
       regexp: '^export KUBECONFIG'
-      line: "export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:{{ kubeconfig }}"
+      line: "export KUBECONFIG=$HOME/.kube/config:{{ kubeconfig }}"
       state: present
 
   - name: Create argocd namespace
