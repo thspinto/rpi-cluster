@@ -72,7 +72,7 @@ customConfig: |
     persistence true
     persistence_location /mosquitto/data/
 
-    listener 1883
+    per_listener_settings false
     allow_anonymous false
     password_file /etc/mosquitto/passwords
 
