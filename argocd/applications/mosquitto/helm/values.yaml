@@ -1,0 +1,56 @@
+replicaCount: 1
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  annotations: {}
+  ## mosquitto data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  ##
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  # existingClaim: mosquitto-data
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+# customConfig:
+
+monitoring:
+  podMonitor:
+    enabled: true
+  sidecar:
+    enabled: true
+    port: 9234
+    args:
+      - "--use-splitted-config"
+    envs:
+      - name: MQTT_CLIENT_ID
+        value: exporter
+      - name: BROKER_HOST
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    image:
+      repository: nolte/mosquitto-exporter
+      tag: v0.6.3
+      pullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 300m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
