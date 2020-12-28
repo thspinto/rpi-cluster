@@ -27,6 +27,8 @@ data:
     autosave_interval 1800
     persistence true
     persistence_location /mosquitto/data/
+    
+    listener 1883
     allow_anonymous false
     password_file /etc/mosquitto/passwords
 ---
