@@ -12,3 +12,10 @@ ingressController:
 
 image:
   repository: arm64v8/kong
+
+proxy:
+  stream:
+    - containerPort: 9443
+      servicePort: 9443
+      parameters:
+        - ssl

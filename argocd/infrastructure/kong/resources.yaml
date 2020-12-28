@@ -695,6 +695,10 @@ spec:
     port: 443
     targetPort: 8443
     protocol: TCP
+  - name: stream-9443
+    port: 9443
+    targetPort: 9443
+    protocol: TCP
   selector:
     app.kubernetes.io/name: kong
     app.kubernetes.io/component: app
@@ -836,7 +840,7 @@ spec:
         - name: KONG_STATUS_LISTEN
           value: "0.0.0.0:8100"
         - name: KONG_STREAM_LISTEN
-          value: "off"
+          value: "0.0.0.0:9443 ssl"
         - name: KONG_NGINX_DAEMON
           value: "off"
         lifecycle:
@@ -853,6 +857,9 @@ spec:
           protocol: TCP
         - name: proxy-tls
           containerPort: 8443
+          protocol: TCP
+        - name: stream-9443
+          containerPort: 9443
           protocol: TCP
         - name: metrics
           containerPort: 9542
