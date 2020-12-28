@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: mqtt-cert
   dnsNames:
-    - mosquitto.thsp.dev
+    - mqtt.thsp.dev
   issuerRef:
     name: cert-manager
     kind: ClusterIssuer
