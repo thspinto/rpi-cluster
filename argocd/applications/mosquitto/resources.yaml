@@ -53,11 +53,7 @@ spec:
     - port: 9001
       targetPort: websocket
       protocol: TCP
-      name: websocket
-    - port: 9234
-      targetPort: prometheus
-      protocol: TCP
-      name: prometheus      
+      name: websocket      
   selector:
     app.kubernetes.io/name: mosquitto
     app.kubernetes.io/instance: mosquitto
@@ -89,41 +85,7 @@ spec:
       serviceAccountName: mosquitto
       securityContext:
         {}
-      containers:
-        - name: exporter
-          image: "jnovack/mosquitto-exporter:0.0.1"
-          imagePullPolicy: IfNotPresent
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          args: 
-            - -endpoint=tcp://$(BROKER_HOST):1883
-            - -clientID=exporter
-            - -username=$(MQTT_USER)
-            - -password=$(MQTT_PASS)
-            - -port=9234
-          env:
-            - name: BROKER_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-            - name: MQTT_USER
-              value: monitor
-            - name: MQTT_PASS
-              valueFrom:
-                secretKeyRef:
-                  key: monitor
-                  name: mosquitto
-          resources:
-            limits:
-              cpu: 300m
-              memory: 128Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi
-          ports:
-            - containerPort: 9234
-              name: prometheus
-              protocol: TCP      
+      containers:      
         - name: mosquitto
           securityContext:
             {}
@@ -171,27 +133,3 @@ spec:
       resources:
         requests:
           storage: "5Gi"
----
-# Source: mosquitto/templates/podmonitor.yaml
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  labels:
-    app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.5.0
-    app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "1.6.12"
-    app.kubernetes.io/managed-by: Helm
-  name: mosquitto-prometheus-exporter
-spec:
-  podMetricsEndpoints:
-  - port: prometheus
-    path: /metrics
-  jobLabel: mosquitto-prometheus-exporter
-  namespaceSelector:
-    matchNames:
-    - default
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: mosquitto
-      app.kubernetes.io/instance: mosquitto

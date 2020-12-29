@@ -31,43 +31,41 @@ persistence:
   accessMode: ReadWriteOnce
   size: 5Gi
 
-# customConfig:
-
-monitoring:
-  podMonitor:
-    enabled: true
-  sidecar:
-    enabled: true
-    port: 9234
-    args:
-      - -endpoint=tcp://$(BROKER_HOST):1883
-      - -clientID=exporter
-      - -username=$(MQTT_USER)
-      - -password=$(MQTT_PASS)
-      - -port=9234
-    envs:
-      - name: BROKER_HOST
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
-      - name: MQTT_USER
-        value: monitor
-      - name: MQTT_PASS
-        valueFrom:
-          secretKeyRef:
-            name: mosquitto
-            key: monitor
-    image:
-      repository: jnovack/mosquitto-exporter
-      tag: "0.0.1"
-      pullPolicy: IfNotPresent
-    resources:
-      limits:
-        cpu: 300m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 64Mi
+# monitoring:
+#   podMonitor:
+#     enabled: true
+#   sidecar:
+#     enabled: true
+#     port: 9234
+#     args:
+#       - -endpoint=tcp://$(BROKER_HOST):1883
+#       - -clientID=exporter
+#       - -username=$(MQTT_USER)
+#       - -password=$(MQTT_PASS)
+#       - -port=9234
+#     envs:
+#       - name: BROKER_HOST
+#         valueFrom:
+#           fieldRef:
+#             fieldPath: status.podIP
+#       - name: MQTT_USER
+#         value: monitor
+#       - name: MQTT_PASS
+#         valueFrom:
+#           secretKeyRef:
+#             name: mosquitto
+#             key: monitor
+#     image:
+#       repository: jnovack/mosquitto-exporter
+#       tag: "0.0.1"
+#       pullPolicy: IfNotPresent
+#     resources:
+#       limits:
+#         cpu: 300m
+#         memory: 128Mi
+#       requests:
+#         cpu: 100m
+#         memory: 64Mi
 
 customConfig: |
     autosave_interval 1800
