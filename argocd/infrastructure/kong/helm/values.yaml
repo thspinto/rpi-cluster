@@ -19,9 +19,3 @@ proxy:
       servicePort: 9443
       parameters:
         - ssl
-  ingress: # creating this ingress to use the dns record as CNAME for internal TCP routes
-    enabled: true
-    hosts:
-      - internal.thsp.dev
-    annotations:
-      kubernetes.io/ingress.class: "kong"
