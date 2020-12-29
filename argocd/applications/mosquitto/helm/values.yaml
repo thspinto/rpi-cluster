@@ -40,11 +40,11 @@ monitoring:
     enabled: true
     port: 9234
     args:
-      - -endpoint tcp://localhost:1883
-      - -clientID exporter
-      - -username $MQTT_USER
-      - -password $MQTT_PASS
-      - -p 9234
+      - -endpoint=tcp://localhost:1883
+      - -clientID=exporter
+      - -username=$MQTT_USER
+      - -password=$MQTT_PASS
+      - -port=9234
     envs:
       - name: BROKER_HOST
         valueFrom:

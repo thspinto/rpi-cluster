@@ -96,11 +96,11 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           args: 
-            - -endpoint tcp://localhost:1883
-            - -clientID exporter
-            - -username $MQTT_USER
-            - -password $MQTT_PASS
-            - -p 9234
+            - -endpoint=tcp://localhost:1883
+            - -clientID=exporter
+            - -username=$MQTT_USER
+            - -password=$MQTT_PASS
+            - -port=9234
           env:
             - name: BROKER_HOST
               valueFrom:
