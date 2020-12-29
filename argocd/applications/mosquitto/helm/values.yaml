@@ -40,10 +40,12 @@ monitoring:
     enabled: true
     port: 9234
     args:
-      - "--use-splitted-config"
+      - -endpoint tcp://localhost:1883
+      - -clientID exporter
+      - -username $MQTT_USER
+      - -password $MQTT_PASS
+      - -p 9234
     envs:
-      - name: MQTT_CLIENT_ID
-        value: exporter
       - name: BROKER_HOST
         valueFrom:
           fieldRef:
@@ -56,8 +58,8 @@ monitoring:
             name: mosquitto
             key: monitor
     image:
-      repository: nolte/mosquitto-exporter
-      tag: v0.6.3
+      repository: jnovack/mosquitto-exporter
+      tag: "0.0.1"
       pullPolicy: IfNotPresent
     resources:
       limits:
@@ -72,7 +74,7 @@ customConfig: |
     persistence true
     persistence_location /mosquitto/data/
 
-    per_listener_settings false
+    listener 1883
     allow_anonymous false
     password_file /etc/mosquitto/passwords
 

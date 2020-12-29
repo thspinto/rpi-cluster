@@ -28,7 +28,7 @@ data:
     persistence true
     persistence_location /mosquitto/data/
     
-    per_listener_settings false
+    listener 1883
     allow_anonymous false
     password_file /etc/mosquitto/passwords
 ---
@@ -91,15 +91,17 @@ spec:
         {}
       containers:
         - name: exporter
-          image: "nolte/mosquitto-exporter:v0.6.3"
+          image: "jnovack/mosquitto-exporter:0.0.1"
           imagePullPolicy: IfNotPresent
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           args: 
-            - --use-splitted-config
+            - -endpoint tcp://localhost:1883
+            - -clientID exporter
+            - -username $MQTT_USER
+            - -password $MQTT_PASS
+            - -p 9234
           env:
-            - name: MQTT_CLIENT_ID
-              value: exporter
             - name: BROKER_HOST
               valueFrom:
                 fieldRef:
