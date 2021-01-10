@@ -839,7 +839,7 @@ spec:
   tls:
     - hosts:
       - argocd.thsp.dev
-      secretName: cert-manager
+      secretName: argocd
 ---
 # Source: argo-cd/templates/argocd-application-controller/servicemonitor.yaml
 apiVersion: monitoring.coreos.com/v1

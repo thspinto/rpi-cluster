@@ -39,7 +39,7 @@ server:
     hosts:
     - argocd.thsp.dev
     tls:
-    - secretName: cert-manager
+    - secretName: argocd
       hosts:
       - argocd.thsp.dev
 
