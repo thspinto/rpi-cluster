@@ -79,3 +79,15 @@
       name: hciuart
       state: stopped
       enabled: no
+
+# ISCSI
+  - name: "Install package(s) open-iscsi"
+    package:
+      name: "open-iscsi"
+      state: 'present'
+
+  - name: "Start and enable iscsid service"
+    service:
+      name: "iscsid"
+      enabled: true
+      state: 'started'

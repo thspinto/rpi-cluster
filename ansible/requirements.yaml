@@ -1,3 +1,4 @@
+roles:
 - name: mikolak-net.raspi_config
   version: 1.2.3
 
@@ -10,11 +11,12 @@
 - name: monolithprojects.hassio
   version: 1.0.1
 
+- name: geerlingguy.swap
+  version: 1.0.2
+
+collections:
 - name: community.kubernetes
   version: 1.1.1
 
 - name: ansible.posix
   version: 1.1.1
-
-- name: geerlingguy.swap
-  version: 1.0.2
