@@ -40,4 +40,5 @@ k3s_server:
   disable:
     - traefik
     - servicelb
+    - local-storage
 kubeconfig: ~/.kube/k3s

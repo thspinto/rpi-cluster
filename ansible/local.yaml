@@ -10,6 +10,13 @@
       line: "export KUBECONFIG=$HOME/.kube/config:{{ kubeconfig }}"
       state: present
 
+  - name: Create openebs
+    community.kubernetes.k8s:
+      state: present
+      namespace: kube-system
+      src: ../argocd/infrastructure/openebs/resources.yaml
+      kubeconfig: '{{ kubeconfig }}'
+
   - name: Create argocd namespace
     community.kubernetes.k8s:
       state: present
