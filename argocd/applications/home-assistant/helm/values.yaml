@@ -25,3 +25,6 @@ ingress:
   - secretName: home-assistant
     hosts:
     - home.thsp.dev
+
+image:
+  tag: 2021.1.3
