@@ -7,7 +7,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -20,7 +20,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -57,7 +57,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -506,7 +506,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -588,7 +588,7 @@ metadata:
   name:  kong-kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -609,7 +609,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -657,7 +657,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -679,7 +679,7 @@ metadata:
   labels:
     enable-metrics: "true"
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -712,7 +712,7 @@ metadata:
   namespace:  kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.12.0
+    helm.sh/chart: kong-1.13.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -721,7 +721,7 @@ metadata:
     kuma.io/gateway: "enabled"
     traffic.sidecar.istio.io/includeInboundPorts: ""
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: kong
@@ -733,7 +733,7 @@ spec:
       annotations:
       labels:
         app.kubernetes.io/name: kong
-        helm.sh/chart: kong-1.12.0
+        helm.sh/chart: kong-1.13.0
         app.kubernetes.io/instance: "kong"
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/version: "2.2"

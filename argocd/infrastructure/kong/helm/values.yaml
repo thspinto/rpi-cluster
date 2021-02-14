@@ -19,3 +19,5 @@ proxy:
       servicePort: 9443
       parameters:
         - ssl
+
+replicaCount: 3
