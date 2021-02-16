@@ -17,6 +17,7 @@ prometheus:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: kong
+      konghq.com/plugins: local-ip-restriction
       kubernetes.io/tls-acme: 'true'
       cert-manager.io/cluster-issuer: cert-manager
     hosts:
@@ -32,6 +33,7 @@ grafana:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: kong
+      konghq.com/plugins: local-ip-restriction
       kubernetes.io/tls-acme: 'true'
       cert-manager.io/cluster-issuer: cert-manager
     hosts:

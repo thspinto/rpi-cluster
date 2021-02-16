@@ -6,9 +6,9 @@ metadata:
   name: mosquitto
   labels:
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.5.0
+    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "1.6.12"
+    app.kubernetes.io/version: "2.0.4"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: mosquitto/templates/configmap.yaml
@@ -18,9 +18,9 @@ metadata:
   name: mosquitto
   labels:
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.5.0
+    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "1.6.12"
+    app.kubernetes.io/version: "2.0.4"
     app.kubernetes.io/managed-by: Helm
 data:
   mosquitto.conf: |
@@ -39,9 +39,9 @@ metadata:
   name: mosquitto
   labels:
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.5.0
+    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "1.6.12"
+    app.kubernetes.io/version: "2.0.4"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -65,9 +65,9 @@ metadata:
   name: mosquitto
   labels:
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.5.0
+    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "1.6.12"
+    app.kubernetes.io/version: "2.0.4"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
