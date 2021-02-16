@@ -13,6 +13,7 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: local-ip-restriction
     kubernetes.io/tls-acme: 'true'
     cert-manager.io/cluster-issuer: cert-manager
     external-dns.alpha.kubernetes.io/hostname: ""
