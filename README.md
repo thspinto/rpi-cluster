@@ -1,4 +1,6 @@
 # Raspberry Pi Cluster Configuration
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthspinto%2Frpi-cluster.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fthspinto%2Frpi-cluster?ref=badge_shield)
+
 This is the my raspberry pi cluster GitOps configuration
 
 ## Dir structure
@@ -55,3 +57,7 @@ Create the secret locally than encrypt it using the kubeseal cli. Example:
 ```
 kubeseal --namespace metallb-system < metallb.json > sealed-metallb.json
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthspinto%2Frpi-cluster.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fthspinto%2Frpi-cluster?ref=badge_large)
