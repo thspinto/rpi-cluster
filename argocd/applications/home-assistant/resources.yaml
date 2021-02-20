@@ -65,7 +65,7 @@ spec:
         app.kubernetes.io/name: home-assistant
         app.kubernetes.io/instance: home-assistant
     spec:
-
+      
       serviceAccountName: default
       dnsPolicy: ClusterFirst
       enableServiceLinks: true
@@ -80,7 +80,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-
+        
         livenessProbe:
           tcpSocket:
             port: http
