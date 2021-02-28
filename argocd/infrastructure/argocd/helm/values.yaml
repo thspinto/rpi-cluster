@@ -33,7 +33,7 @@ server:
   ingress:
     enabled: true
     annotations:
-      kubernetes.io/ingress.class: kong
+      kubernetes.io/ingress.class: gloo
       kubernetes.io/tls-acme: true
       cert-manager.io/cluster-issuer: cert-manager
     hosts:
@@ -46,7 +46,7 @@ server:
   ingressGrpc:
     enabled: true
     annotations:
-      kubernetes.io/ingress.class: kong
+      kubernetes.io/ingress.class: gloo
       kubernetes.io/tls-acme: true
       cert-manager.io/cluster-issuer: cert-manager
     hosts:

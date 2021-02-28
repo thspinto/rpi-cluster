@@ -4,7 +4,7 @@ apiVersion: configuration.konghq.com/v1beta1
 metadata:
   name: mqtt
   annotations:
-    kubernetes.io/ingress.class: kong
+    kubernetes.io/ingress.class: gloo
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "cert-manager"
 spec:

@@ -787,7 +787,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
-    kubernetes.io/ingress.class: "kong"
+    kubernetes.io/ingress.class: "gloo"
     kubernetes.io/tls-acme: "true"
   name: argocd-server-grpc
   labels:
@@ -817,7 +817,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
-    kubernetes.io/ingress.class: "kong"
+    kubernetes.io/ingress.class: "gloo"
     kubernetes.io/tls-acme: "true"
   name: argocd-server
   labels:

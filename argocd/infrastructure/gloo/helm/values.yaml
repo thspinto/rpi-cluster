@@ -2,3 +2,7 @@ gateway:
   enabled: true
 ingress:
   enabled: true
+
+global:
+  image:
+    registry: thspinto
