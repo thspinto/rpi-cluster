@@ -7,7 +7,7 @@ metadata:
     app: gloo
     gloo: gloo
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 ---
 # Source: gloo/templates/3-discovery-service-account.yaml
 apiVersion: v1
@@ -17,7 +17,7 @@ metadata:
     app: gloo
     gloo: discovery
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 ---
 # Source: gloo/templates/5-gateway-service-account.yaml
 apiVersion: v1
@@ -27,7 +27,7 @@ metadata:
     app: gloo
     gloo: gateway
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 ---
 # Source: gloo/templates/8-gateway-proxy-service-account.yaml
 apiVersion: v1
@@ -37,7 +37,7 @@ metadata:
     app: gloo
     gloo: gateway-proxy
   name: gateway-proxy
-  namespace: argocd
+  namespace: gloo-system
 ---
 # Source: gloo/templates/12-ingress-proxy-configmap.yaml
 # configmap
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ingress-envoy-config
-  namespace: argocd
+  namespace: gloo-system
   labels:
     app: gloo
     gloo: ingress-proxy
@@ -128,7 +128,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: gateway-proxy-envoy-config
-  namespace: argocd
+  namespace: gloo-system
   labels:
     app: gloo
     gloo: gateway-proxy
@@ -194,17 +194,17 @@ data:
                     http_filters:
                       - name: envoy.filters.http.router  
       clusters:
-      - name: gloo.argocd.svc.cluster.local:9977
+      - name: gloo.gloo-system.svc.cluster.local:9977
         alt_stat_name: xds_cluster
         connect_timeout: 5.000s
         load_assignment:
-          cluster_name: gloo.argocd.svc.cluster.local:9977
+          cluster_name: gloo.gloo-system.svc.cluster.local:9977
           endpoints:
           - lb_endpoints:
             - endpoint:
                 address:
                   socket_address:
-                    address: gloo.argocd.svc.cluster.local
+                    address: gloo.gloo-system.svc.cluster.local
                     port_value: 9977
         http2_protocol_options: {}
         upstream_connection_options:
@@ -221,7 +221,7 @@ data:
             - endpoint:
                 address:
                   socket_address:
-                    address: gloo.argocd.svc.cluster.local
+                    address: gloo.gloo-system.svc.cluster.local
                     port_value: 9976
         upstream_connection_options:
           tcp_keepalive: {}
@@ -236,7 +236,7 @@ data:
             - endpoint:
                 address:
                   socket_address:
-                    address: gloo.argocd.svc.cluster.local
+                    address: gloo.gloo-system.svc.cluster.local
                     port_value: 9979
         upstream_connection_options:
           tcp_keepalive: {}
@@ -262,7 +262,7 @@ data:
         api_type: GRPC
         rate_limit_settings: {}
         grpc_services:
-        - envoy_grpc: {cluster_name: gloo.argocd.svc.cluster.local:9977}
+        - envoy_grpc: {cluster_name: gloo.gloo-system.svc.cluster.local:9977}
       cds_config:
         resource_api_version: V3
         ads: {}
@@ -280,7 +280,7 @@ data:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: kube-resource-watcher-argocd
+    name: kube-resource-watcher-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -293,7 +293,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: gloo-upstream-mutator-argocd
+    name: gloo-upstream-mutator-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -307,7 +307,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: gloo-resource-reader-argocd
+    name: gloo-resource-reader-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -327,7 +327,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: settings-user-argocd
+    name: settings-user-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -341,7 +341,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: gloo-resource-mutator-argocd
+    name: gloo-resource-mutator-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -354,7 +354,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: gateway-resource-reader-argocd
+    name: gateway-resource-reader-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -372,7 +372,7 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-    name: gloo-role-ingress-argocd
+    name: gloo-role-ingress-gloo-system
     labels:
         app: gloo
         gloo: rbac
@@ -400,134 +400,134 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: kube-resource-watcher-binding-argocd
+  name: kube-resource-watcher-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 - kind: ServiceAccount
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: kube-resource-watcher-argocd
+  name: kube-resource-watcher-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/23-namespace-clusterrolebinding-gateway.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-upstream-mutator-binding-argocd
+  name: gloo-upstream-mutator-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gloo-upstream-mutator-argocd
+  name: gloo-upstream-mutator-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/23-namespace-clusterrolebinding-gateway.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-resource-reader-binding-argocd
+  name: gloo-resource-reader-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gloo-resource-reader-argocd
+  name: gloo-resource-reader-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/23-namespace-clusterrolebinding-gateway.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: settings-user-binding-argocd
+  name: settings-user-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 - kind: ServiceAccount
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 - kind: ServiceAccount
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: settings-user-argocd
+  name: settings-user-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/23-namespace-clusterrolebinding-gateway.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-resource-mutator-binding-argocd
+  name: gloo-resource-mutator-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gloo-resource-mutator-argocd
+  name: gloo-resource-mutator-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/23-namespace-clusterrolebinding-gateway.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gateway-resource-reader-binding-argocd
+  name: gateway-resource-reader-binding-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gateway-resource-reader-argocd
+  name: gateway-resource-reader-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/24-namespace-clusterrolebinding-ingress.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-role-binding-ingress-argocd
+  name: gloo-role-binding-ingress-gloo-system
   labels:
     app: gloo
     gloo: rbac
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: argocd
+  namespace: gloo-system
 - kind: ServiceAccount
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 - kind: ServiceAccount
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gloo-role-ingress-argocd
+  name: gloo-role-ingress-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/13-ingress-proxy-service.yaml
@@ -538,7 +538,7 @@ metadata:
     app: gloo
     gloo: ingress-proxy
   name: ingress-proxy
-  namespace: argocd
+  namespace: gloo-system
 spec:
   ports:
   - port: 80
@@ -561,7 +561,7 @@ metadata:
     app: gloo
     gloo: gloo
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 spec:
   ports:
   - name: grpc-xds
@@ -588,7 +588,7 @@ metadata:
     app: gloo
     gloo: gateway
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 spec:
   ports:
   - name: https
@@ -608,7 +608,7 @@ metadata:
     gloo: gateway-proxy
     gateway-proxy-id: gateway-proxy
   name: gateway-proxy
-  namespace: argocd
+  namespace: gloo-system
 spec:
   # port order matters due to this issue: https://github.com/solo-io/gloo/issues/2571
   ports:
@@ -633,7 +633,7 @@ metadata:
     app: gloo
     gloo: gloo
   name: gloo
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -658,7 +658,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.labels
       containers:
-      - image: quay.io/solo-io/gloo:1.6.8
+      - image: thspinto/gloo:1.6.8
         imagePullPolicy: IfNotPresent
         name: gloo
         resources:
@@ -712,7 +712,7 @@ metadata:
     app: gloo
     gloo: ingress
   name: ingress
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -728,7 +728,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 10101
       containers:
-      - image: quay.io/solo-io/ingress:1.6.8
+      - image: thspinto/ingress:1.6.8
         imagePullPolicy: IfNotPresent
         name: ingress
         env:
@@ -747,7 +747,7 @@ metadata:
     app: gloo
     gloo: ingress-proxy
   name: ingress-proxy
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -772,7 +772,7 @@ spec:
               fieldPath: metadata.name
         - name: INGRESS_PROXY_LABEL
           value: ingress-proxy
-        image: quay.io/solo-io/gloo-envoy-wrapper:1.6.8
+        image: thspinto/gloo-envoy-wrapper:1.6.8
         imagePullPolicy: IfNotPresent
         name: ingress-proxy
         securityContext:
@@ -806,7 +806,7 @@ metadata:
     app: gloo
     gloo: discovery
   name: discovery
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -824,7 +824,7 @@ spec:
       
       serviceAccountName: discovery
       containers:
-      - image: quay.io/solo-io/discovery:1.6.8
+      - image: thspinto/discovery:1.6.8
         imagePullPolicy: IfNotPresent
         name: discovery
         # container security context
@@ -855,7 +855,7 @@ metadata:
     app: gloo
     gloo: gateway
   name: gateway
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -873,7 +873,7 @@ spec:
       
       serviceAccountName: gateway
       containers:
-      - image: quay.io/solo-io/gateway:1.6.8
+      - image: thspinto/gateway:1.6.8
         imagePullPolicy: IfNotPresent
         name: gateway
         ports:
@@ -922,7 +922,7 @@ metadata:
     gloo: gateway-proxy
     gateway-proxy-id: gateway-proxy
   name: gateway-proxy
-  namespace: argocd
+  namespace: gloo-system
 spec:
   replicas: 1
   selector:
@@ -958,7 +958,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: quay.io/solo-io/gloo-envoy-wrapper:1.6.8
+        image: thspinto/gloo-envoy-wrapper:1.6.8
         imagePullPolicy: IfNotPresent
         name: gateway-proxy
         securityContext:
@@ -989,7 +989,7 @@ apiVersion: gateway.solo.io/v1
 kind: Gateway
 metadata:
   name: gateway-proxy
-  namespace: argocd
+  namespace: gloo-system
   labels:
     app: gloo
 spec:
@@ -1006,7 +1006,7 @@ apiVersion: gateway.solo.io/v1
 kind: Gateway
 metadata:
   name: gateway-proxy-ssl
-  namespace: argocd
+  namespace: gloo-system
   labels:
     app: gloo
 spec:
@@ -1025,7 +1025,7 @@ metadata:
   labels:
     app: gloo
   name: default
-  namespace: argocd
+  namespace: gloo-system
 spec:
   gloo:
     xdsBindAddr: "0.0.0.0:9977"
@@ -1033,7 +1033,7 @@ spec:
     enableRestEds: true
     disableKubernetesDestinations: false
     disableProxyGarbageCollection: false
-  discoveryNamespace: argocd
+  discoveryNamespace: gloo-system
   kubernetesArtifactSource: {}
   kubernetesConfigSource: {}
   kubernetesSecretSource: {}
@@ -1059,13 +1059,13 @@ metadata:
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "5" # must be executed before cert-gen job
   name: certgen
-  namespace: argocd
+  namespace: gloo-system
 ---
 # Source: gloo/templates/6.5-gateway-certgen-job.yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-gateway-secret-create-vwc-update-argocd
+  name: gloo-gateway-secret-create-vwc-update-gloo-system
   labels:
     app: gloo
     gloo: rbac
@@ -1084,7 +1084,7 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gloo-gateway-secret-create-vwc-update-argocd
+  name: gloo-gateway-secret-create-vwc-update-gloo-system
   labels:
     app: gloo
     gloo: rbac
@@ -1094,10 +1094,10 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: certgen
-  namespace: argocd
+  namespace: gloo-system
 roleRef:
   kind: ClusterRole
-  name: gloo-gateway-secret-create-vwc-update-argocd
+  name: gloo-gateway-secret-create-vwc-update-gloo-system
   apiGroup: rbac.authorization.k8s.io
 ---
 # Source: gloo/templates/6.5-gateway-certgen-job.yaml
@@ -1108,7 +1108,7 @@ metadata:
     app: gloo
     gloo: gateway-certgen
   name: gateway-certgen
-  namespace: argocd
+  namespace: gloo-system
   annotations:
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "10"
@@ -1121,7 +1121,7 @@ spec:
     spec:
       serviceAccountName: certgen
       containers:
-        - image: quay.io/solo-io/certgen:1.6.8
+        - image: thspinto/certgen:1.6.8
           imagePullPolicy: IfNotPresent
           name: certgen
           securityContext:
@@ -1135,7 +1135,7 @@ spec:
           args:
             - "--secret-name=gateway-validation-certs"
             - "--svc-name=gateway"
-            - "--validating-webhook-configuration-name=gloo-gateway-validation-webhook-argocd"
+            - "--validating-webhook-configuration-name=gloo-gateway-validation-webhook-gloo-system"
       restartPolicy: OnFailure
   # this feature is still in Alpha, which means it must be manually enabled in the k8s api server
   # with --feature-gates="TTLAfterFinished=true". This flag also works with minikube start ...
@@ -1146,7 +1146,7 @@ spec:
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: gloo-gateway-validation-webhook-argocd
+  name: gloo-gateway-validation-webhook-gloo-system
   labels:
     app: gloo
     gloo: gateway
@@ -1154,11 +1154,11 @@ metadata:
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "5" # must be executed before cert-gen job
 webhooks:
-- name: gateway.argocd.svc  # must be a domain with at least three segments separated by dots
+- name: gateway.gloo-system.svc  # must be a domain with at least three segments separated by dots
   clientConfig:
     service:
       name: gateway
-      namespace: argocd
+      namespace: gloo-system
       path: "/validation"
     caBundle: "" # update manually or use certgen job
   rules:
