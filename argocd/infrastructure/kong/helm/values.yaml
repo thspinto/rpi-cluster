@@ -21,3 +21,10 @@ proxy:
         - ssl
 
 replicaCount: 2
+
+env:
+  nginx_http_include: /kong/nginx-custom.template
+
+extraConfigMaps:
+  - name: custom-config
+    mountPath: /kong

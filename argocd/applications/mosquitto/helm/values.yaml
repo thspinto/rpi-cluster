@@ -13,13 +13,6 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-persistence:
-  data:
-    enabled: true
-    storageClassName: openebs-hostpath
-    accessMode: ReadWriteOnce
-    size: 5Gi
-
 # monitoring:
 #   podMonitor:
 #     enabled: true

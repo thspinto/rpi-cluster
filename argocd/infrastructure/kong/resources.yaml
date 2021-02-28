@@ -779,6 +779,8 @@ spec:
           value: "on"
         - name: KONG_LUA_PACKAGE_PATH
           value: "/opt/?.lua;/opt/?/init.lua;;"
+        - name: KONG_NGINX_HTTP_INCLUDE
+          value: "/kong/nginx-custom.template"
         - name: KONG_NGINX_WORKER_PROCESSES
           value: "2"
         - name: KONG_PLUGINS
@@ -829,6 +831,8 @@ spec:
             mountPath: /kong_prefix/
           - name: kong-kong-tmp
             mountPath: /tmp
+          - name:  custom-config
+            mountPath: /kong
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -864,3 +868,6 @@ spec:
           configMap:
             name: kong-kong-bash-wait-for-postgres
             defaultMode: 0755
+        - name: custom-config
+          configMap:
+            name: custom-config

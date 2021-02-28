@@ -14,27 +14,6 @@ data:
   mosquitto.conf: |
     listener 1883
     allow_anonymous true
-    persistence true
-    persistence_location /mosquitto/data
-    autosave_interval 1800
----
-# Source: mosquitto/templates/common.yaml
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: mosquitto-data
-  labels:
-    helm.sh/chart: mosquitto-1.0.0
-    app.kubernetes.io/name: mosquitto
-    app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "2.0.7"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  accessModes:
-    - "ReadWriteOnce"
-  resources:
-    requests:
-      storage: "5Gi"
 ---
 # Source: mosquitto/templates/common.yaml
 apiVersion: v1
@@ -96,8 +75,6 @@ spec:
           containerPort: 1883
           protocol: TCP
         volumeMounts:
-        - mountPath: /mosquitto/data
-          name: data
         - mountPath: /mosquitto/config/mosquitto.conf
           name: mosquitto-config
           subPath: mosquitto.conf
@@ -131,9 +108,6 @@ spec:
             cpu: 100m
             memory: 128Mi
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: mosquitto-data
       - configMap:
           name: mosquitto-config
         name: mosquitto-config
