@@ -7,47 +7,10 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
----
-# Source: kong/templates/config-custom-server-blocks.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kong-kong-default-custom-server-blocks
-  namespace: kong
-  labels:
-    app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
-    app.kubernetes.io/instance: "kong"
-    app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
-data:
-  servers.conf: |
-    # Prometheus metrics and health-checking server
-    server {
-        server_name kong_prometheus_exporter;
-        listen 0.0.0.0:9542; # can be any other port as well
-        access_log off;
-        location /status {
-            default_type text/plain;
-            return 200;
-        }
-        location /metrics {
-            default_type text/plain;
-            content_by_lua_block {
-                 local prometheus = require "kong.plugins.prometheus.exporter"
-                 prometheus:collect()
-            }
-        }
-        location /nginx_status {
-            internal;
-            access_log off;
-            stub_status;
-        }
-    }
 ---
 # Source: kong/templates/wait-for-postgres-script.yaml
 apiVersion: v1
@@ -57,7 +20,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -506,7 +469,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -588,7 +551,7 @@ metadata:
   name:  kong-kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -609,7 +572,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -657,7 +620,7 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -677,15 +640,14 @@ metadata:
   name: kong-kong-proxy
   namespace: kong
   labels:
-    enable-metrics: "true"
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
+    enable-metrics: "true"
 spec:
   type: LoadBalancer
-  externalIPs:
   ports:
   - name: kong-proxy
     port: 80
@@ -712,7 +674,7 @@ metadata:
   namespace:  kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.13.0
+    helm.sh/chart: kong-1.14.5
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/version: "2.2"
@@ -721,7 +683,7 @@ metadata:
     kuma.io/gateway: "enabled"
     traffic.sidecar.istio.io/includeInboundPorts: ""
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: kong
@@ -733,7 +695,7 @@ spec:
       annotations:
       labels:
         app.kubernetes.io/name: kong
-        helm.sh/chart: kong-1.13.0
+        helm.sh/chart: kong-1.14.5
         app.kubernetes.io/instance: "kong"
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/version: "2.2"
@@ -817,8 +779,6 @@ spec:
           value: "on"
         - name: KONG_LUA_PACKAGE_PATH
           value: "/opt/?.lua;/opt/?/init.lua;;"
-        - name: KONG_NGINX_HTTP_INCLUDE
-          value: "/kong/servers.conf"
         - name: KONG_NGINX_WORKER_PROCESSES
           value: "2"
         - name: KONG_PLUGINS
@@ -861,21 +821,19 @@ spec:
         - name: stream-9443
           containerPort: 9443
           protocol: TCP
-        - name: metrics
-          containerPort: 9542
+        - name: status
+          containerPort: 8100
           protocol: TCP
         volumeMounts:
           - name: kong-kong-prefix-dir
             mountPath: /kong_prefix/
           - name: kong-kong-tmp
             mountPath: /tmp
-          - name: custom-nginx-template-volume
-            mountPath: /kong
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /status
-            port: metrics
+            port: status
             scheme: HTTP
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -885,14 +843,14 @@ spec:
           failureThreshold: 3
           httpGet:
             path: /status
-            port: metrics
+            port: status
             scheme: HTTP
           initialDelaySeconds: 5
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
         resources:
-          {}
+          {} 
       securityContext:
         {}
       tolerations:
@@ -906,6 +864,3 @@ spec:
           configMap:
             name: kong-kong-bash-wait-for-postgres
             defaultMode: 0755
-        - name: custom-nginx-template-volume
-          configMap:
-            name: kong-kong-default-custom-server-blocks

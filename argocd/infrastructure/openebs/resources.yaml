@@ -6,7 +6,7 @@ metadata:
   name: openebs
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
 ---
@@ -19,7 +19,7 @@ metadata:
   name: openebs-ndm-config
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: ndm-config
@@ -62,7 +62,7 @@ metadata:
   name: openebs
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
 rules:
@@ -112,7 +112,7 @@ metadata:
   name: openebs
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
 roleRef:
@@ -131,7 +131,7 @@ metadata:
   name: openebs-apiservice
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     openebs.io/component-name: maya-apiserver-svc
@@ -154,12 +154,12 @@ metadata:
   name: openebs-ndm
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: ndm
     openebs.io/component-name: ndm
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   updateStrategy:
     type: "RollingUpdate"
@@ -176,7 +176,7 @@ spec:
         component: ndm
         openebs.io/component-name: ndm
         name: openebs-ndm
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
     spec:
       serviceAccountName: openebs
       hostNetwork: true
@@ -184,7 +184,7 @@ spec:
       # API service is enabled
       containers:
       - name: openebs-ndm
-        image: "openebs/node-disk-manager:1.1.0"
+        image: "openebs/node-disk-manager:1.2.0"
         args:
           - -v=4
           - --feature-gates=GPTBasedUUID
@@ -283,12 +283,12 @@ metadata:
   name: openebs-admission-server
   labels:
     app: admission-webhook
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: admission-webhook
     openebs.io/component-name: admission-webhook
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   replicas: 1
   strategy:
@@ -303,13 +303,13 @@ spec:
         app: admission-webhook
         name: admission-webhook
         release: openebs
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
         openebs.io/component-name: admission-webhook
     spec:
       serviceAccountName: openebs
       containers:
         - name: admission-webhook
-          image: "openebs/admission-server:2.5.0"
+          image: "openebs/admission-server:2.6.0"
           imagePullPolicy: IfNotPresent
           args:
             - -alsologtostderr
@@ -344,12 +344,12 @@ metadata:
   name: openebs-localpv-provisioner
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: localpv-provisioner
     openebs.io/component-name: openebs-localpv-provisioner
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   replicas: 1
   strategy:
@@ -367,12 +367,12 @@ spec:
         component: localpv-provisioner
         name: openebs-localpv-provisioner
         openebs.io/component-name: openebs-localpv-provisioner
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
     spec:
       serviceAccountName: openebs
       containers:
       - name: openebs-localpv-provisioner
-        image: "openebs/provisioner-localpv:2.5.0"
+        image: "openebs/provisioner-localpv:2.6.0"
         imagePullPolicy: IfNotPresent
         env:
         # OPENEBS_IO_K8S_MASTER enables openebs provisioner to connect to K8s
@@ -406,7 +406,7 @@ spec:
         - name: OPENEBS_IO_BASE_PATH
           value: "/var/openebs/local"
         - name: OPENEBS_IO_HELPER_IMAGE
-          value: "openebs/linux-utils:2.5.0"
+          value: "openebs/linux-utils:2.6.0"
         - name: OPENEBS_IO_INSTALLER_TYPE
           value: "charts-helm"
         # LEADER_ELECTION_ENABLED is used to enable/disable leader election. By default
@@ -435,13 +435,13 @@ metadata:
   name: openebs-apiserver
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: apiserver
     name: maya-apiserver
     openebs.io/component-name: maya-apiserver
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   replicas: 1
   strategy:
@@ -459,12 +459,12 @@ spec:
         component: apiserver
         name: maya-apiserver
         openebs.io/component-name: maya-apiserver
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
     spec:
       serviceAccountName: openebs
       containers:
       - name: openebs-apiserver
-        image: "openebs/m-apiserver:2.5.0"
+        image: "openebs/m-apiserver:2.6.0"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5656
@@ -540,25 +540,25 @@ spec:
         - name: OPENEBS_IO_BASE_DIR
           value: "/var/openebs"
         - name: OPENEBS_IO_JIVA_CONTROLLER_IMAGE
-          value: "openebs/jiva:2.5.0"
+          value: "openebs/jiva:2.6.0"
         - name: OPENEBS_IO_JIVA_REPLICA_IMAGE
-          value: "openebs/jiva:2.5.0"
+          value: "openebs/jiva:2.6.0"
         - name: OPENEBS_IO_JIVA_REPLICA_COUNT
           value: "3"
         - name: OPENEBS_IO_CSTOR_TARGET_IMAGE
-          value: "openebs/cstor-istgt:2.5.0"
+          value: "openebs/cstor-istgt:2.6.0"
         - name: OPENEBS_IO_CSTOR_POOL_IMAGE
-          value: "openebs/cstor-pool:2.5.0"
+          value: "openebs/cstor-pool:2.6.0"
         - name: OPENEBS_IO_CSTOR_POOL_MGMT_IMAGE
-          value: "openebs/cstor-pool-mgmt:2.5.0"
+          value: "openebs/cstor-pool-mgmt:2.6.0"
         - name: OPENEBS_IO_CSTOR_VOLUME_MGMT_IMAGE
-          value: "openebs/cstor-volume-mgmt:2.5.0"
+          value: "openebs/cstor-volume-mgmt:2.6.0"
         - name: OPENEBS_IO_VOLUME_MONITOR_IMAGE
-          value: "openebs/m-exporter:2.5.0"
+          value: "openebs/m-exporter:2.6.0"
         - name: OPENEBS_IO_CSTOR_POOL_EXPORTER_IMAGE
-          value: "openebs/m-exporter:2.5.0"
+          value: "openebs/m-exporter:2.6.0"
         - name: OPENEBS_IO_HELPER_IMAGE
-          value: "openebs/linux-utils:2.5.0"
+          value: "openebs/linux-utils:2.6.0"
         # OPENEBS_IO_ENABLE_ANALYTICS if set to true sends anonymous usage
         # events to Google Analytics
         - name: OPENEBS_IO_ENABLE_ANALYTICS
@@ -588,13 +588,13 @@ metadata:
   name: openebs-provisioner
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: provisioner
     name: openebs-provisioner
     openebs.io/component-name: openebs-provisioner
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   replicas: 1
   strategy:
@@ -612,12 +612,12 @@ spec:
         component: provisioner
         name: openebs-provisioner
         openebs.io/component-name: openebs-provisioner
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
     spec:
       serviceAccountName: openebs
       containers:
       - name: openebs-provisioner
-        image: "openebs/openebs-k8s-provisioner:2.5.0"
+        image: "openebs/openebs-k8s-provisioner:2.6.0"
         imagePullPolicy: IfNotPresent
         env:
         # OPENEBS_IO_K8S_MASTER enables openebs provisioner to connect to K8s
@@ -683,12 +683,12 @@ metadata:
   name: openebs-snapshot-operator
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: snapshot-operator
     openebs.io/component-name: openebs-snapshot-operator
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
 spec:
   replicas: 1
   selector:
@@ -705,13 +705,13 @@ spec:
         release: openebs
         component: snapshot-operator
         name: openebs-snapshot-operator
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
         openebs.io/component-name: openebs-snapshot-operator
     spec:
       serviceAccountName: openebs
       containers:
       - name: openebs-snapshot-controller
-        image: "openebs/snapshot-controller:2.5.0"
+        image: "openebs/snapshot-controller:2.6.0"
         imagePullPolicy: IfNotPresent
         env:
         # OPENEBS_IO_K8S_MASTER enables openebs snapshot controller to connect to K8s
@@ -753,7 +753,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
       - name: openebs-snapshot-provisioner
-        image: "openebs/snapshot-provisioner:2.5.0"
+        image: "openebs/snapshot-provisioner:2.6.0"
         imagePullPolicy: IfNotPresent
         env:
         # OPENEBS_IO_K8S_MASTER enables openebs snapshot provisioner to connect to K8s
@@ -806,12 +806,12 @@ metadata:
   name: openebs-ndm-operator
   labels:
     app: openebs
-    chart: openebs-2.5.0
+    chart: openebs-2.6.0
     release: openebs
     heritage: Helm
     component: ndm-operator
     openebs.io/component-name: ndm-operator
-    openebs.io/version: 2.5.0
+    openebs.io/version: 2.6.0
     name: ndm-operator
 spec:
   replicas: 1
@@ -830,12 +830,12 @@ spec:
         component: ndm-operator
         name: ndm-operator
         openebs.io/component-name: ndm-operator
-        openebs.io/version: 2.5.0
+        openebs.io/version: 2.6.0
     spec:
       serviceAccountName: openebs
       containers:
       - name: openebs-ndm-operator
-        image: "openebs/node-disk-operator:1.1.0"
+        image: "openebs/node-disk-operator:1.2.0"
         imagePullPolicy: IfNotPresent
         readinessProbe:
           exec:
@@ -861,7 +861,7 @@ spec:
         - name: OPERATOR_NAME
           value: "node-disk-operator"
         - name: CLEANUP_JOB_IMAGE
-          value: "openebs/linux-utils:2.5.0"
+          value: "openebs/linux-utils:2.6.0"
         # OPENEBS_IO_INSTALL_CRD environment variable is used to enable/disable CRD installation
         # from NDM Operator. By default the CRDs will be installed
         - name: OPENEBS_IO_INSTALL_CRD

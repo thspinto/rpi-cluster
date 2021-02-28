@@ -20,4 +20,4 @@ proxy:
       parameters:
         - ssl
 
-replicaCount: 3
+replicaCount: 2

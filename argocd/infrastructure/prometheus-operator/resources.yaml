@@ -6,10 +6,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   annotations:
     seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default,runtime/default'
@@ -61,10 +61,10 @@ metadata:
   name: prometheus-grafana-test
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 spec:
   allowPrivilegeEscalation: true
@@ -95,7 +95,7 @@ metadata:
   name: prometheus-kube-state-metrics
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
+    helm.sh/chart: kube-state-metrics-2.13.0
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
 spec:
@@ -133,7 +133,7 @@ metadata:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     jobLabel: node-exporter
 spec:
   privileged: false
@@ -186,7 +186,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -236,7 +236,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -283,10 +283,10 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana
   namespace: monitoring
@@ -296,10 +296,10 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-test
   namespace: monitoring
@@ -310,7 +310,7 @@ kind: ServiceAccount
 metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
+    helm.sh/chart: kube-state-metrics-2.13.0
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
   name: prometheus-kube-state-metrics
@@ -326,9 +326,11 @@ metadata:
   namespace: monitoring
   labels:
     app: prometheus-node-exporter
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     release: "prometheus"
     heritage: "Helm"
+  annotations:
+    {}
 imagePullSecrets:
   []
 ---
@@ -341,7 +343,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 imagePullSecrets:
@@ -356,7 +358,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 imagePullSecrets:
@@ -369,10 +371,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 data:
@@ -385,10 +387,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-config-dashboards
   namespace: monitoring
@@ -414,10 +416,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 data:
   grafana.ini: |
@@ -440,10 +442,10 @@ metadata:
   name: prometheus-grafana-test
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 data:
   run.sh: |-
@@ -464,7 +466,7 @@ metadata:
     grafana_datasource: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -491,7 +493,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -2233,7 +2235,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -4110,7 +4112,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -5256,7 +5258,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -6367,7 +6369,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -7897,7 +7899,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -10474,7 +10476,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -12755,7 +12757,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -13728,7 +13730,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -15495,7 +15497,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -17524,7 +17526,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -19714,7 +19716,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -19890,7 +19892,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "sum(kubelet_running_pods{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"})",
+                                "expr": "sum(kubelet_running_pods{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"}) OR sum(kubelet_running_pod_count{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "{{instance}}",
@@ -19974,7 +19976,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "sum(kubelet_running_containers{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"})",
+                                "expr": "sum(kubelet_running_containers{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"}) OR sum(kubelet_running_container_count{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", instance=~\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "{{instance}}",
@@ -22242,7 +22244,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -23701,7 +23703,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -25432,7 +25434,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -25509,7 +25511,7 @@ data:
                         "timeShift": null,
                         "title": "CPU Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -25595,7 +25597,7 @@ data:
                         "timeShift": null,
                         "title": "CPU Saturation (load1 per CPU)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -25693,7 +25695,7 @@ data:
                         "timeShift": null,
                         "title": "Memory Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -25779,7 +25781,7 @@ data:
                         "timeShift": null,
                         "title": "Memory Saturation (Major Page Faults)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -25893,7 +25895,7 @@ data:
                         "timeShift": null,
                         "title": "Net Utilisation (Bytes Receive/Transmit)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -25995,7 +25997,7 @@ data:
                         "timeShift": null,
                         "title": "Net Saturation (Drops Receive/Transmit)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26093,7 +26095,7 @@ data:
                         "timeShift": null,
                         "title": "Disk IO Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26179,7 +26181,7 @@ data:
                         "timeShift": null,
                         "title": "Disk IO Saturation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26277,7 +26279,7 @@ data:
                         "timeShift": null,
                         "title": "Disk Space Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26373,9 +26375,9 @@ data:
                 "30d"
             ]
         },
-        "timezone": "UTC",
+        "timezone": "utc",
         "title": "USE Method / Cluster",
-        "uid": "3e97d1d02672cdd0861f4c97c64f89b2",
+        "uid": "",
         "version": 0
     }
 ---
@@ -26391,7 +26393,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -26468,7 +26470,7 @@ data:
                         "timeShift": null,
                         "title": "CPU Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26554,7 +26556,7 @@ data:
                         "timeShift": null,
                         "title": "CPU Saturation (Load1 per CPU)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26652,7 +26654,7 @@ data:
                         "timeShift": null,
                         "title": "Memory Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26738,7 +26740,7 @@ data:
                         "timeShift": null,
                         "title": "Memory Saturation (Major Page Faults)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26852,7 +26854,7 @@ data:
                         "timeShift": null,
                         "title": "Net Utilisation (Bytes Receive/Transmit)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -26954,7 +26956,7 @@ data:
                         "timeShift": null,
                         "title": "Net Saturation (Drops Receive/Transmit)",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27052,7 +27054,7 @@ data:
                         "timeShift": null,
                         "title": "Disk IO Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27138,7 +27140,7 @@ data:
                         "timeShift": null,
                         "title": "Disk IO Saturation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27236,7 +27238,7 @@ data:
                         "timeShift": null,
                         "title": "Disk Space Utilisation",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27359,9 +27361,9 @@ data:
                 "30d"
             ]
         },
-        "timezone": "UTC",
+        "timezone": "utc",
         "title": "USE Method / Node",
-        "uid": "fac67cfbe174d3ef53eb473d73d9212f",
+        "uid": "",
         "version": 0
     }
 ---
@@ -27377,7 +27379,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -27469,7 +27471,7 @@ data:
                         "timeShift": null,
                         "title": "CPU Usage",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27583,7 +27585,7 @@ data:
                         "timeShift": null,
                         "title": "Load Average",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27710,7 +27712,7 @@ data:
                         "timeShift": null,
                         "title": "Memory Usage",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -27813,9 +27815,6 @@ data:
                         ],
                         "thresholds": "80, 90",
                         "title": "Memory Usage",
-                        "tooltip": {
-                            "shared": false
-                        },
                         "type": "singlestat",
                         "valueFontSize": "80%",
                         "valueMaps": [
@@ -27924,7 +27923,7 @@ data:
                         "timeShift": null,
                         "title": "Disk I/O",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -28031,7 +28030,7 @@ data:
                         "timeShift": null,
                         "title": "Disk Space Usage",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -28138,7 +28137,7 @@ data:
                         "timeShift": null,
                         "title": "Network Received",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -28232,7 +28231,7 @@ data:
                         "timeShift": null,
                         "title": "Network Transmitted",
                         "tooltip": {
-                            "shared": false,
+                            "shared": true,
                             "sort": 0,
                             "value_type": "individual"
                         },
@@ -28355,9 +28354,8 @@ data:
                 "30d"
             ]
         },
-        "timezone": "UTC",
+        "timezone": "browser",
         "title": "Nodes",
-        "uid": "fa49a4706d07a042595b664c87fb33ea",
         "version": 0
     }
 ---
@@ -28373,7 +28371,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -28565,7 +28563,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "(\n  kubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n  -\n  kubelet_volume_stats_available_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n)\n/\nkubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n* 100\n",
+                                "expr": "max without(instance,node) (\n(\n  kubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n  -\n  kubelet_volume_stats_available_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n)\n/\nkubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n* 100)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -28762,7 +28760,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "kubelet_volume_stats_inodes_used{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n/\nkubelet_volume_stats_inodes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n* 100\n",
+                                "expr": "max without(instance,node) (\nkubelet_volume_stats_inodes_used{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n/\nkubelet_volume_stats_inodes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\", persistentvolumeclaim=\"$volume\"}\n* 100)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -28945,7 +28943,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -30168,7 +30166,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -30186,7 +30184,7 @@ data:
         "links": [
 
         ],
-        "refresh": "10s",
+        "refresh": "60s",
         "rows": [
             {
                 "collapse": false,
@@ -31265,7 +31263,7 @@ data:
         "schemaVersion": 14,
         "style": "dark",
         "tags": [
-
+            "prometheus-mixin"
         ],
         "templating": {
             "list": [
@@ -31373,7 +31371,7 @@ data:
             ]
         },
         "timezone": "utc",
-        "title": "Prometheus Overview",
+        "title": "Prometheus / Overview",
         "uid": "",
         "version": 0
     }
@@ -31390,7 +31388,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -32616,7 +32614,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -33685,7 +33683,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -34608,7 +34606,7 @@ metadata:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 data:
@@ -36034,10 +36032,10 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-clusterrole
 rules:
@@ -36045,13 +36043,30 @@ rules:
   resources: ["configmaps", "secrets"]
   verbs: ["get", "watch", "list"]
 ---
-# Source: kube-prometheus-stack/charts/kube-state-metrics/templates/clusterrole.yaml
+# Source: kube-prometheus-stack/charts/kube-state-metrics/templates/psp-clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
+    helm.sh/chart: kube-state-metrics-2.13.0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: prometheus
+  name: psp-prometheus-kube-state-metrics
+rules:
+- apiGroups: ['policy']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - prometheus-kube-state-metrics
+---
+# Source: kube-prometheus-stack/charts/kube-state-metrics/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: kube-state-metrics
+    helm.sh/chart: kube-state-metrics-2.13.0
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
   name: prometheus-kube-state-metrics
@@ -36192,23 +36207,6 @@ rules:
     - volumeattachments
   verbs: ["list", "watch"]
 ---
-# Source: kube-prometheus-stack/charts/kube-state-metrics/templates/psp-clusterrole.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  labels:
-    app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/instance: prometheus
-  name: psp-prometheus-kube-state-metrics
-rules:
-- apiGroups: ['policy']
-  resources: ['podsecuritypolicies']
-  verbs:     ['use']
-  resourceNames:
-  - prometheus-kube-state-metrics
----
 # Source: kube-prometheus-stack/charts/prometheus-node-exporter/templates/psp-clusterrole.yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -36218,7 +36216,7 @@ metadata:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     jobLabel: node-exporter
 rules:
 - apiGroups: ['extensions']
@@ -36235,7 +36233,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -36318,7 +36316,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -36336,7 +36334,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -36366,7 +36364,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -36382,10 +36380,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: prometheus-grafana-clusterrolebinding
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -36402,7 +36400,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
+    helm.sh/chart: kube-state-metrics-2.13.0
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
   name: prometheus-kube-state-metrics
@@ -36421,7 +36419,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-2.9.7
+    helm.sh/chart: kube-state-metrics-2.13.0
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
   name: psp-prometheus-kube-state-metrics
@@ -36443,7 +36441,7 @@ metadata:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     jobLabel: node-exporter
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -36462,7 +36460,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -36482,7 +36480,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -36502,7 +36500,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -36522,7 +36520,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -36541,10 +36539,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:      ['extensions']
@@ -36559,10 +36557,10 @@ metadata:
   name: prometheus-grafana-test
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:      ['policy']
@@ -36577,10 +36575,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -36598,10 +36596,10 @@ metadata:
   name: prometheus-grafana-test
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -36619,10 +36617,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -36644,7 +36642,7 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: "kube-state-metrics-2.9.7"
+    helm.sh/chart: "kube-state-metrics-2.13.0"
     app.kubernetes.io/instance: "prometheus"
     app.kubernetes.io/managed-by: "Helm"
   annotations:
@@ -36656,6 +36654,7 @@ spec:
     protocol: TCP
     port: 8080
     targetPort: 8080
+  
   selector:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/instance: prometheus
@@ -36672,7 +36671,7 @@ metadata:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     jobLabel: node-exporter
 spec:
   type: ClusterIP
@@ -36694,7 +36693,7 @@ metadata:
     app: kube-prometheus-stack-coredns
     jobLabel: coredns
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
   namespace: kube-system
@@ -36717,7 +36716,7 @@ metadata:
     app: kube-prometheus-stack-kube-controller-manager
     jobLabel: kube-controller-manager
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
   namespace: kube-system
@@ -36741,7 +36740,7 @@ metadata:
     app: kube-prometheus-stack-kube-etcd
     jobLabel: kube-etcd
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
   namespace: kube-system
@@ -36765,7 +36764,7 @@ metadata:
     app: kube-prometheus-stack-kube-proxy
     jobLabel: kube-proxy
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
   namespace: kube-system
@@ -36789,7 +36788,7 @@ metadata:
     app: kube-prometheus-stack-kube-scheduler
     jobLabel: kube-scheduler
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
   namespace: kube-system
@@ -36813,7 +36812,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -36836,7 +36835,7 @@ metadata:
     app: kube-prometheus-stack-prometheus
     self-monitor: "true"
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -36859,7 +36858,7 @@ metadata:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
-    chart: prometheus-node-exporter-1.12.0
+    chart: prometheus-node-exporter-1.14.2
     jobLabel: node-exporter
 spec:
   selector:
@@ -36876,8 +36875,10 @@ spec:
         app: prometheus-node-exporter
         heritage: Helm
         release: prometheus
-        chart: prometheus-node-exporter-1.12.0
+        chart: prometheus-node-exporter-1.14.2
         jobLabel: node-exporter
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
       serviceAccountName: prometheus-prometheus-node-exporter
       securityContext:
@@ -36894,8 +36895,8 @@ spec:
             - --path.sysfs=/host/sys
             - --path.rootfs=/host/root
             - --web.listen-address=$(HOST_IP):9100
-            - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+)($|/)
-            - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$
+            - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+            - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
           env:
           - name: HOST_IP
             value: 0.0.0.0
@@ -36947,10 +36948,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -36967,10 +36968,10 @@ spec:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: prometheus
       annotations:
-        checksum/config: a0e64a10e5cb7a5e7131678a2a4b062ec1028784fc5f869a0a65c1c511442f95
+        checksum/config: b7b57669a4f5bee827fe1edb035b680d5f1abd7585deb62dcd6988d77c3a4e8f
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 18492ba4721fac325e998b386e2971e7839d86248466cc357778f817b80d7622
-        checksum/secret: e3d46a08dd96197a49b100bbaa36b0079c626670622a5c55bc2b9bd0aa58796b
+        checksum/sc-dashboard-provider-config: b385aa085149ccfcf836e4401669912762c76d723ba607a2358c4aae23d9e2cf
+        checksum/secret: 46c42adc5e615a345aad9c47b4e3ef8c400643d448a278c786fc81649a3367d1
     spec:
       
       serviceAccountName: prometheus-grafana
@@ -36980,7 +36981,7 @@ spec:
         runAsUser: 472
       initContainers:
         - name: grafana-sc-datasources
-          image: "kiwigrid/k8s-sidecar:1.1.0"
+          image: "quay.io/kiwigrid/k8s-sidecar:1.10.6"
           imagePullPolicy: IfNotPresent
           env:
             - name: METHOD
@@ -36998,7 +36999,7 @@ spec:
               mountPath: "/etc/grafana/provisioning/datasources"
       containers:
         - name: grafana-sc-dashboard
-          image: "kiwigrid/k8s-sidecar:1.1.0"
+          image: "quay.io/kiwigrid/k8s-sidecar:1.10.6"
           imagePullPolicy: IfNotPresent
           env:
             - name: METHOD
@@ -37015,7 +37016,7 @@ spec:
             - name: sc-dashboard-volume
               mountPath: "/tmp/dashboards"
         - name: grafana
-          image: "grafana/grafana:7.3.5"
+          image: "grafana/grafana:7.4.2"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
@@ -37085,9 +37086,10 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: "kube-state-metrics-2.9.7"
+    helm.sh/chart: "kube-state-metrics-2.13.0"
     app.kubernetes.io/instance: "prometheus"
     app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/version: "1.9.8"
 spec:
   selector:
     matchLabels:
@@ -37108,6 +37110,7 @@ spec:
       containers:
       - name: kube-state-metrics
         args:
+
 
         - --collectors=certificatesigningrequests
 
@@ -37193,6 +37196,8 @@ spec:
 
 
 
+
+        - --telemetry-port=8081
         imagePullPolicy: IfNotPresent
         image: "carlosedp/kube-state-metrics:v1.9.6"
         ports:
@@ -37219,7 +37224,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37233,28 +37238,27 @@ spec:
       labels:
         app: kube-prometheus-stack-operator
         
-        chart: kube-prometheus-stack-12.12.1
+        chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"
     spec:
       containers:
         - name: kube-prometheus-stack
-          image: "quay.io/prometheus-operator/prometheus-operator:v0.44.0"
+          image: "quay.io/prometheus-operator/prometheus-operator:v0.45.0"
           imagePullPolicy: "IfNotPresent"
           args:
             - --kubelet-service=kube-system/prometheus-kube-prometheus-kubelet
             - --localhost=127.0.0.1
-            - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.44.0
-            # Empty if statement to catch non-semver master tags that do not need the --config-reloader-image flag
+            - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.45.0
             - --config-reloader-cpu=100m
             - --config-reloader-memory=50Mi
             - --web.enable-tls=true
             - --web.cert-file=/cert/cert
             - --web.key-file=/cert/key
-            - --web.listen-address=:8443
+            - --web.listen-address=:10250
             - --web.tls-min-version=VersionTLS13
           ports:
-            - containerPort: 8443
+            - containerPort: 10250
               name: https
           resources:
             {}
@@ -37284,10 +37288,10 @@ metadata:
   name: prometheus-grafana
   namespace: monitoring
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
@@ -37321,7 +37325,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37345,7 +37349,7 @@ metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 webhooks:
@@ -37378,15 +37382,15 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
   alerting:
     alertmanagers:
       []
-  image: quay.io/prometheus/prometheus:v2.22.1
-  version: v2.22.1
+  image: quay.io/prometheus/prometheus:v2.24.0
+  version: v2.24.0
   externalUrl: "http://prometheus.thsp.dev/"
   paused: false
   replicas: 1
@@ -37422,7 +37426,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37471,28 +37475,13 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
   groups:
   - name: etcd
     rules:
-    - alert: etcdMembersDown
-      annotations:
-        message: 'etcd cluster "{{ $labels.job }}": members are down ({{ $value }}).'
-      expr: |-
-        max by (job) (
-          sum by (job) (up{job=~".*etcd.*"} == bool 0)
-        or
-          count by (job,endpoint) (
-            sum by (job,endpoint,To) (rate(etcd_network_peer_sent_failures_total{job=~".*etcd.*"}[3m])) > 0.01
-          )
-        )
-        > 0
-      for: 3m
-      labels:
-        severity: critical
     - alert: etcdInsufficientMembers
       annotations:
         message: 'etcd cluster "{{ $labels.job }}": insufficient members ({{ $value }}).'
@@ -37509,9 +37498,9 @@ spec:
         severity: critical
     - alert: etcdHighNumberOfLeaderChanges
       annotations:
-        message: 'etcd cluster "{{ $labels.job }}": {{ $value }} leader changes within the last 15 minutes. Frequent elections may be a sign of insufficient resources, high network latency, or disruptions by other components and should be investigated.'
-      expr: increase((max by (job) (etcd_server_leader_changes_seen_total{job=~".*etcd.*"}) or 0*absent(etcd_server_leader_changes_seen_total{job=~".*etcd.*"}))[15m:1m]) >= 3
-      for: 5m
+        message: 'etcd cluster "{{ $labels.job }}": instance {{ $labels.instance }} has seen {{ $value }} leader changes within the last hour.'
+      expr: rate(etcd_server_leader_changes_seen_total{job=~".*etcd.*"}[15m]) > 3
+      for: 15m
       labels:
         severity: warning
     - alert: etcdHighNumberOfFailedGRPCRequests
@@ -37556,7 +37545,7 @@ spec:
         severity: warning
     - alert: etcdHighNumberOfFailedProposals
       annotations:
-        message: 'etcd cluster "{{ $labels.job }}": {{ $value }} proposal failures within the last 30 minutes on etcd instance {{ $labels.instance }}.'
+        message: 'etcd cluster "{{ $labels.job }}": {{ $value }} proposal failures within the last hour on etcd instance {{ $labels.instance }}.'
       expr: rate(etcd_server_proposals_failed_total{job=~".*etcd.*"}[15m]) > 5
       for: 15m
       labels:
@@ -37616,7 +37605,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37656,15 +37645,13 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
   groups:
   - name: k8s.rules
     rules:
-    - expr: sum(rate(container_cpu_usage_seconds_total{job="kubelet", metrics_path="/metrics/cadvisor", image!="", container!="POD"}[5m])) by (namespace)
-      record: namespace:container_cpu_usage_seconds_total:sum_rate
     - expr: |-
         sum by (cluster, namespace, pod, container) (
           rate(container_cpu_usage_seconds_total{job="kubelet", metrics_path="/metrics/cadvisor", image!="", container!="POD"}[5m])
@@ -37696,8 +37683,6 @@ spec:
           max by(namespace, pod, node) (kube_pod_info{node!=""})
         )
       record: node_namespace_pod_container:container_memory_swap
-    - expr: sum(container_memory_usage_bytes{job="kubelet", metrics_path="/metrics/cadvisor", image!="", container!="POD"}) by (namespace)
-      record: namespace:container_memory_usage_bytes:sum
     - expr: |-
         sum by (namespace) (
             sum by (namespace, pod) (
@@ -37767,7 +37752,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37849,54 +37834,56 @@ spec:
       labels:
         verb: write
       record: apiserver_request:availability30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"2.."}[30d]))
+    - expr: avg_over_time(code_verb:apiserver_request_total:increase1h[30d]) * 24 * 30
       record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"2.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"2.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"2.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"2.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"2.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"3.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"4.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
-    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"5.."}[30d]))
-      record: code_verb:apiserver_request_total:increase30d
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"2.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"3.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"4.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="LIST",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="GET",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="POST",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PUT",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="PATCH",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver",verb="DELETE",code=~"5.."}[1h]))
+      record: code_verb:apiserver_request_total:increase1h
     - expr: sum by (code) (code_verb:apiserver_request_total:increase30d{verb=~"LIST|GET"})
       labels:
         verb: read
@@ -37915,7 +37902,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -37988,7 +37975,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38314,11 +38301,6 @@ spec:
         quantile: '0.99'
         verb: write
       record: cluster_quantile:apiserver_request_duration_seconds:histogram_quantile
-    - expr: |-
-        sum(rate(apiserver_request_duration_seconds_sum{subresource!="log",verb!~"LIST|WATCH|WATCHLIST|DELETECOLLECTION|PROXY|CONNECT"}[5m])) without(instance, pod)
-        /
-        sum(rate(apiserver_request_duration_seconds_count{subresource!="log",verb!~"LIST|WATCH|WATCHLIST|DELETECOLLECTION|PROXY|CONNECT"}[5m])) without(instance, pod)
-      record: cluster:apiserver_request_duration_seconds:mean5m
     - expr: histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{job="apiserver",subresource!="log",verb!~"LIST|WATCH|WATCHLIST|DELETECOLLECTION|PROXY|CONNECT"}[5m])) without(instance, pod))
       labels:
         quantile: '0.99'
@@ -38341,7 +38323,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38362,7 +38344,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38391,7 +38373,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38444,7 +38426,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38487,7 +38469,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38516,7 +38498,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38525,10 +38507,10 @@ spec:
     rules:
     - alert: KubePodCrashLooping
       annotations:
-        description: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is restarting {{ printf "%.2f" $value }} times / 5 minutes.
+        description: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is restarting {{ printf "%.2f" $value }} times / 10 minutes.
         runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubepodcrashlooping
         summary: Pod is crash looping.
-      expr: rate(kube_pod_container_status_restarts_total{job="kube-state-metrics", namespace=~".*"}[5m]) * 60 * 5 > 0
+      expr: rate(kube_pod_container_status_restarts_total{job="kube-state-metrics", namespace=~".*"}[10m]) * 60 * 5 > 0
       for: 15m
       labels:
         severity: warning
@@ -38758,7 +38740,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38883,7 +38865,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38938,7 +38920,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -38963,10 +38945,10 @@ spec:
         severity: critical
     - alert: AggregatedAPIErrors
       annotations:
-        description: An aggregated API {{ $labels.name }}/{{ $labels.namespace }} has reported errors. The number of errors have increased for it in the past five minutes. High values indicate that the availability of the service changes too often.
+        description: An aggregated API {{ $labels.name }}/{{ $labels.namespace }} has reported errors. It has appeared unavailable {{ $value | humanize }} times averaged over the past 10m.
         runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-aggregatedapierrors
         summary: An aggregated API has reported errors.
-      expr: sum by(name, namespace)(increase(aggregator_unavailable_apiservice_count[5m])) > 2
+      expr: sum by(name, namespace)(increase(aggregator_unavailable_apiservice_count[10m])) > 4
       labels:
         severity: warning
     - alert: AggregatedAPIDown
@@ -38987,6 +38969,15 @@ spec:
       for: 15m
       labels:
         severity: critical
+    - alert: KubeAPITerminatedRequests
+      annotations:
+        description: The apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
+        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapiterminatedrequests
+        summary: The apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
+      expr: sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m]))  / (  sum(rate(apiserver_request_total{job="apiserver"}[10m])) + sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m])) ) > 0.20
+      for: 5m
+      labels:
+        severity: warning
 ---
 # Source: kube-prometheus-stack/templates/prometheus/rules-1.14/kubernetes-system-controller-manager.yaml
 apiVersion: monitoring.coreos.com/v1
@@ -38997,7 +38988,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39023,7 +39014,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39160,7 +39151,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39186,7 +39177,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39225,7 +39216,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39294,7 +39285,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39304,7 +39295,6 @@ spec:
     - alert: NodeFilesystemSpaceFillingUp
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available space left and is filling up.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemspacefillingup
         summary: Filesystem is predicted to run out of space within the next 24 hours.
       expr: |-
         (
@@ -39320,7 +39310,6 @@ spec:
     - alert: NodeFilesystemSpaceFillingUp
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available space left and is filling up fast.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemspacefillingup
         summary: Filesystem is predicted to run out of space within the next 4 hours.
       expr: |-
         (
@@ -39336,7 +39325,6 @@ spec:
     - alert: NodeFilesystemAlmostOutOfSpace
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available space left.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemalmostoutofspace
         summary: Filesystem has less than 5% space left.
       expr: |-
         (
@@ -39350,7 +39338,6 @@ spec:
     - alert: NodeFilesystemAlmostOutOfSpace
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available space left.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemalmostoutofspace
         summary: Filesystem has less than 3% space left.
       expr: |-
         (
@@ -39364,7 +39351,6 @@ spec:
     - alert: NodeFilesystemFilesFillingUp
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available inodes left and is filling up.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemfilesfillingup
         summary: Filesystem is predicted to run out of inodes within the next 24 hours.
       expr: |-
         (
@@ -39380,7 +39366,6 @@ spec:
     - alert: NodeFilesystemFilesFillingUp
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available inodes left and is filling up fast.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemfilesfillingup
         summary: Filesystem is predicted to run out of inodes within the next 4 hours.
       expr: |-
         (
@@ -39396,7 +39381,6 @@ spec:
     - alert: NodeFilesystemAlmostOutOfFiles
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available inodes left.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemalmostoutoffiles
         summary: Filesystem has less than 5% inodes left.
       expr: |-
         (
@@ -39410,7 +39394,6 @@ spec:
     - alert: NodeFilesystemAlmostOutOfFiles
       annotations:
         description: Filesystem on {{ $labels.device }} at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available inodes left.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodefilesystemalmostoutoffiles
         summary: Filesystem has less than 3% inodes left.
       expr: |-
         (
@@ -39424,7 +39407,6 @@ spec:
     - alert: NodeNetworkReceiveErrs
       annotations:
         description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} receive errors in the last two minutes.'
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodenetworkreceiveerrs
         summary: Network interface is reporting many receive errors.
       expr: rate(node_network_receive_errs_total[2m]) / rate(node_network_receive_packets_total[2m]) > 0.01
       for: 1h
@@ -39433,7 +39415,6 @@ spec:
     - alert: NodeNetworkTransmitErrs
       annotations:
         description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} transmit errors in the last two minutes.'
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodenetworktransmiterrs
         summary: Network interface is reporting many transmit errors.
       expr: rate(node_network_transmit_errs_total[2m]) / rate(node_network_transmit_packets_total[2m]) > 0.01
       for: 1h
@@ -39442,7 +39423,6 @@ spec:
     - alert: NodeHighNumberConntrackEntriesUsed
       annotations:
         description: '{{ $value | humanizePercentage }} of conntrack entries are used.'
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodehighnumberconntrackentriesused
         summary: Number of conntrack are getting close to the limit.
       expr: (node_nf_conntrack_entries / node_nf_conntrack_entries_limit) > 0.75
       labels:
@@ -39450,7 +39430,6 @@ spec:
     - alert: NodeTextFileCollectorScrapeError
       annotations:
         description: Node Exporter text file collector failed to scrape.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodetextfilecollectorscrapeerror
         summary: Node Exporter text file collector failed to scrape.
       expr: node_textfile_scrape_error{job="node-exporter"} == 1
       labels:
@@ -39458,7 +39437,6 @@ spec:
     - alert: NodeClockSkewDetected
       annotations:
         message: Clock on {{ $labels.instance }} is out of sync by more than 300s. Ensure NTP is configured correctly on this host.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodeclockskewdetected
         summary: Clock skew detected.
       expr: |-
         (
@@ -39478,7 +39456,6 @@ spec:
     - alert: NodeClockNotSynchronising
       annotations:
         message: Clock on {{ $labels.instance }} is not synchronising. Ensure NTP is configured on this host.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodeclocknotsynchronising
         summary: Clock not synchronising.
       expr: |-
         min_over_time(node_timex_sync_status[5m]) == 0
@@ -39490,7 +39467,6 @@ spec:
     - alert: NodeRAIDDegraded
       annotations:
         description: RAID array '{{ $labels.device }}' on {{ $labels.instance }} is in degraded state due to one or more disks failures. Number of spare drives is insufficient to fix issue automatically.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-noderaiddegraded
         summary: RAID Array is degraded
       expr: node_md_disks_required - ignoring (state) (node_md_disks{state="active"}) > 0
       for: 15m
@@ -39499,7 +39475,6 @@ spec:
     - alert: NodeRAIDDiskFailure
       annotations:
         description: At least one device in RAID array on {{ $labels.instance }} failed. Array '{{ $labels.device }}' needs attention and possibly a disk swap.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-noderaiddiskfailure
         summary: Failed device in RAID array
       expr: node_md_disks{state="fail"} > 0
       labels:
@@ -39514,7 +39489,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39538,15 +39513,13 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
   groups:
   - name: node.rules
     rules:
-    - expr: sum(min(kube_pod_info{node!=""}) by (cluster, node))
-      record: ':kube_pod_info_node_count:'
     - expr: |-
         topk by(namespace, pod) (1,
           max by (node, namespace, pod) (
@@ -39581,7 +39554,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39661,7 +39634,7 @@ metadata:
   labels:
     app: kube-prometheus-stack
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39859,7 +39832,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-coredns
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39884,7 +39857,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-apiserver
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39914,7 +39887,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-controller-manager
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39939,7 +39912,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-etcd
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39964,7 +39937,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-proxy
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -39989,7 +39962,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-scheduler
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40014,7 +39987,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-state-metrics
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40035,7 +40008,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kubelet    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40092,7 +40065,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-node-exporter
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40113,7 +40086,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-grafana
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40137,7 +40110,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-operator
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40169,7 +40142,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40192,7 +40165,7 @@ metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 webhooks:
@@ -40227,7 +40200,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-admission
     
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40280,7 +40253,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 imagePullSecrets:
@@ -40296,7 +40269,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -40324,7 +40297,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -40347,7 +40320,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 rules:
@@ -40370,7 +40343,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 roleRef:
@@ -40388,10 +40361,10 @@ kind: Pod
 metadata:
   name: prometheus-grafana-test
   labels:
-    helm.sh/chart: grafana-6.1.17
+    helm.sh/chart: grafana-6.4.4
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "7.3.5"
+    app.kubernetes.io/version: "7.4.2"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test-success
@@ -40424,7 +40397,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission-create    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40433,7 +40406,7 @@ spec:
       name:  prometheus-kube-prometheus-admission-create
       labels:
         app: kube-prometheus-stack-admission-create        
-        chart: kube-prometheus-stack-12.12.1
+        chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"
     spec:
@@ -40466,7 +40439,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission-patch    
-    chart: kube-prometheus-stack-12.12.1
+    chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
 spec:
@@ -40475,7 +40448,7 @@ spec:
       name:  prometheus-kube-prometheus-admission-patch
       labels:
         app: kube-prometheus-stack-admission-patch        
-        chart: kube-prometheus-stack-12.12.1
+        chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"
     spec:

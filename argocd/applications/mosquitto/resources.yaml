@@ -1,135 +1,139 @@
 ---
-# Source: mosquitto/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: mosquitto
-  labels:
-    app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.7.0
-    app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "2.0.4"
-    app.kubernetes.io/managed-by: Helm
----
 # Source: mosquitto/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mosquitto
+  name: mosquitto-config
   labels:
+    helm.sh/chart: mosquitto-1.0.0
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "2.0.4"
+    app.kubernetes.io/version: "2.0.7"
     app.kubernetes.io/managed-by: Helm
 data:
   mosquitto.conf: |
-    autosave_interval 1800
-    persistence true
-    persistence_location /mosquitto/data/
-    
     listener 1883
-    allow_anonymous false
-    password_file /etc/mosquitto/passwords
+    allow_anonymous true
+    persistence true
+    persistence_location /mosquitto/data
+    autosave_interval 1800
 ---
-# Source: mosquitto/templates/service.yaml
+# Source: mosquitto/templates/common.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mosquitto-data
+  labels:
+    helm.sh/chart: mosquitto-1.0.0
+    app.kubernetes.io/name: mosquitto
+    app.kubernetes.io/instance: mosquitto
+    app.kubernetes.io/version: "2.0.7"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+---
+# Source: mosquitto/templates/common.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: mosquitto
   labels:
+    helm.sh/chart: mosquitto-1.0.0
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "2.0.4"
+    app.kubernetes.io/version: "2.0.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
   ports:
     - port: 1883
-      targetPort: default
+      targetPort: mqtt
       protocol: TCP
-      name: default
-    - port: 9001
-      targetPort: websocket
-      protocol: TCP
-      name: websocket      
+      name: mqtt
   selector:
     app.kubernetes.io/name: mosquitto
     app.kubernetes.io/instance: mosquitto
 ---
-# Source: mosquitto/templates/statefullset.yaml
+# Source: mosquitto/templates/common.yaml
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: mosquitto
   labels:
+    helm.sh/chart: mosquitto-1.0.0
     app.kubernetes.io/name: mosquitto
-    helm.sh/chart: mosquitto-0.7.0
     app.kubernetes.io/instance: mosquitto
-    app.kubernetes.io/version: "2.0.4"
+    app.kubernetes.io/version: "2.0.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: mosquitto
       app.kubernetes.io/instance: mosquitto
-  serviceName: mosquitto
   template:
     metadata:
       labels:
         app.kubernetes.io/name: mosquitto
         app.kubernetes.io/instance: mosquitto
     spec:
-      serviceAccountName: mosquitto
-      securityContext:
-        {}
-      containers:      
-        - name: mosquitto
-          securityContext:
-            {}
-          image: "eclipse-mosquitto:2.0"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: default
-              containerPort: 1883
-              protocol: TCP
-            - name: websocket
-              containerPort: 9001
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
-          volumeMounts:
-            - name: configmap
-              mountPath: /mosquitto/config
-            - name: data
-              mountPath: /mosquitto/data
-            - mountPath: /etc/mosquitto
-              name: mosquitto-passwords
+      
+      serviceAccountName: default
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      containers:
+      - name: mosquitto
+        image: "eclipse-mosquitto:2.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: mqtt
+          containerPort: 1883
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /mosquitto/data
+          name: data
+        - mountPath: /mosquitto/config/mosquitto.conf
+          name: mosquitto-config
+          subPath: mosquitto.conf
+        
+        livenessProbe:
+          tcpSocket:
+            port: mqtt
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: mqtt
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        startupProbe:
+          tcpSocket:
+            port: mqtt
+          initialDelaySeconds: 0
+          failureThreshold: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
       volumes:
-        - name: configmap
-          configMap:
-            name: mosquitto
-        - name: mosquitto-passwords
-          secret:
-            items:
-            - key: passwords
-              path: passwords
-            secretName: mosquitto
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-      labels:
-        app.kubernetes.io/name: mosquitto
-        app.kubernetes.io/instance: mosquitto
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: "5Gi"
+      - name: data
+        persistentVolumeClaim:
+          claimName: mosquitto-data
+      - configMap:
+          name: mosquitto-config
+        name: mosquitto-config

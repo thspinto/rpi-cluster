@@ -14,10 +14,11 @@ resources:
     memory: 128Mi
 
 persistence:
-  enabled: true
-  storageClassName: openebs-hostpath
-  accessMode: ReadWriteOnce
-  size: 5Gi
+  data:
+    enabled: true
+    storageClassName: openebs-hostpath
+    accessMode: ReadWriteOnce
+    size: 5Gi
 
 # monitoring:
 #   podMonitor:

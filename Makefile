@@ -12,10 +12,3 @@ render-helm: $(DIRS)
 
 $(DIRS):
 	$(MAKE) -C $@ render
-
-
-.PHONY: install-helm $(DIRS)
-install-helm: $(DIRS)
-
-$(DIRS):
-	$(MAKE) -C $@ install-chart
