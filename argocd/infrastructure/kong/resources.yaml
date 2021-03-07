@@ -661,6 +661,7 @@ spec:
     port: 9443
     targetPort: 9443
     protocol: TCP
+  externalTrafficPolicy: Local
   selector:
     app.kubernetes.io/name: kong
     app.kubernetes.io/component: app
@@ -757,7 +758,7 @@ spec:
           {}
       
       - name: "proxy"
-        image: "arm64v8/kong:2.2"
+        image: "thspinto/kong-arm64v8:latest"
         imagePullPolicy: IfNotPresent
         env:
          
@@ -779,8 +780,8 @@ spec:
           value: "on"
         - name: KONG_LUA_PACKAGE_PATH
           value: "/opt/?.lua;/opt/?/init.lua;;"
-        - name: KONG_NGINX_HTTP_INCLUDE
-          value: "/kong/nginx-custom.template"
+        - name: KONG_NGINX_HTTP_LOG_FORMAT
+          value: "custom_fmt '$remote_addr - $remote_user [$time_local] \"$request\" '\n'$status $body_bytes_sent \"$http_referer\" '\n'\"$http_user_agent\" $request_time'\n"
         - name: KONG_NGINX_WORKER_PROCESSES
           value: "2"
         - name: KONG_PLUGINS
@@ -831,8 +832,6 @@ spec:
             mountPath: /kong_prefix/
           - name: kong-kong-tmp
             mountPath: /tmp
-          - name:  custom-config
-            mountPath: /kong
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -868,6 +867,3 @@ spec:
           configMap:
             name: kong-kong-bash-wait-for-postgres
             defaultMode: 0755
-        - name: custom-config
-          configMap:
-            name: custom-config

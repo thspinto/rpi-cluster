@@ -11,9 +11,11 @@ ingressController:
     tag: latest
 
 image:
-  repository: arm64v8/kong
+  repository: thspinto/kong-arm64v8
+  tag: latest
 
 proxy:
+  externalTrafficPolicy: Local
   stream:
     - containerPort: 9443
       servicePort: 9443
@@ -23,8 +25,15 @@ proxy:
 replicaCount: 2
 
 env:
-  nginx_http_include: /kong/nginx-custom.template
-
-extraConfigMaps:
-  - name: custom-config
-    mountPath: /kong
+#  trusted_ips:
+#  real_ip_header:
+#  real_ip_recursive:
+ nginx_http_log_format: |
+  custom_fmt '$remote_addr - $remote_user [$time_local] "$request" '
+  '$status $body_bytes_sent "$http_referer" '
+  '"$http_user_agent" $request_time'
+#  nginx_stream_log_format: |
+#   custom_fmt '$remote_addr [$time_local] '
+#   '$protocol $status $bytes_sent $bytes_received '
+#   '$session_time'
+#  proxy_access_log: /dev/stdout custom_fmt

@@ -787,6 +787,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
+    konghq.com/plugins: "private-service"
     kubernetes.io/ingress.class: "kong"
     kubernetes.io/tls-acme: "true"
   name: argocd-server-grpc
@@ -817,6 +818,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
+    konghq.com/plugins: "private-service"
     kubernetes.io/ingress.class: "kong"
     kubernetes.io/tls-acme: "true"
   name: argocd-server

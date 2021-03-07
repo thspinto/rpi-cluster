@@ -9,4 +9,4 @@ spec:
     recordTTL: 180
     recordType: A
     targets:
-    - 192.168.25.4
+    - 192.168.1.16

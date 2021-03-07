@@ -37295,6 +37295,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
+    konghq.com/plugins: "private-service"
     kubernetes.io/ingress.class: "kong"
     kubernetes.io/tls-acme: "true"
 spec:
@@ -37318,6 +37319,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-manager
+    konghq.com/plugins: private-service
     kubernetes.io/ingress.class: kong
     kubernetes.io/tls-acme: "true"
   name: prometheus-kube-prometheus-prometheus

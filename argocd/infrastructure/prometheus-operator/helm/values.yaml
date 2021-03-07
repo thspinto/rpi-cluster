@@ -16,6 +16,7 @@ prometheus:
   ingress:
     enabled: true
     annotations:
+      konghq.com/plugins: private-service
       kubernetes.io/ingress.class: kong
       kubernetes.io/tls-acme: 'true'
       cert-manager.io/cluster-issuer: cert-manager
@@ -31,6 +32,7 @@ grafana:
   ingress:
     enabled: true
     annotations:
+      konghq.com/plugins: private-service
       kubernetes.io/ingress.class: kong
       kubernetes.io/tls-acme: 'true'
       cert-manager.io/cluster-issuer: cert-manager

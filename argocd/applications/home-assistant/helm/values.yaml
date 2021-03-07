@@ -13,6 +13,7 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: private-service
     kubernetes.io/tls-acme: 'true'
     cert-manager.io/cluster-issuer: cert-manager
     external-dns.alpha.kubernetes.io/hostname: ""
@@ -27,4 +28,4 @@ ingress:
     - home.thsp.dev
 
 image:
-  tag: 2021.1.3
+  tag: stable

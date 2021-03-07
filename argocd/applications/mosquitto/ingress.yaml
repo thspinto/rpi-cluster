@@ -5,6 +5,7 @@ metadata:
   name: mqtt
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: private-service
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "cert-manager"
 spec:

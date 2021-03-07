@@ -71,7 +71,7 @@ spec:
       enableServiceLinks: true
       containers:
       - name: home-assistant
-        image: "homeassistant/home-assistant:2021.1.3"
+        image: "homeassistant/home-assistant:stable"
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -121,6 +121,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-manager
     external-dns.alpha.kubernetes.io/hostname: ""
+    konghq.com/plugins: private-service
     kubernetes.io/ingress.class: kong
     kubernetes.io/tls-acme: "true"
 spec:
