@@ -121,7 +121,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-manager
     external-dns.alpha.kubernetes.io/hostname: ""
-    konghq.com/plugins: private-service
     kubernetes.io/ingress.class: kong
     kubernetes.io/tls-acme: "true"
 spec:
