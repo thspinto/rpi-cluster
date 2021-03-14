@@ -9,4 +9,4 @@ spec:
     recordTTL: 180
     recordType: CNAME
     targets:
-    - internal.thsp.dev
+    - ingress.thsp.dev

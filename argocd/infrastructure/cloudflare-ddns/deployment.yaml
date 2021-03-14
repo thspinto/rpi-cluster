@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-ddns
+  labels:
+    app: cloudflare-ddns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflare-ddns
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns
+    spec:
+      containers:
+      - name: cloudflare-ddns
+        image: oznu/cloudflare-ddns:aarch64
+        env:
+        - name: ZONE
+          value: thsp.dev
+        - name: SUBDOMAIN
+          value: ingress
+        - name: PROXIED
+          value: 'true'
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: external-dns
+              key: CF_API_TOKEN
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 50m
+            memory: 128Mi
