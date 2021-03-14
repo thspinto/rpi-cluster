@@ -10,3 +10,6 @@ spec:
     recordType: CNAME
     targets:
     - ingress.thsp.dev
+    providerSpecific:
+    - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
+      value: 'true'
