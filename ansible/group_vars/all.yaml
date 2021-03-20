@@ -13,6 +13,9 @@ ufw_rules:
   proto: tcp
   comment: 'allow incoming connection on standard ssh port'
 - rule: allow
+  port: 53
+  comment: 'allow incoming connection for dns'
+- rule: allow
   port: 6443
   proto: tcp
   comment: 'allow incoming connection k3s https control api'
