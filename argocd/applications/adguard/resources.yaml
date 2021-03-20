@@ -1,0 +1,234 @@
+---
+# Source: adguard-home/templates/config-pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: adguard-adguard-home-config
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "500Mi"
+  storageClassName: "openebs-hostpath"
+---
+# Source: adguard-home/templates/work-pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: adguard-adguard-home-work
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "10Gi"
+---
+# Source: adguard-home/templates/service-dns-over-tls.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguard-adguard-home-dns-over-tls
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: adguard
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.18
+  externalTrafficPolicy: 
+  ports:
+    - port: 853
+      targetPort: dns-over-tls
+      protocol: TCP
+      name: dns-over-tls
+  selector:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: adguard
+---
+# Source: adguard-home/templates/service-udp.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguard-adguard-home-udp
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: adguard
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.18
+  externalTrafficPolicy: 
+  ports:
+    - port: 53
+      targetPort: dns-udp
+      protocol: UDP
+      name: dns-udp
+  selector:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: adguard
+---
+# Source: adguard-home/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguard-adguard-home
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  externalTrafficPolicy: 
+  ports:
+    - port: 3000
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: adguard
+---
+# Source: adguard-home/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adguard-adguard-home
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: adguard-home
+      app.kubernetes.io/instance: adguard
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: adguard-home
+        app.kubernetes.io/instance: adguard
+      annotations:
+        
+        prometheus.io/port: api
+        prometheus.io/scrape: "true"
+    spec:
+      securityContext:
+        {}
+      containers:
+        - name: adguard-home
+          securityContext:
+            {}
+          image: "adguard/adguardhome:v0.102.0"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: "UTC"
+          volumeMounts:
+            - name: work
+              mountPath: /opt/adguardhome/work
+              readOnly: false
+            - name: config
+              mountPath: /opt/adguardhome/conf
+              readOnly: false
+          ports:
+            - name: http
+              containerPort: 3000
+            - name: dns
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-over-tls
+              containerPort: 853
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /login.html
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 5
+            failureThreshold: 5
+            periodSeconds: 10
+          resources:
+            {}
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: adguard-adguard-home-config
+      - name: work
+        persistentVolumeClaim:
+          claimName: adguard-adguard-home-work
+---
+# Source: adguard-home/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: adguard-adguard-home
+  labels:
+    app.kubernetes.io/name: adguard-home
+    helm.sh/chart: adguard-home-2.2.0
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    cert-manager.io/cluster-issuer: cert-manager
+    kubernetes.io/ingress.class: kong
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+    - hosts:
+        - "dns.thsp.dev"
+      secretName: pihole
+  rules:
+    - host: "dns.thsp.dev"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: adguard-adguard-home
+              servicePort: http
+---
+# Source: adguard-home/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: adguard-adguard-home
+  labels:
+    app.kubernetes.io/name: adguard-home
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: adguard-home-2.2.0
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: adguard-home
+      app.kubernetes.io/instance: adguard
+  endpoints:
+  - port: http
+    interval: 30s
+    path: /
