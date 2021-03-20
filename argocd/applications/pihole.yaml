@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pihole
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: argocd/applications/pihole
+    repoURL: https://github.com/thspinto/rpi-cluster.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: true

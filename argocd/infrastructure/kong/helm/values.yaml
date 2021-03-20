@@ -25,9 +25,6 @@ proxy:
 replicaCount: 2
 
 env:
-#  trusted_ips:
-#  real_ip_header:
-#  real_ip_recursive:
  nginx_http_log_format: |
   custom_fmt '$remote_addr - $remote_user [$time_local] "$request" '
   '$status $body_bytes_sent "$http_referer" '

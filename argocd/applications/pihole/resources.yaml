@@ -1,0 +1,333 @@
+---
+# Source: pihole/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-custom-dnsmasq
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+data:
+  02-custom.conf: |
+    addn-hosts=/etc/addn-hosts
+    dhcp-option=6,192.168.1.18
+  addn-hosts: |
+---
+# Source: pihole/templates/volume-claim.yaml
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    component: ""
+    heritage: Helm
+    release: pihole
+  name: pihole
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "openebs-hostpath"
+  resources:
+    requests:
+      storage: "1Gi"
+---
+# Source: pihole/templates/service-dns-tcp.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-dns-tcp
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.18
+  externalTrafficPolicy: Local
+  ports:
+    - port: 53
+      targetPort: dns
+      protocol: TCP
+      name: dns
+    - port: 9617
+      targetPort: prometheus
+      protocol: TCP
+      name: prometheus
+  selector:
+    app: pihole
+    release: pihole
+---
+# Source: pihole/templates/service-dns-udp.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-dns-udp
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.18
+  externalTrafficPolicy: Local
+  ports:
+    - port: 53
+      targetPort: dns-udp
+      protocol: UDP
+      name: dns-udp
+    - port: 67
+      targetPort: client-udp
+      protocol: UDP
+      name: client-udp
+  selector:
+    app: pihole
+    release: pihole
+---
+# Source: pihole/templates/service-web.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-web
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: https
+      protocol: TCP
+      name: https
+    - port: 49312
+      protocol: TCP
+      name: cloudflared-met
+  selector:
+    app: pihole
+    release: pihole
+---
+# Source: pihole/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: pihole
+      release: pihole
+  template:
+    metadata:
+      annotations:
+        checksum.config.adlists: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+        checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+        checksum.config.regex: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+        checksum.config.whitelist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+        checksum.config.dnsmasqConfig: 385aaca682f4947cb824af961d29de8117964bce200397dd4574216d29b7c7c
+        checksum.config.staticDhcpConfig: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+      labels:
+        app: pihole
+        release: pihole
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+        - 127.0.0.1
+        - 8.8.8.8
+      hostNetwork: false
+      containers:
+        - name: exporter
+          image: "ekofr/pihole-exporter:0.0.10"
+          imagePullPolicy: IfNotPresent
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          env:
+            - name: PIHOLE_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PIHOLE_PORT
+              value: "80"
+            - name: PIHOLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: pihole
+          resources:
+            limits:
+              memory: 128Mi
+          ports:
+            - containerPort: 9617
+              name: prometheus
+              protocol: TCP
+        - name: cloudflared
+          image: "crazymax/cloudflared:latest"
+          imagePullPolicy: IfNotPresent
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          resources:
+            limits:
+              memory: 128Mi
+          ports:
+            - containerPort: 5053
+              name: cloudflared-udp
+              protocol: UDP
+            - containerPort: 49312
+              name: cloudflared-met
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 49312
+            initialDelaySeconds: 60
+            failureThreshold: 10
+            timeoutSeconds: 5
+        - name: pihole
+          env:
+          - name: 'WEB_PORT'
+            value: "80"
+          - name: VIRTUAL_HOST
+            value: pi.hole
+          - name: WEBPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: pihole
+          - name: 'DNS1'
+            value: "127.0.0.1#5053"
+          - name: 'DNS2'
+            value: "127.0.0.1#5053"
+          image: "pihole/pihole:v5.7"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+          ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+          - containerPort: 53
+            name: dns
+            protocol: TCP
+          - containerPort: 53
+            name: dns-udp
+            protocol: UDP
+          - containerPort:  443
+            name: https
+            protocol: TCP
+          - containerPort: 67
+            name: client-udp
+            protocol: UDP
+          livenessProbe:
+            httpGet:
+              path: /admin.index.php
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /admin.index.php
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 3
+            timeoutSeconds: 5
+          volumeMounts:
+          - mountPath: /etc/pihole
+            name: config
+          - mountPath: /etc/dnsmasq.d/02-custom.conf
+            name: custom-dnsmasq
+            subPath: 02-custom.conf
+          - mountPath: /etc/addn-hosts
+            name: custom-dnsmasq
+            subPath: addn-hosts
+          resources:
+            {}
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: pihole
+      - configMap:
+          defaultMode: 420
+          name: pihole-custom-dnsmasq
+        name: custom-dnsmasq
+---
+# Source: pihole/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+  annotations:
+    cert-manager.io/cluster-issuer: cert-manager
+    kubernetes.io/ingress.class: kong
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+    - hosts:
+      - dns.thsp.dev
+      secretName: pihole
+  rules:
+    - host: "dns.thsp.dev"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pihole-web
+                port:
+                  name: http
+---
+# Source: pihole/templates/podmonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+    app: pihole
+    chart: pihole-1.8.30
+    release: pihole
+    heritage: Helm
+  name: pihole-prometheus-exporter
+spec:
+  podMetricsEndpoints:
+  - port: prometheus
+    path: /metrics
+  jobLabel: pihole-prometheus-exporter
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app: pihole
+      release: pihole
