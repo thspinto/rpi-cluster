@@ -1,0 +1,12 @@
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: mqtt
+spec:
+  endpoints:
+  - dnsName: mqtt.thsp.dev
+    recordTTL: 180
+    recordType: CNAME
+    targets:
+    - internal.thsp.dev
