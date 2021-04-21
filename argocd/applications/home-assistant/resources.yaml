@@ -65,13 +65,13 @@ spec:
         app.kubernetes.io/name: home-assistant
         app.kubernetes.io/instance: home-assistant
     spec:
-      
+
       serviceAccountName: default
       dnsPolicy: ClusterFirst
       enableServiceLinks: true
       containers:
       - name: home-assistant
-        image: "homeassistant/home-assistant:stable"
+        image: "homeassistant/home-assistant:2021.4.6"
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -80,7 +80,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-        
+
         livenessProbe:
           tcpSocket:
             port: http
