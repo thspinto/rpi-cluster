@@ -1,14 +1,16 @@
 all:
   children:
-    control:
+    nodes:
       hosts:
         node00.local:
           ansible_user: pi
+          k3s_control_node: true
         node01.local:
           ansible_user: pi
+          k3s_control_node: true
         node02.local:
           ansible_user: pi
-    nodes:
-      hosts:
+          k3s_control_node: true
         node03.local:
           ansible_user: pi
+          k3s_control_node: false
