@@ -1,6 +1,6 @@
 # This playbook applies k3s configuration
 ---
-- hosts: nodes
+- hosts: nodes,control
   become: yes
   become_method: sudo
 
