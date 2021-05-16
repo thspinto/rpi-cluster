@@ -1,10 +1,14 @@
 all:
   children:
-    nodes:
+    control:
       hosts:
+        node00.local:
+          ansible_user: pi
         node01.local:
           ansible_user: pi
         node02.local:
           ansible_user: pi
+    nodes:
+      hosts:
         node03.local:
           ansible_user: pi

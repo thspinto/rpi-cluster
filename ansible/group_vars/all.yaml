@@ -5,7 +5,7 @@ ansible_python_interpreter: "/usr/bin/python3"
 hostname_enabled: no
 raspi_config_timezone: America/Sao_Paulo
 
-swap_file_size_mb: '4096'
+swap_file_state: absent
 
 ufw_rules:
 - rule: allow
@@ -41,7 +41,7 @@ ufw_rules:
   comment: 'allow incoming tcp connection (raw tls streams)'
 
 # k3s configuration
-k3s_control_node_address: "{{ hostvars[groups['nodes'][0]]['ansible_eth0']['ipv4']['address'] }}"
+k3s_control_node_address: "{{ hostvars[groups['control'][1]]['ansible_eth0']['ipv4']['address'] }}"
 k3s_become_for_all: true
 k3s_server:
   disable:
