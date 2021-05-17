@@ -10,13 +10,6 @@
       line: "export KUBECONFIG=$HOME/.kube/config:{{ kubeconfig }}"
       state: present
 
-  - name: Create openebs
-    community.kubernetes.k8s:
-      state: present
-      namespace: kube-system
-      src: ../argocd/infrastructure/openebs/resources.yaml
-      kubeconfig: '{{ kubeconfig }}'
-
   - name: Create argocd namespace
     community.kubernetes.k8s:
       state: present
@@ -64,6 +57,20 @@
       namespace: argocd
       src: ../argocd/bootstrap/bootstrap-projects.yaml
       kubeconfig: '{{ kubeconfig }}'
+
+  - name: Create a cert-manager namespace
+    community.kubernetes.k8s:
+      name: cert-manager
+      api_version: v1
+      kind: Namespace
+      state: present
+
+  - name: Create a metallb-system namespace
+    community.kubernetes.k8s:
+      name: metallb-system
+      api_version: v1
+      kind: Namespace
+      state: present
 
   - name: Apply secrets
     community.kubernetes.k8s:
