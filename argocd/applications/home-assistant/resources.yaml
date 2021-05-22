@@ -16,7 +16,6 @@ spec:
   resources:
     requests:
       storage: "1Gi"
-  storageClassName: "openebs-hostpath"
 ---
 # Source: home-assistant/templates/common.yaml
 apiVersion: v1

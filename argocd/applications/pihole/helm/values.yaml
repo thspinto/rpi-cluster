@@ -24,7 +24,6 @@ serviceDns:
 
 persistentVolumeClaim:
   enabled: true
-  storageClass: openebs-hostpath
   size: 1Gi
 
 admin:

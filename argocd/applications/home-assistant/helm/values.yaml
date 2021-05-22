@@ -5,7 +5,6 @@ prometheus:
 persistence:
   config:
     enabled: true
-    storageClass: openebs-hostpath
     accessMode: ReadWriteOnce
     size: 1Gi
 
