@@ -60,3 +60,7 @@ server:
 
   config:
     url: https://argocd.thsp.dev
+    repositories: |
+      - type: helm
+        url: https://helm.cilium.io/
+        name: cilium
