@@ -59,7 +59,6 @@ spec:
           serviceMonitor:
             enabled: true
         #TODO: kubeProxyReplacement: "strict"
-
         disableEnvoyVersionCheck: true
 
   syncPolicy:
