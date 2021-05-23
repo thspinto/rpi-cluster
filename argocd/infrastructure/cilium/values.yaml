@@ -42,3 +42,5 @@ prometheus:
   serviceMonitor:
     enabled: true
 #TODO: kubeProxyReplacement: "strict"
+
+disableEnvoyVersionCheck: tr
