@@ -13,6 +13,7 @@ spec:
   project: infrastructure
   source:
     chart: cilium/cilium
+    targetRevision: 3.5.0
     helm:
       values: |
         hubble:
