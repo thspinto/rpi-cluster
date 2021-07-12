@@ -33,7 +33,7 @@
       state: mounted
     when: additional_storage.stat.isblk is defined and additional_storage.stat.isblk
 
-  - name: Enable cgroup via boot commandline if not already enabled
+  - name: Enable cgroup via boot command line if not already enabled
     lineinfile:
       path: /boot/cmdline.txt
       backrefs: yes
@@ -48,37 +48,6 @@
       line: 'arm_64bit=1'
       state: present
     notify: reboot
-
-  - name: Disable wifi and bluetooth
-    blockinfile:
-      path: /boot/config.txt
-      block: |
-        dtoverlay=disable-bt
-        dtoverlay=disable-wifi
-    notify: reboot
-
-  # Disable wifi and bt modules
-  - name: Block kernel modules from loading
-    blockinfile:
-      path: /etc/modprobe.d/raspi-blacklist.conf
-      create: true
-      block: |
-        blacklist brcmfmac
-        blacklist brcmutil
-        blacklist hci_uart
-        blacklist btbcm
-        blacklist btintel
-        blacklist rfcom
-        blacklist btqca
-        blacklist btsdio
-        blacklist bluetooth
-    notify: reboot
-
-  - name: Disable hciuart
-    systemd:
-      name: hciuart
-      state: stopped
-      enabled: no
 
 # ISCSI
   - name: "Install package(s) open-iscsi"
