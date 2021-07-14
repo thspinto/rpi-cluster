@@ -7,14 +7,6 @@
   roles:
   - xanmanning.k3s
 
-  tasks:
-  - name: mount bpffs for cilium
-    mount:
-      path: /sys/fs/bpf
-      src: bpf
-      fstype: bpf
-      state: mounted
-
   post_tasks:
   - name: Copy k3s files
     copy:

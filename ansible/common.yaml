@@ -4,34 +4,10 @@
   become: yes
   become_method: sudo
 
-  pre_tasks:
-  - name: Check for Additional Storage
-    stat:
-      path: /dev/sda
-    register: additional_storage
-
   roles:
   - mikolak-net.raspi_config
   - oefenweb.ufw
   - geerlingguy.swap
-
-  tasks:
-  - name: Disabling HDMI Port
-    lineinfile:
-      path: /etc/rc.local
-      regexp: '^/usr/bin/tvservice'
-      line: '/usr/bin/tvservice -o'
-      insertafter: '^exit'
-      state: present
-
-  # Mount additional storage
-  - name: Mount extra storage
-    mount:
-      path: /mnt/storage
-      src: /dev/sda
-      fstype: ext4
-      state: mounted
-    when: additional_storage.stat.isblk is defined and additional_storage.stat.isblk
 
   - name: Enable cgroup via boot command line if not already enabled
     lineinfile:
@@ -48,15 +24,3 @@
       line: 'arm_64bit=1'
       state: present
     notify: reboot
-
-# ISCSI
-  - name: "Install package(s) open-iscsi"
-    package:
-      name: "open-iscsi"
-      state: 'present'
-
-  - name: "Start and enable iscsid service"
-    service:
-      name: "iscsid"
-      enabled: true
-      state: 'started'
