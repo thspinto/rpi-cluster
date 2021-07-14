@@ -9,6 +9,7 @@
   - oefenweb.ufw
   - geerlingguy.swap
 
+  tasks:
   - name: Enable cgroup via boot command line if not already enabled
     lineinfile:
       path: /boot/cmdline.txt
