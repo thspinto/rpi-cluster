@@ -46,8 +46,8 @@ k3s_server:
   disable:
     - traefik
     - servicelb
-  node-taint:
-    - "k3s-controlplane=true:NoExecute"
+  # node-taint:
+  #   - "k3s-controlplane=true:NoExecute"
 
 kubeconfig: ~/.kube/k3s
 k3s_state: installed
