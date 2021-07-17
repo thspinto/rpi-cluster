@@ -67,3 +67,12 @@ server:
       - type: helm
         url: https://grafana.github.io/helm-charts
         name: grafana
+    oidc.config: |
+      name: Auth0
+      issuer: https://thsp-dev.us.auth0.com
+      clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
+      clientSecret: 2C-d2lpoBOj-jzU1TPILtK9fOBWqJT8DkGNPvjPUjLrnrvDP3reCX3a0FocYY6RE
+      requestedScopes:
+      - openid
+      - profile
+      - email
