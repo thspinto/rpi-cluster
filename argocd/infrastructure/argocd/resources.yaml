@@ -53,6 +53,22 @@ metadata:
     app.kubernetes.io/component: server
 data:
     application.instanceLabelKey: argocd.argoproj.io/instance
+    oidc.config: |
+      name: Auth0
+      issuer: https://thsp-dev.us.auth0.com
+      clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
+      clientSecret: 2C-d2lpoBOj-jzU1TPILtK9fOBWqJT8DkGNPvjPUjLrnrvDP3reCX3a0FocYY6RE
+      requestedScopes:
+      - openid
+      - profile
+      - email
+    repositories: |
+      - type: helm
+        url: https://helm.cilium.io/
+        name: cilium
+      - type: helm
+        url: https://grafana.github.io/helm-charts
+        name: grafana
     url: https://argocd.thsp.dev
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-rbac-cm.yaml
