@@ -4,6 +4,6 @@ metadata:
   name: private-service
 config:
   allow:
-  - 192.168.1.1/24
+  - 192.168.0.1/24
   - 10.42.0.0/24
 plugin: ip-restriction

@@ -2,19 +2,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pihole
+  name: loki
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
+    namespace: monitoring
     server: https://kubernetes.default.svc
-  project: default
+  project: infrastructure
   source:
-    path: argocd/applications/pihole
-    repoURL: https://github.com/thspinto/rpi-cluster.git
-    targetRevision: HEAD
+    chart: grafana/loki-stack
+    targetRevision: 2.4.1
   syncPolicy:
     automated:
       selfHeal: false

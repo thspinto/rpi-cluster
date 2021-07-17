@@ -64,3 +64,6 @@ server:
       - type: helm
         url: https://helm.cilium.io/
         name: cilium
+      - type: helm
+        url: https://grafana.github.io/helm-charts
+        name: grafana
