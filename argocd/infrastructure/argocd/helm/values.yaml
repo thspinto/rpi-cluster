@@ -57,7 +57,6 @@ server:
     - secretName: cert-manager
       hosts:
       - argocd.thsp.dev
-
   config:
     url: https://argocd.thsp.dev
     repositories: |
@@ -69,10 +68,17 @@ server:
         name: grafana
     oidc.config: |
       name: Auth0
-      issuer: https://thsp-dev.us.auth0.com/
+      issuer: https://thsp-dev.us.auth0.com
       clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
-      clientSecret: 2C-d2lpoBOj-jzU1TPILtK9fOBWqJT8DkGNPvjPUjLrnrvDP3reCX3a0FocYY6RE
+      clientSecret: $oidc.auth0.clientSecret
       requestedScopes:
       - openid
       - profile
       - email
+      - 'https://thsp.dev/role'
+  rbacConfig:
+    policy.csv: |
+      g, admin, role:admin
+    policy.default: role:readonly
+    # essential to get argo to use groups for RBAC:
+    scopes: '[https://thsp.dev/roles, email]'
