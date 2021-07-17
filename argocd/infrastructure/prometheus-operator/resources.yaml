@@ -129,7 +129,7 @@ kind: PodSecurityPolicy
 metadata:
   name: prometheus-prometheus-node-exporter
   namespace: monitoring
-  labels:
+  labels:     
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -185,7 +185,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -235,7 +235,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -342,7 +342,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -357,7 +357,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -465,7 +465,7 @@ metadata:
   labels:
     grafana_datasource: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -492,7 +492,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -2234,7 +2234,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -4111,7 +4111,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -5257,7 +5257,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -6368,7 +6368,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -7898,7 +7898,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -10475,7 +10475,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -12756,7 +12756,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -13729,7 +13729,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -15496,7 +15496,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -17525,7 +17525,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -19715,7 +19715,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -22243,7 +22243,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -23702,7 +23702,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -25433,7 +25433,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -26392,7 +26392,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -27378,7 +27378,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -28370,7 +28370,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -28942,7 +28942,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -30165,7 +30165,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -31387,7 +31387,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -32613,7 +32613,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -33682,7 +33682,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -34605,7 +34605,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36212,7 +36212,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: psp-prometheus-prometheus-node-exporter
-  labels:
+  labels:     
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -36232,7 +36232,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36315,7 +36315,7 @@ metadata:
   name: prometheus-kube-prometheus-operator-psp
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36333,7 +36333,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36363,7 +36363,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus-psp
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36437,7 +36437,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: psp-prometheus-prometheus-node-exporter
-  labels:
+  labels:     
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -36459,7 +36459,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36479,7 +36479,7 @@ metadata:
   name: prometheus-kube-prometheus-operator-psp
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36499,7 +36499,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36519,7 +36519,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus-psp
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36654,7 +36654,7 @@ spec:
     protocol: TCP
     port: 8080
     targetPort: 8080
-
+  
   selector:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/instance: prometheus
@@ -36667,7 +36667,7 @@ metadata:
   namespace: monitoring
   annotations:
     prometheus.io/scrape: "true"
-  labels:
+  labels:     
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -36692,7 +36692,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-coredns
     jobLabel: coredns
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36715,7 +36715,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-controller-manager
     jobLabel: kube-controller-manager
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36739,7 +36739,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-etcd
     jobLabel: kube-etcd
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36763,7 +36763,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-proxy
     jobLabel: kube-proxy
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36787,7 +36787,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-scheduler
     jobLabel: kube-scheduler
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36811,7 +36811,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36834,7 +36834,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     self-monitor: "true"
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -36854,7 +36854,7 @@ kind: DaemonSet
 metadata:
   name: prometheus-prometheus-node-exporter
   namespace: monitoring
-  labels:
+  labels:     
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -36871,7 +36871,7 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      labels:
+      labels:         
         app: prometheus-node-exporter
         heritage: Helm
         release: prometheus
@@ -36973,7 +36973,7 @@ spec:
         checksum/sc-dashboard-provider-config: b385aa085149ccfcf836e4401669912762c76d723ba607a2358c4aae23d9e2cf
         checksum/secret: 46c42adc5e615a345aad9c47b4e3ef8c400643d448a278c786fc81649a3367d1
     spec:
-
+      
       serviceAccountName: prometheus-grafana
       securityContext:
         fsGroup: 472
@@ -37003,7 +37003,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: METHOD
-              value:
+              value: 
             - name: LABEL
               value: "grafana_dashboard"
             - name: FOLDER
@@ -37026,7 +37026,7 @@ spec:
               mountPath: "/var/lib/grafana"
             - name: sc-dashboard-volume
               mountPath: "/tmp/dashboards"
-
+      
             - name: sc-dashboard-provider
               mountPath: "/etc/grafana/provisioning/dashboards/sc-dashboardproviders.yaml"
               subPath: provider.yaml
@@ -37050,7 +37050,7 @@ spec:
                 secretKeyRef:
                   name: prometheus-grafana
                   key: admin-password
-
+            
           livenessProbe:
             failureThreshold: 10
             httpGet:
@@ -37223,7 +37223,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37237,7 +37237,7 @@ spec:
     metadata:
       labels:
         app: kube-prometheus-stack-operator
-
+        
         chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"
@@ -37326,7 +37326,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37350,7 +37350,7 @@ kind: MutatingWebhookConfiguration
 metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37383,7 +37383,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37396,6 +37396,7 @@ spec:
   externalUrl: "http://prometheus.thsp.dev/"
   paused: false
   replicas: 1
+  shards: 1
   logLevel:  info
   logFormat:  logfmt
   listenLocal: false
@@ -37426,7 +37427,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37475,7 +37476,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37605,7 +37606,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37645,7 +37646,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37752,7 +37753,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37902,7 +37903,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -37975,7 +37976,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38323,7 +38324,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38344,7 +38345,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38373,7 +38374,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38426,7 +38427,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38469,7 +38470,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38498,7 +38499,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38740,7 +38741,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38865,7 +38866,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38920,7 +38921,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -38988,7 +38989,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39014,7 +39015,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39151,7 +39152,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39177,7 +39178,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39216,7 +39217,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39285,7 +39286,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39489,7 +39490,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39513,7 +39514,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39554,7 +39555,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39634,7 +39635,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39832,7 +39833,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-coredns
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39857,7 +39858,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-apiserver
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39887,7 +39888,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-controller-manager
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39912,7 +39913,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-etcd
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39937,7 +39938,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-proxy
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39962,7 +39963,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-scheduler
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -39987,7 +39988,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-state-metrics
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40008,7 +40009,7 @@ metadata:
   name: prometheus-kube-prometheus-kubelet
   namespace: monitoring
   labels:
-    app: kube-prometheus-stack-kubelet
+    app: kube-prometheus-stack-kubelet    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40065,7 +40066,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-node-exporter
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40086,7 +40087,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-grafana
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40110,7 +40111,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40142,7 +40143,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40165,7 +40166,7 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40200,7 +40201,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission
-
+    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40253,7 +40254,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40269,7 +40270,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40297,7 +40298,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40320,7 +40321,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40343,7 +40344,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission
+    app: kube-prometheus-stack-admission    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40397,7 +40398,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission-create
+    app: kube-prometheus-stack-admission-create    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40406,7 +40407,7 @@ spec:
     metadata:
       name:  prometheus-kube-prometheus-admission-create
       labels:
-        app: kube-prometheus-stack-admission-create
+        app: kube-prometheus-stack-admission-create        
         chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"
@@ -40439,7 +40440,7 @@ metadata:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission-patch
+    app: kube-prometheus-stack-admission-patch    
     chart: kube-prometheus-stack-13.13.0
     release: "prometheus"
     heritage: "Helm"
@@ -40448,7 +40449,7 @@ spec:
     metadata:
       name:  prometheus-kube-prometheus-admission-patch
       labels:
-        app: kube-prometheus-stack-admission-patch
+        app: kube-prometheus-stack-admission-patch        
         chart: kube-prometheus-stack-13.13.0
         release: "prometheus"
         heritage: "Helm"

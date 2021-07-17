@@ -57,11 +57,12 @@ data:
       name: Auth0
       issuer: https://thsp-dev.us.auth0.com
       clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
-      clientSecret: 2C-d2lpoBOj-jzU1TPILtK9fOBWqJT8DkGNPvjPUjLrnrvDP3reCX3a0FocYY6RE
+      clientSecret: $oidc.auth0.clientSecret
       requestedScopes:
       - openid
       - profile
       - email
+      - 'https://thsp.dev/role'
     repositories: |
       - type: helm
         url: https://helm.cilium.io/
@@ -83,6 +84,11 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: server
+data:
+    policy.csv: |
+      g, admin, role:admin
+    policy.default: role:readonly
+    scopes: '[https://thsp.dev/roles, email]'
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-ssh-known-hosts-cm.yaml
 apiVersion: v1
