@@ -68,7 +68,7 @@ server:
         name: grafana
     oidc.config: |
       name: Auth0
-      issuer: https://thsp-dev.us.auth0.com
+      issuer: https://thsp-dev.us.auth0.com/
       clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
       clientSecret: $oidc.auth0.clientSecret
       requestedScopes:
