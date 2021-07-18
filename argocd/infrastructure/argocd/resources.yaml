@@ -70,9 +70,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: server
 data:
-    policy.csv: |
-      g, admin, role:admin
-    policy.default: role:readonly
+    policy.default: role:admin
     scopes: '[email]'
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-ssh-known-hosts-cm.yaml

@@ -76,9 +76,7 @@ server:
       - profile
       - email
   rbacConfig:
-    policy.csv: |
-      g, admin, role:admin
-    policy.default: role:readonly
+    policy.default: role:admin
     # essential to get argo to use groups for RBAC:
     scopes: '[email]'
 
