@@ -39390,7 +39390,7 @@ spec:
   externalUrl: "http://prometheus.thsp.dev/"
   paused: false
   replicas: 1
-  shards: 1
+  shards: 
   logLevel:  info
   logFormat:  logfmt
   listenLocal: false
