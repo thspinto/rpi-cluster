@@ -47,6 +47,9 @@ grafana:
   envFromSecret: grafana-secret
 
   grafana.ini:
+    server:
+      root_url: https://grafana.thsp.dev
+
     paths:
       data: /var/lib/grafana/
       logs: /var/log/grafana

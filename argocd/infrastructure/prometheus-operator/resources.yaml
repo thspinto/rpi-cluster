@@ -456,6 +456,8 @@ data:
     logs = /var/log/grafana
     plugins = /var/lib/grafana/plugins
     provisioning = /etc/grafana/provisioning
+    [server]
+    root_url = https://grafana.thsp.dev
 ---
 # Source: kube-prometheus-stack/charts/grafana/templates/tests/test-configmap.yaml
 apiVersion: v1
@@ -39014,7 +39016,7 @@ spec:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: prometheus
       annotations:
-        checksum/config: f07c5da75f369e0f0dec1ede67aa04d91bcb87072fe1dbc1d170b369cd73d47f
+        checksum/config: 679a210c36c7f1328508de199015e3f58790386b9e611981562994a30e1f09bb
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 6a93528693861ac7ce7c85aa685aa1e256264c9c6ccb7f8040683e762f46844c
         checksum/secret: 766a0aae892e8d82a20291ba61b5705082f3c940d94170468ed32a5ffcd1c60f
