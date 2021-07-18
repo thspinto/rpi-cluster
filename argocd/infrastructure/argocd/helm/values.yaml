@@ -69,7 +69,7 @@ server:
     oidc.config: |
       name: Auth0
       issuer: https://thsp-dev.us.auth0.com/
-      clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
+      clientID: BOngFe6Nwq3PhT0EbILwESK1YLtYXY3c
       clientSecret: $oidc.auth0.clientSecret
       requestedScopes:
       - openid
@@ -83,6 +83,8 @@ server:
     # essential to get argo to use groups for RBAC:
     scopes: '[https://thsp.dev/roles, email]'
 
+  logLevel: debug
+
 configs:
   secret:
-    createSecret: true
+    createSecret: false
