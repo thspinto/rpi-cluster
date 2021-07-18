@@ -7,461 +7,10 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
----
-# Source: kong/templates/wait-for-postgres-script.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kong-kong-bash-wait-for-postgres
-  namespace: kong
-  labels:
-    app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
-    app.kubernetes.io/instance: "kong"
-    app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
-data:
-  wait.sh: |
-    until timeout 2 bash -c "9<>/dev/tcp/${KONG_PG_HOST}/${KONG_PG_PORT}"
-      do echo "waiting for db - trying ${KONG_PG_HOST}:${KONG_PG_PORT}"
-      sleep 2
-    done
----
-# Source: kong/templates/custom-resource-definitions.yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: kongplugins.configuration.konghq.com
-spec:
-  group: configuration.konghq.com
-  version: v1
-  scope: Namespaced
-  names:
-    kind: KongPlugin
-    plural: kongplugins
-    shortNames:
-    - kp
-  additionalPrinterColumns:
-  - name: Plugin-Type
-    type: string
-    description: Name of the plugin
-    JSONPath: .plugin
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  - name: Disabled
-    type: boolean
-    description: Indicates if the plugin is disabled
-    JSONPath: .disabled
-    priority: 1
-  - name: Config
-    type: string
-    description: Configuration of the plugin
-    JSONPath: .config
-    priority: 1
-  validation:
-    openAPIV3Schema:
-      required:
-      - plugin
-      properties:
-        plugin:
-          type: string
-        disabled:
-          type: boolean
-        config:
-          type: object
-        configFrom:
-          type: object
-          properties:
-            secretKeyRef:
-              required:
-              - name
-              - key
-              type: object
-              properties:
-                name:
-                  type: string
-                key:
-                  type: string
-        run_on:
-          type: string
-          enum:
-          - first
-          - second
-          - all
-        protocols:
-          type: array
-          items:
-            type: string
-            enum:
-            - http
-            - https
-            - grpc
-            - grpcs
-            - tcp
-            - tls
-  subresources:
-    status: {}
----
-# Source: kong/templates/custom-resource-definitions.yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: kongclusterplugins.configuration.konghq.com
-spec:
-  group: configuration.konghq.com
-  version: v1
-  scope: Cluster
-  names:
-    kind: KongClusterPlugin
-    plural: kongclusterplugins
-    shortNames:
-    - kcp
-  additionalPrinterColumns:
-  - name: Plugin-Type
-    type: string
-    description: Name of the plugin
-    JSONPath: .plugin
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  - name: Disabled
-    type: boolean
-    description: Indicates if the plugin is disabled
-    JSONPath: .disabled
-    priority: 1
-  - name: Config
-    type: string
-    description: Configuration of the plugin
-    JSONPath: .config
-    priority: 1
-  validation:
-    openAPIV3Schema:
-      required:
-      - plugin
-      properties:
-        plugin:
-          type: string
-        disabled:
-          type: boolean
-        config:
-          type: object
-        configFrom:
-          type: object
-          properties:
-            secretKeyRef:
-              required:
-              - name
-              - namespace
-              - key
-              type: object
-              properties:
-                namespace:
-                  type: string
-                name:
-                  type: string
-                key:
-                  type: string
-        run_on:
-          type: string
-          enum:
-          - first
-          - second
-          - all
-        protocols:
-          type: array
-          items:
-            type: string
-            enum:
-            - http
-            - https
-            - grpc
-            - grpcs
-            - tcp
-            - tls
-  subresources:
-    status: {}
----
-# Source: kong/templates/custom-resource-definitions.yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: kongconsumers.configuration.konghq.com
-spec:
-  group: configuration.konghq.com
-  version: v1
-  scope: Namespaced
-  names:
-    kind: KongConsumer
-    plural: kongconsumers
-    shortNames:
-    - kc
-  additionalPrinterColumns:
-  - name: Username
-    type: string
-    description: Username of a Kong Consumer
-    JSONPath: .username
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  validation:
-    openAPIV3Schema:
-      properties:
-        username:
-          type: string
-        custom_id:
-          type: string
-        credentials:
-          type: array
-          items:
-            type: string
-  subresources:
-    status: {}
----
-# Source: kong/templates/custom-resource-definitions.yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: kongingresses.configuration.konghq.com
-spec:
-  group: configuration.konghq.com
-  version: v1
-  scope: Namespaced
-  names:
-    kind: KongIngress
-    plural: kongingresses
-    shortNames:
-    - ki
-  validation:
-    openAPIV3Schema:
-      properties:
-        route:
-          properties:
-            methods:
-              type: array
-              items:
-                type: string
-            headers:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-            regex_priority:
-              type: integer
-            strip_path:
-              type: boolean
-            preserve_host:
-              type: boolean
-            path_handling:
-              type: string
-              enum:
-              - "v0"
-              - "v1"
-            protocols:
-              type: array
-              items:
-                type: string
-                enum:
-                - http
-                - https
-                - grpc
-                - grpcs
-                - tcp
-                - tls
-            https_redirect_status_code:
-              type: integer
-        proxy:
-          type: object
-          properties:
-            protocol:
-              type: string
-              enum:
-              - http
-              - https
-              - grpc
-              - grpcs
-              - tcp
-              - tls
-            path:
-              type: string
-              pattern: ^/.*$
-            retries:
-              type: integer
-              minimum: 0
-            connect_timeout:
-              type: integer
-              minimum: 0
-            read_timeout:
-              type: integer
-              minimum: 0
-            write_timeout:
-              type: integer
-              minimum: 0
-        upstream:
-          type: object
-          properties:
-            algorithm:
-              type: string
-              enum:
-              - "round-robin"
-              - "consistent-hashing"
-              - "least-connections"
-            host_header:
-              type: string
-            hash_on:
-              type: string
-            hash_on_cookie:
-              type: string
-            hash_on_cookie_path:
-              type: string
-            hash_on_header:
-              type: string
-            hash_fallback_header:
-              type: string
-            hash_fallback:
-              type: string
-            slots:
-              type: integer
-              minimum: 10
-            healthchecks:
-              type: object
-              properties:
-                threshold:
-                  type: integer
-                active:
-                  type: object
-                  properties:
-                    concurrency:
-                      type: integer
-                      minimum: 1
-                    timeout:
-                      type: integer
-                      minimum: 0
-                    http_path:
-                      type: string
-                      pattern: ^/.*$
-                    healthy: &healthy
-                      type: object
-                      properties:
-                        http_statuses:
-                          type: array
-                          items:
-                            type: integer
-                        interval:
-                          type: integer
-                          minimum: 0
-                        successes:
-                          type: integer
-                          minimum: 0
-                    unhealthy: &unhealthy
-                      type: object
-                      properties:
-                        http_failures:
-                          type: integer
-                          minimum: 0
-                        http_statuses:
-                          type: array
-                          items:
-                            type: integer
-                        interval:
-                          type: integer
-                          minimum: 0
-                        tcp_failures:
-                          type: integer
-                          minimum: 0
-                        timeout:
-                          type: integer
-                          minimum: 0
-                passive:
-                  type: object
-                  properties:
-                    healthy: *healthy
-                    unhealthy: *unhealthy
-  subresources:
-    status: {}
----
-# Source: kong/templates/custom-resource-definitions.yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: tcpingresses.configuration.konghq.com
-spec:
-  group: configuration.konghq.com
-  version: v1beta1
-  scope: Namespaced
-  names:
-    kind: TCPIngress
-    plural: tcpingresses
-  additionalPrinterColumns:
-  - name: Address
-    type: string
-    description: Address of the load balancer
-    JSONPath: .status.loadBalancer.ingress[*].ip
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  subresources:
-    status: {}
-  validation:
-    openAPIV3Schema:
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        metadata:
-          type: object
-        spec:
-          type: object
-          properties:
-            tls:
-              type: array
-              items:
-                type: object
-                properties:
-                  hosts:
-                    type: array
-                    items:
-                      type: string
-                  secretName:
-                    type: string
-            rules:
-              type: array
-              items:
-                type: object
-                properties:
-                  host:
-                    type: string
-                  port:
-                    type: integer
-                    format: int32
-                  backend:
-                    type: object
-                    properties:
-                      serviceName:
-                        type: string
-                      servicePort:
-                        format: int32
-                        type: integer
-        status:
-          type: object
-  subresources:
-    status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []
+    app.kubernetes.io/version: "2.4"
 ---
 # Source: kong/templates/controller-rbac-resources.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -469,10 +18,10 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
   name:  kong-kong
 rules:
   - apiGroups:
@@ -551,10 +100,10 @@ metadata:
   name:  kong-kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -572,10 +121,10 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
 rules:
   - apiGroups:
       - ""
@@ -620,10 +169,10 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -641,10 +190,10 @@ metadata:
   namespace: kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
     enable-metrics: "true"
 spec:
   type: LoadBalancer
@@ -675,10 +224,10 @@ metadata:
   namespace:  kong
   labels:
     app.kubernetes.io/name: kong
-    helm.sh/chart: kong-1.14.5
+    helm.sh/chart: kong-2.2.0
     app.kubernetes.io/instance: "kong"
     app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/version: "2.2"
+    app.kubernetes.io/version: "2.4"
     app.kubernetes.io/component: app
   annotations:
     kuma.io/gateway: "enabled"
@@ -696,19 +245,24 @@ spec:
       annotations:
       labels:
         app.kubernetes.io/name: kong
-        helm.sh/chart: kong-1.14.5
+        helm.sh/chart: kong-2.2.0
         app.kubernetes.io/instance: "kong"
         app.kubernetes.io/managed-by: "Helm"
-        app.kubernetes.io/version: "2.2"
+        app.kubernetes.io/version: "2.4"
         app.kubernetes.io/component: app
     spec:
+      automountServiceAccountToken: true
       serviceAccountName: kong-kong
       
       containers:
       - name: ingress-controller
+        securityContext:
+      
+          {}  
         args:
         - /kong-ingress-controller
         
+        ports:
         env:
         - name: POD_NAME
           valueFrom:
@@ -732,7 +286,7 @@ spec:
           value: "https://localhost:8444"
         - name: CONTROLLER_PUBLISH_SERVICE
           value: "kong/kong-kong-proxy"
-        image: "ghcr.io/thspinto/kubernetes-ingress-controller:latest"
+        image: ghcr.io/thspinto/kubernetes-ingress-controller:latest
         imagePullPolicy: IfNotPresent
         readinessProbe:
           failureThreshold: 3
@@ -758,8 +312,11 @@ spec:
           {}
       
       - name: "proxy"
-        image: "thspinto/kong-arm64v8:latest"
+        image: thspinto/kong-arm64v8:latest
         imagePullPolicy: IfNotPresent
+        securityContext:
+        
+          {}  
         env:
          
         - name: KONG_ADMIN_ACCESS_LOG
@@ -814,7 +371,6 @@ spec:
               - -c
               - /bin/sleep 15 && kong quit
         ports:
-        
         - name: proxy
           containerPort: 8000
           protocol: TCP
@@ -823,7 +379,7 @@ spec:
           protocol: TCP
         - name: stream-9443
           containerPort: 9443
-          protocol: TCP
+          protocol: 
         - name: status
           containerPort: 8100
           protocol: TCP
@@ -832,6 +388,7 @@ spec:
             mountPath: /kong_prefix/
           - name: kong-kong-tmp
             mountPath: /tmp
+          
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -856,6 +413,7 @@ spec:
           {} 
       securityContext:
         {}
+      terminationGracePeriodSeconds: 30
       tolerations:
         []
       volumes:
@@ -863,7 +421,3 @@ spec:
           emptyDir: {}
         - name: kong-kong-tmp
           emptyDir: {}
-        - name: kong-kong-bash-wait-for-postgres
-          configMap:
-            name: kong-kong-bash-wait-for-postgres
-            defaultMode: 0755

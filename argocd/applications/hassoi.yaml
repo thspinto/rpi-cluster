@@ -1,0 +1,54 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hassio
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: infrastructure
+  source:
+    chart: k8s-at-home/home-assistant
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 2.4.1
+    helm:
+      values: |
+        prometheus:
+          serviceMonitor:
+            enabled: true
+
+        persistence:
+          config:
+            enabled: true
+            accessMode: ReadWriteOnce
+            size: 1Gi
+
+        ingress:
+          main:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: kong
+              kubernetes.io/tls-acme: 'true'
+              cert-manager.io/cluster-issuer: cert-manager
+              external-dns.alpha.kubernetes.io/hostname: ""
+            hosts:
+            - host: home.thsp.dev
+              paths:
+              - path: /
+                pathType: Prefix
+            tls:
+            - secretName: home-assistant
+              hosts:
+              - home.thsp.dev
+
+        image:
+          tag: stable
+
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: true

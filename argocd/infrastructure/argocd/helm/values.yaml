@@ -61,6 +61,9 @@ server:
     url: https://argocd.thsp.dev
     repositories: |
       - type: helm
+        url: https://k8s-at-home.com/charts/
+        name: k8s-at-home
+      - type: helm
         url: https://helm.cilium.io/
         name: cilium
       - type: helm
