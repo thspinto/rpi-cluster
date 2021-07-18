@@ -14,3 +14,4 @@ spec:
     kind: NetworkPolicy
   sourceRepos:
   - https://github.com/thspinto/rpi-cluster.git
+  - https://k8s-at-home.com/charts/
