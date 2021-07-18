@@ -439,7 +439,7 @@ data:
     [analytics]
     check_for_updates = true
     [auth.generic_oauth]
-    allow_sign_up = false
+    allow_sign_up = true
     api_url = https://thsp-dev.us.auth0.com/userinfo
     auth_url = https://thsp-dev.us.auth0.com/authorize
     client_id = NhA9Wba7M0nyACOJaErExhtT9Jr3jJfe
@@ -39016,7 +39016,7 @@ spec:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: prometheus
       annotations:
-        checksum/config: f75163614535271061ff72ab8608f626be3330bbce38d24f26792ecae5808c5c
+        checksum/config: e1fdf72bc6a93ce8c010d0a55d22280fac31f0d41b109c5101fda0611fde6fea
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 7ce4608eced2cfdf697e1e01cefeb43b24e2c6ecfda0a893faa986de01ce961f
         checksum/secret: 0c3d27a433f21af1061c02e0af9a148a9775db8a81a8547b210738b0482af5c2
