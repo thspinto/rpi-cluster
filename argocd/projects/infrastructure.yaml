@@ -24,3 +24,4 @@ spec:
       kind: "*"
   sourceRepos:
     - https://github.com/thspinto/rpi-cluster.git
+    - https://grafana.github.io/helm-charts
