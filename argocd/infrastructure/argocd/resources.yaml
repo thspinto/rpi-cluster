@@ -42,13 +42,12 @@ data:
     oidc.config: |
       name: Auth0
       issuer: https://thsp-dev.us.auth0.com/
-      clientID: KpSnCjxUKJzmQLNv1U6DLgAPrERSFjqH
+      clientID: BOngFe6Nwq3PhT0EbILwESK1YLtYXY3c
       clientSecret: $oidc.auth0.clientSecret
       requestedScopes:
       - openid
       - profile
       - email
-      - 'https://thsp.dev/role'
     repositories: |
       - type: helm
         url: https://helm.cilium.io/
@@ -74,7 +73,7 @@ data:
     policy.csv: |
       g, admin, role:admin
     policy.default: role:readonly
-    scopes: '[https://thsp.dev/roles, email]'
+    scopes: '[email]'
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-ssh-known-hosts-cm.yaml
 apiVersion: v1
@@ -698,7 +697,7 @@ spec:
         - --logformat
         - text
         - --loglevel
-        - debug
+        - info
         - --redis
         - argocd-redis:6379
         - --insecure

@@ -75,15 +75,12 @@ server:
       - openid
       - profile
       - email
-      - 'https://thsp.dev/role'
   rbacConfig:
     policy.csv: |
       g, admin, role:admin
     policy.default: role:readonly
     # essential to get argo to use groups for RBAC:
-    scopes: '[https://thsp.dev/roles, email]'
-
-  logLevel: debug
+    scopes: '[email]'
 
 configs:
   secret:
