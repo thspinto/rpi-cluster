@@ -39174,7 +39174,7 @@ spec:
         - --resources=certificatesigningrequests,configmaps,cronjobs,daemonsets,deployments,endpoints,horizontalpodautoscalers,ingresses,jobs,limitranges,mutatingwebhookconfigurations,namespaces,networkpolicies,nodes,persistentvolumeclaims,persistentvolumes,poddisruptionbudgets,pods,replicasets,replicationcontrollers,resourcequotas,secrets,services,statefulsets,storageclasses,validatingwebhookconfigurations,verticalpodautoscalers,volumeattachments
         - --telemetry-port=8081
         imagePullPolicy: IfNotPresent
-        image: "carlosedp/kube-state-metrics:v1.9.6"
+        image: "k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0"
         ports:
         - containerPort: 8080
         livenessProbe:
