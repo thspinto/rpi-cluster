@@ -9,7 +9,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   annotations:
     seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default,runtime/default'
@@ -61,7 +61,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 spec:
   allowPrivilegeEscalation: true
@@ -291,7 +291,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana
   namespace: monitoring
@@ -304,7 +304,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-test
   namespace: monitoring
@@ -387,7 +387,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 data:
@@ -403,7 +403,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-config-dashboards
   namespace: monitoring
@@ -432,7 +432,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 data:
   grafana.ini: |
@@ -469,7 +469,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 data:
   run.sh: |-
@@ -38018,7 +38018,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   name: prometheus-grafana-clusterrole
 rules:
@@ -38387,7 +38387,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -38562,7 +38562,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:      ['extensions']
@@ -38580,7 +38580,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:      ['policy']
@@ -38598,7 +38598,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -38619,7 +38619,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -38640,7 +38640,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -38999,7 +38999,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -39016,10 +39016,10 @@ spec:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: prometheus
       annotations:
-        checksum/config: 679a210c36c7f1328508de199015e3f58790386b9e611981562994a30e1f09bb
+        checksum/config: f75163614535271061ff72ab8608f626be3330bbce38d24f26792ecae5808c5c
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 6a93528693861ac7ce7c85aa685aa1e256264c9c6ccb7f8040683e762f46844c
-        checksum/secret: 766a0aae892e8d82a20291ba61b5705082f3c940d94170468ed32a5ffcd1c60f
+        checksum/sc-dashboard-provider-config: 7ce4608eced2cfdf697e1e01cefeb43b24e2c6ecfda0a893faa986de01ce961f
+        checksum/secret: 0c3d27a433f21af1061c02e0af9a148a9775db8a81a8547b210738b0482af5c2
     spec:
       
       serviceAccountName: prometheus-grafana
@@ -39065,7 +39065,7 @@ spec:
             - name: sc-dashboard-volume
               mountPath: "/tmp/dashboards"
         - name: grafana
-          image: "grafana/grafana:8.0.3"
+          image: "grafana/grafana:8.0.6"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
@@ -39275,7 +39275,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager"
@@ -43080,7 +43080,7 @@ metadata:
     helm.sh/chart: grafana-6.13.5
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/version: "8.0.3"
+    app.kubernetes.io/version: "8.0.6"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test-success

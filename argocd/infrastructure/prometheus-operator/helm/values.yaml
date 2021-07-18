@@ -25,6 +25,8 @@ prometheus:
 
 grafana:
   enabled: true
+  image:
+    tag: 8.0.6
   ingress:
     enabled: true
     annotations:
