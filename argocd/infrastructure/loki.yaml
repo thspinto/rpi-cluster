@@ -12,7 +12,8 @@ spec:
     server: https://kubernetes.default.svc
   project: infrastructure
   source:
-    repoURL: https://github.com/grafana/helm-charts/charts/loki-stack
+    chart: loki-stack
+    repoURL: https://github.com/grafana/helm-charts
     targetRevision: loki-2.5.3
     helm:
       releaseName: loki
