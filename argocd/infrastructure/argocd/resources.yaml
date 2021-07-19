@@ -50,17 +50,6 @@ data:
       - openid
       - profile
       - email
-    repositories: |
-      - type: helm
-        url: https://k8s-at-home.com/charts/
-        name: k8s-at-home
-      - type: helm
-        url: https://helm.cilium.io/
-        name: cilium
-      - type: helm
-        url: https://grafana.github.io/helm-charts
-        enableOci: true
-        name: grafana
     url: https://argocd.thsp.dev
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-gpg-keys-cm.yaml
