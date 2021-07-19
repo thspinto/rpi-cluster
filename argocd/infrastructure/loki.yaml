@@ -12,11 +12,10 @@ spec:
     server: https://kubernetes.default.svc
   project: infrastructure
   source:
-    chart: grafana/loki-stack
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 2.4.1
+    repoURL: https://github.com/grafana/helm-charts/charts/loki-stack
+    targetRevision: loki-2.5.3
     helm:
-      values: |
+      releaseName: loki
 
   syncPolicy:
     automated:
