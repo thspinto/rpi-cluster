@@ -50,6 +50,17 @@ data:
       - openid
       - profile
       - email
+    repositories: |
+      - type: helm
+        url: https://k8s-at-home.com/charts/
+        name: k8s-at-home
+      - type: helm
+        url: https://helm.cilium.io/
+        name: cilium
+      - type: helm
+        url: https://grafana.github.io/helm-charts
+        enableOci: true
+        name: grafana
     url: https://argocd.thsp.dev
 ---
 # Source: argo-cd/templates/argocd-configs/argocd-gpg-keys-cm.yaml
@@ -516,7 +527,7 @@ metadata:
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/version: "linux-arm-v1.8.1"
+    app.kubernetes.io/version: "linux-arm64-v2.0.3"
 spec:
   selector:
     matchLabels:
@@ -533,7 +544,7 @@ spec:
         app.kubernetes.io/component: application-controller
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
-        app.kubernetes.io/version: "linux-arm-v1.8.1"
+        app.kubernetes.io/version: "linux-arm64-v2.0.3"
     spec:
       containers:
       - command:
@@ -554,7 +565,7 @@ spec:
         - info
         - --redis
         - argocd-redis:6379
-        image: alinbalutoiu/argocd:linux-arm-v1.8.1
+        image: alinbalutoiu/argocd:linux-arm64-v2.0.3
         imagePullPolicy: IfNotPresent
         name: application-controller
         ports:
@@ -609,7 +620,7 @@ metadata:
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/version: "linux-arm-v1.8.1"
+    app.kubernetes.io/version: "linux-arm64-v2.0.3"
 spec:
   selector:
     matchLabels:
@@ -626,11 +637,11 @@ spec:
         app.kubernetes.io/component: repo-server
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
-        app.kubernetes.io/version: "linux-arm-v1.8.1"
+        app.kubernetes.io/version: "linux-arm64-v2.0.3"
     spec:
       containers:
       - name: repo-server
-        image: alinbalutoiu/argocd:linux-arm-v1.8.1
+        image: alinbalutoiu/argocd:linux-arm64-v2.0.3
         imagePullPolicy: IfNotPresent
         command:
         - uid_entrypoint.sh
@@ -714,7 +725,7 @@ metadata:
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/version: "linux-arm-v1.8.1"
+    app.kubernetes.io/version: "linux-arm64-v2.0.3"
 spec:
   selector:
     matchLabels:
@@ -731,11 +742,11 @@ spec:
         app.kubernetes.io/component: server
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
-        app.kubernetes.io/version: "linux-arm-v1.8.1"
+        app.kubernetes.io/version: "linux-arm64-v2.0.3"
     spec:
       containers:
       - name: server
-        image: alinbalutoiu/argocd:linux-arm-v1.8.1
+        image: alinbalutoiu/argocd:linux-arm64-v2.0.3
         imagePullPolicy: IfNotPresent
         command:
         - argocd-server
