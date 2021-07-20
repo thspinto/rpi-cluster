@@ -59,7 +59,6 @@ data:
         name: cilium
       - type: helm
         url: https://grafana.github.io/helm-charts
-        enableOci: true
         name: grafana
     url: https://argocd.thsp.dev
 ---
