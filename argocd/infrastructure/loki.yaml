@@ -11,13 +11,9 @@ spec:
     namespace: monitoring
     server: https://kubernetes.default.svc
   project: infrastructure
-  source:
-    path: charts/loki-stack
-    repoURL: https://github.com/grafana/helm-charts.git
-    targetRevision: loki-2.5.3
-    helm:
-      releaseName: loki
-
+  repoURL: 'https://grafana.github.io/helm-charts'
+  targetRevision: 2.4.1
+  chart: loki-stack
   syncPolicy:
     automated:
       selfHeal: false
