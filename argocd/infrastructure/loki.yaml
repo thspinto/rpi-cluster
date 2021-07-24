@@ -30,11 +30,25 @@ spec:
                   target_label: 'unit'
                 - source_labels: ['__journal__hostname']
                   target_label: 'hostname'
+            - job_name: system
+              static_configs:
+                - targets:
+                    - localhost
+                  labels:
+                    host: ${HOSTNAME}
+                    job: varlogs
+                    __path__: /var/log/*log
           extraVolumes:
+            - name: log
+              hostPath:
+                path: /var/log
             - name: journal
               hostPath:
                 path: /var/log/journal
           extraVolumeMounts:
+            - name: log
+              mountPath: /var/log
+              readOnly: true
             - name: journal
               mountPath: /var/log/journal
               readOnly: true
