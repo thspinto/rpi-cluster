@@ -18,28 +18,25 @@ spec:
     helm:
       values: |
         promtail:
-          config:
-            snippets:
-              extraClientConfigs: |
-                external_labels:
-                  hostname: ${HOSTNAME}
-              extraScrapeConfigs: |
-                - job_name: journal
-                  journal:
-                    path: /var/log/journal
-                    max_age: 12h
-                    labels:
-                      job: systemd-journal
-                  relabel_configs:
-                    - source_labels: ['__journal__systemd_unit']
-                      target_label: 'unit'
-                - job_name: varlogs
-                  static_configs:
-                    - targets:
-                        - localhost
-                      labels:
-                        job: varlogs
-                        __path__: /var/log/*log
+          extraCommandlineArgs:
+            - -client.external-labels=hostname=$(HOSTNAME)
+          extraScrapeConfigs:
+            - job_name: journal
+              journal:
+                path: /var/log/journal
+                max_age: 12h
+                labels:
+                  job: systemd-journal
+              relabel_configs:
+                - source_labels: ['__journal__systemd_unit']
+                  target_label: 'unit'
+            - job_name: varlogs
+              static_configs:
+                - targets:
+                    - localhost
+                  labels:
+                    job: varlogs
+                    __path__: /var/log/*log
           extraVolumes:
             - name: log
               hostPath:
