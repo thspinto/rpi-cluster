@@ -18,9 +18,11 @@ spec:
     helm:
       values: |
         promtail:
-          extraClientConfigs:
-            external_labels:
-              hostname: ${HOSTNAME}
+          config:
+            snippets:
+              extraClientConfigs: |
+                external_labels:
+                  hostname: ${HOSTNAME}
           extraScrapeConfigs:
             - job_name: journal
               journal:
