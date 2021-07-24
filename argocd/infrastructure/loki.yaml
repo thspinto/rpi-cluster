@@ -19,7 +19,8 @@ spec:
       values: |
         promtail:
           extraClientConfigs:
-            hostname: ${HOSTNAME}
+            external_labels:
+              hostname: ${HOSTNAME}
           extraScrapeConfigs:
             - job_name: journal
               journal:
