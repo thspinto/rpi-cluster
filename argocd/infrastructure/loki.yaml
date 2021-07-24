@@ -18,6 +18,8 @@ spec:
     helm:
       values: |
         promtail:
+          extraClientConfigs:
+            hostname: ${HOSTNAME}
           extraScrapeConfigs:
             - job_name: journal
               journal:
@@ -28,14 +30,11 @@ spec:
               relabel_configs:
                 - source_labels: ['__journal__systemd_unit']
                   target_label: 'unit'
-                - source_labels: ['__journal__hostname']
-                  target_label: 'hostname'
             - job_name: system
               static_configs:
                 - targets:
                     - localhost
                   labels:
-                    host: ${HOSTNAME}
                     job: varlogs
                     __path__: /var/log/*log
           extraVolumes:
