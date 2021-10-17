@@ -12,9 +12,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: k8s-at-home/home-assistant
+    chart: home-assistant
     repoURL: https://k8s-at-home.com/charts/
-    targetRevision: 11.0.4
+    targetRevision: '11.0.4'
     helm:
       values: |
         prometheus:

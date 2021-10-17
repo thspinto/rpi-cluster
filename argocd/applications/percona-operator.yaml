@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: percona-operator
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: 'https://percona.github.io/percona-helm-charts'
+    targetRevision: '1.9.1'
+    chart: pxc-operator
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: true

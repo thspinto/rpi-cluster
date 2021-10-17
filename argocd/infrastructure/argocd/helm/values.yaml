@@ -69,8 +69,15 @@ server:
       - type: helm
         url: https://grafana.github.io/helm-charts
         name: grafana
-      - type: external-dns
+      - type: helm
         url: https://kubernetes-sigs.github.io/external-dns/
+        name: external-dns
+      - type: helm
+        url: https://charts.bitnami.com/bitnami
+        name: bitnami
+      - type: helm
+        url: https://percona.github.io/percona-helm-charts/
+        name: percona
     oidc.config: |
       name: Auth0
       issuer: https://thsp-dev.us.auth0.com/
