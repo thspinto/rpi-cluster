@@ -55,7 +55,7 @@ spec:
       serviceAccountName: external-dns
       containers:
       - name: external-dns
-        image: gcr.io/k8s-staging-external-dns/external-dns:1.3.2
+        image: k8s.gcr.io/external-dns/external-dns:v0.10.0
         args:
         - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
         - --crd-source-kind=DNSEndpoint
