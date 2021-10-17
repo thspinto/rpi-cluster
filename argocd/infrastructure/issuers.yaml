@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: issuers
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,12 +12,9 @@ spec:
     server: https://kubernetes.default.svc
   project: infrastructure
   source:
-    repoURL: 'https://charts.jetstack.io'
-    targetRevision: v1.5.4
-    chart: cert-manager
-    helm:
-      values: |
-        installCRDs: true
+    path: argocd/infrastructure/issuers
+    repoURL: https://github.com/thspinto/rpi-cluster.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       selfHeal: false
