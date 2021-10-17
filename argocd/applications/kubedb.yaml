@@ -17,20 +17,21 @@ spec:
     targetRevision: 'v2021.09.30'
     helm:
       values: |
-        nodeSelector: {}
-        catalog:
-          elasticsearch: false
-          etcd: false
-          memcached: false
-          mongodb: false
-          mysql: false
-          mariadb: true
-          perconaxtradb: false
-          pgbouncer: false
-          postgres: true
-          proxysql: false
-          redis: true
-
+        kubedb-catalog:
+          catalog:
+            elasticsearch: false
+            etcd: false
+            memcached: false
+            mongodb: false
+            mysql: false
+            mariadb: true
+            perconaxtradb: false
+            pgbouncer: false
+            postgres: true
+            proxysql: false
+            redis: true
+          kubedb-community
+            nodeSelector: {}
 
   syncPolicy:
     automated:
