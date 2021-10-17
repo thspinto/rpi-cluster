@@ -14,7 +14,7 @@ spec:
   source:
     chart: k8s-at-home/home-assistant
     repoURL: https://k8s-at-home.com/charts/
-    targetRevision: 2.4.1
+    targetRevision: 11.0.4
     helm:
       values: |
         prometheus:

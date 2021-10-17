@@ -253,15 +253,15 @@ spec:
     spec:
       automountServiceAccountToken: true
       serviceAccountName: kong-kong
-      
+
       containers:
       - name: ingress-controller
         securityContext:
-      
-          {}  
+
+          {}
         args:
         - /kong-ingress-controller
-        
+
         ports:
         env:
         - name: POD_NAME
@@ -273,9 +273,9 @@ spec:
           valueFrom:
             fieldRef:
               apiVersion: v1
-              fieldPath: metadata.namespace  
-        
-        
+              fieldPath: metadata.namespace
+
+
         - name: CONTROLLER_ELECTION_ID
           value: "kong-ingress-controller-leader-kong"
         - name: CONTROLLER_INGRESS_CLASS
@@ -310,15 +310,15 @@ spec:
           timeoutSeconds: 5
         resources:
           {}
-      
+
       - name: "proxy"
         image: thspinto/kong-arm64v8:latest
         imagePullPolicy: IfNotPresent
         securityContext:
-        
-          {}  
+
+          {}
         env:
-         
+
         - name: KONG_ADMIN_ACCESS_LOG
           value: "/dev/stdout"
         - name: KONG_ADMIN_ERROR_LOG
@@ -359,8 +359,6 @@ spec:
           value: "0.0.0.0:8000, 0.0.0.0:8443 http2 ssl"
         - name: KONG_STATUS_LISTEN
           value: "0.0.0.0:8100"
-        - name: KONG_STREAM_LISTEN
-          value: "0.0.0.0:9443 ssl"
         - name: KONG_NGINX_DAEMON
           value: "off"
         lifecycle:
@@ -379,7 +377,7 @@ spec:
           protocol: TCP
         - name: stream-9443
           containerPort: 9443
-          protocol: 
+          protocol:
         - name: status
           containerPort: 8100
           protocol: TCP
@@ -388,7 +386,7 @@ spec:
             mountPath: /kong_prefix/
           - name: kong-kong-tmp
             mountPath: /tmp
-          
+
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -410,7 +408,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         resources:
-          {} 
+          {}
       securityContext:
         {}
       terminationGracePeriodSeconds: 30

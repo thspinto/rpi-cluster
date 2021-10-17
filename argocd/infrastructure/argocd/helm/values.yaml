@@ -2,7 +2,7 @@
 global:
   image:
     repository: alinbalutoiu/argocd
-    tag: linux-arm64-v2.0.3
+    tag: linux-arm64-v2.0.5
 
 dex:
   enabled: false
@@ -69,6 +69,8 @@ server:
       - type: helm
         url: https://grafana.github.io/helm-charts
         name: grafana
+      - type: external-dns
+        url: https://kubernetes-sigs.github.io/external-dns/
     oidc.config: |
       name: Auth0
       issuer: https://thsp-dev.us.auth0.com/

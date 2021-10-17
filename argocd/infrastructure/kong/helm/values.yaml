@@ -16,11 +16,6 @@ image:
 
 proxy:
   externalTrafficPolicy: Local
-  stream:
-    - containerPort: 9443
-      servicePort: 9443
-      parameters:
-        - ssl
 
 replicaCount: 2
 
@@ -30,8 +25,3 @@ env:
   status=$status body_bytes_sent=$body_bytes_sent http_referer="$http_referer"
   http_user_agent="$http_user_agent" request_time=$request_time
   upstream_status=$upstream_status upstream_response_time=$upstream_response_time'
-#  nginx_stream_log_format: |
-#   custom_fmt '$remote_addr [$time_local] '
-#   '$protocol $status $bytes_sent $bytes_received '
-#   '$session_time'
-#  proxy_access_log: /dev/stdout custom_fmt
