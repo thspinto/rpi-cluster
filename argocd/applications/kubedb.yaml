@@ -30,8 +30,8 @@ spec:
             postgres: true
             proxysql: false
             redis: true
-          kubedb-community
-            nodeSelector: {}
+        kubedb-community
+          nodeSelector: {}
 
   syncPolicy:
     automated:
