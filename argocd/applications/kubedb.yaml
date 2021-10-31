@@ -31,7 +31,8 @@ spec:
             proxysql: false
             redis: true
         kubedb-community:
-          nodeSelector: {}
+          nodeSelector:
+            beta.kubernetes.io/os: linux
 
   syncPolicy:
     automated:
