@@ -32,7 +32,7 @@ spec:
             redis: true
         kubedb-community:
           nodeSelector:
-            beta.kubernetes.io/os: linux
+            beta.kubernetes.io/arch: arm64
 
   syncPolicy:
     automated:
