@@ -39502,8 +39502,10 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              serviceName: prometheus-grafana
-              servicePort: 80
+              service:
+                name: prometheus-grafana
+                port:
+                    number: 80
 ---
 # Source: kube-prometheus-stack/templates/prometheus/ingress.yaml
 apiVersion: networking.k8s.io/v1
@@ -39534,8 +39536,10 @@ spec:
           - path: /
             pathType: ImplementationSpecific
             backend:
-              serviceName: prometheus-kube-prometheus-prometheus
-              servicePort: 9090
+              service:
+                name: prometheus-kube-prometheus-prometheus
+                port:
+                    number: 9090
   tls:
     - hosts:
       - prometheus.thsp.dev
