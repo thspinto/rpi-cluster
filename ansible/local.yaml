@@ -64,6 +64,8 @@
       api_version: v1
       kind: Namespace
       state: present
+      kubeconfig: '{{ kubeconfig }}'
+
 
   - name: Create a metallb-system namespace
     community.kubernetes.k8s:
@@ -71,6 +73,7 @@
       api_version: v1
       kind: Namespace
       state: present
+      kubeconfig: '{{ kubeconfig }}'
 
   - name: Apply secrets
     community.kubernetes.k8s:
