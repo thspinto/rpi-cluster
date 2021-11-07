@@ -124,7 +124,7 @@ kind: PodSecurityPolicy
 metadata:
   name: prometheus-prometheus-node-exporter
   namespace: monitoring
-  labels:     
+  labels:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -180,7 +180,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -234,7 +234,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -347,7 +347,7 @@ metadata:
     app: kube-prometheus-stack-operator
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
     app.kubernetes.io/component: prometheus-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -366,7 +366,7 @@ metadata:
     app: kube-prometheus-stack-prometheus
     app.kubernetes.io/name: kube-prometheus-stack-prometheus
     app.kubernetes.io/component: prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -487,7 +487,7 @@ metadata:
   labels:
     grafana_datasource: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -518,7 +518,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -1127,7 +1127,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -2873,7 +2873,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -4754,7 +4754,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -5930,7 +5930,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -7045,7 +7045,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -8579,7 +8579,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -11602,7 +11602,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -14345,7 +14345,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -15322,7 +15322,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -17748,7 +17748,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -19733,7 +19733,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -21883,7 +21883,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -24136,7 +24136,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -25599,7 +25599,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -27334,7 +27334,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -28396,7 +28396,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -29484,7 +29484,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -30474,7 +30474,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -31050,7 +31050,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -32277,7 +32277,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -33511,7 +33511,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -34767,7 +34767,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -35866,7 +35866,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -36793,7 +36793,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38404,7 +38404,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: psp-prometheus-prometheus-node-exporter
-  labels:     
+  labels:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -38424,7 +38424,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38511,7 +38511,7 @@ metadata:
   name: prometheus-kube-prometheus-operator-psp
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38533,7 +38533,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38567,7 +38567,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus-psp
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38645,7 +38645,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: psp-prometheus-prometheus-node-exporter
-  labels:     
+  labels:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -38667,7 +38667,7 @@ metadata:
   name: prometheus-kube-prometheus-operator
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38691,7 +38691,7 @@ metadata:
   name: prometheus-kube-prometheus-operator-psp
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38715,7 +38715,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38739,7 +38739,7 @@ metadata:
   name: prometheus-kube-prometheus-prometheus-psp
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38878,7 +38878,7 @@ spec:
     protocol: TCP
     port: 8080
     targetPort: 8080
-  
+
   selector:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/instance: prometheus
@@ -38891,7 +38891,7 @@ metadata:
   namespace: monitoring
   annotations:
     prometheus.io/scrape: "true"
-  labels:     
+  labels:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -38916,7 +38916,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-coredns
     jobLabel: coredns
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38943,7 +38943,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-controller-manager
     jobLabel: kube-controller-manager
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38971,7 +38971,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-etcd
     jobLabel: kube-etcd
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -38999,7 +38999,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-proxy
     jobLabel: kube-proxy
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39027,7 +39027,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-kube-scheduler
     jobLabel: kube-scheduler
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39055,7 +39055,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39082,7 +39082,7 @@ metadata:
   labels:
     app: kube-prometheus-stack-prometheus
     self-monitor: "true"
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39106,7 +39106,7 @@ kind: DaemonSet
 metadata:
   name: prometheus-prometheus-node-exporter
   namespace: monitoring
-  labels:     
+  labels:
     app: prometheus-node-exporter
     heritage: Helm
     release: prometheus
@@ -39123,7 +39123,7 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      labels:         
+      labels:
         app: prometheus-node-exporter
         heritage: Helm
         release: prometheus
@@ -39226,7 +39226,7 @@ spec:
         checksum/sc-dashboard-provider-config: 5294a3a165d77e2669e4c50a80c8c3b521546dc87b4f2fba71f51b4412d020b0
         checksum/secret: 96a3e23cc96a8b921fab9b8c2061ef0dd108ce33f020668f4bc738a5292b07ad
     spec:
-      
+
       serviceAccountName: prometheus-grafana
       automountServiceAccountToken: true
       securityContext:
@@ -39258,7 +39258,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: METHOD
-              value: 
+              value:
             - name: LABEL
               value: "grafana_dashboard"
             - name: FOLDER
@@ -39281,7 +39281,7 @@ spec:
               mountPath: "/var/lib/grafana"
             - name: sc-dashboard-volume
               mountPath: "/tmp/dashboards"
-      
+
             - name: sc-dashboard-provider
               mountPath: "/etc/grafana/provisioning/dashboards/sc-dashboardproviders.yaml"
               subPath: provider.yaml
@@ -39305,7 +39305,7 @@ spec:
                 secretKeyRef:
                   name: prometheus-grafana
                   key: admin-password
-            
+
             - name: GF_PATHS_DATA
               value: /var/lib/grafana/
             - name: GF_PATHS_LOGS
@@ -39404,7 +39404,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39422,7 +39422,7 @@ spec:
     metadata:
       labels:
         app: kube-prometheus-stack-operator
-        
+
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus
         app.kubernetes.io/version: "19.2.3"
@@ -39474,7 +39474,7 @@ spec:
       serviceAccountName: prometheus-kube-prometheus-operator
 ---
 # Source: kube-prometheus-stack/charts/grafana/templates/ingress.yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prometheus-grafana
@@ -39506,7 +39506,7 @@ spec:
               servicePort: 80
 ---
 # Source: kube-prometheus-stack/templates/prometheus/ingress.yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -39518,7 +39518,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39547,7 +39547,7 @@ kind: MutatingWebhookConfiguration
 metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39584,7 +39584,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39601,7 +39601,7 @@ spec:
   externalUrl: "http://prometheus.thsp.dev/"
   paused: false
   replicas: 1
-  shards: 
+  shards:
   logLevel:  info
   logFormat:  logfmt
   listenLocal: false
@@ -39632,7 +39632,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39775,7 +39775,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39909,7 +39909,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -39957,7 +39957,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -40114,7 +40114,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -40236,7 +40236,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -40558,7 +40558,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -40601,7 +40601,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -40678,7 +40678,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41030,7 +41030,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41055,7 +41055,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41088,7 +41088,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41145,7 +41145,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41214,7 +41214,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41247,7 +41247,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41496,7 +41496,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41625,7 +41625,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41689,7 +41689,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41761,7 +41761,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41791,7 +41791,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41932,7 +41932,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -41962,7 +41962,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42005,7 +42005,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42078,7 +42078,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42326,7 +42326,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42356,7 +42356,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42401,7 +42401,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42485,7 +42485,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42730,7 +42730,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-coredns
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42759,7 +42759,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-apiserver
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42793,7 +42793,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-controller-manager
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42822,7 +42822,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-etcd
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42851,7 +42851,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-proxy
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42880,7 +42880,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-scheduler
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42909,7 +42909,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-kube-state-metrics
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42934,7 +42934,7 @@ metadata:
   name: prometheus-kube-prometheus-kubelet
   namespace: monitoring
   labels:
-    app: kube-prometheus-stack-kubelet    
+    app: kube-prometheus-stack-kubelet
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -42996,7 +42996,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-node-exporter
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43021,7 +43021,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-grafana
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43046,7 +43046,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-operator
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43082,7 +43082,7 @@ metadata:
   namespace: monitoring
   labels:
     app: kube-prometheus-stack-prometheus
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43109,7 +43109,7 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name:  prometheus-kube-prometheus-admission
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43148,7 +43148,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
     app: kube-prometheus-stack-admission
-    
+
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43205,7 +43205,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43223,7 +43223,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43255,7 +43255,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43282,7 +43282,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43309,7 +43309,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission    
+    app: kube-prometheus-stack-admission
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43367,7 +43367,7 @@ metadata:
     "helm.sh/hook": pre-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission-create    
+    app: kube-prometheus-stack-admission-create
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43380,7 +43380,7 @@ spec:
     metadata:
       name:  prometheus-kube-prometheus-admission-create
       labels:
-        app: kube-prometheus-stack-admission-create        
+        app: kube-prometheus-stack-admission-create
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus
         app.kubernetes.io/version: "19.2.3"
@@ -43417,7 +43417,7 @@ metadata:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    app: kube-prometheus-stack-admission-patch    
+    app: kube-prometheus-stack-admission-patch
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/version: "19.2.3"
@@ -43430,7 +43430,7 @@ spec:
     metadata:
       name:  prometheus-kube-prometheus-admission-patch
       labels:
-        app: kube-prometheus-stack-admission-patch        
+        app: kube-prometheus-stack-admission-patch
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: prometheus
         app.kubernetes.io/version: "19.2.3"

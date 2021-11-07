@@ -663,7 +663,7 @@ spec:
         - name: repo-server
           containerPort: 8081
           protocol: TCP
-        
+
         - name: metrics
           containerPort: 8084
           protocol: TCP
@@ -746,10 +746,10 @@ spec:
         imagePullPolicy: IfNotPresent
         command:
         - argocd-server
-        
+
         - --staticassets
         - /shared/app
-        
+
         - --repo-server
         - argocd-repo-server:8081
         - --logformat
@@ -770,7 +770,7 @@ spec:
         - name: server
           containerPort: 8080
           protocol: TCP
-        
+
         - name: metrics
           containerPort: 8083
           protocol: TCP
@@ -864,7 +864,7 @@ spec:
           {}
 ---
 # Source: argo-cd/templates/argocd-server/ingress-grpc.yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -895,7 +895,7 @@ spec:
       secretName: cert-manager
 ---
 # Source: argo-cd/templates/argocd-server/ingress.yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
